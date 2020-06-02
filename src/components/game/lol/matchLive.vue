@@ -8,21 +8,36 @@
                 <span>27</span>
             </div>
         </battle>
+        <div class="flex flex_between">
+            <role-list></role-list>
+            <div>
+                <div class="flex flex_between">
+                    <type-list :placeData="placeRight"></type-list>
+                    <type-list :placeData="placeLeft"></type-list>
+                </div>
+            </div>
+            <role-list></role-list>
+        </div>
 	</div>
 </template>
 
 <script>
     import headTab from '@/components/game/modules/headTab'
     import battle from '@/components/game/modules/battle'
+    import typeList from '@/components/game/modules/typeList'
+    import roleList from '@/components/game/modules/roleList'
 	export default {
 		data() {
 			return {
-				
+                placeRight: true, // 位置是否右对齐
+                placeLeft: false, // 位置是否左对齐
 			}
         },
         components: {
             headTab,
-            battle
+            battle,
+            typeList,
+            roleList
         }
 	}
 </script>
@@ -31,6 +46,7 @@
     .match-live {
         width: 360px;
         height: 260px;
+        margin-left: 100px;
         margin-top: 50px;
         box-sizing: border-box;
         background-color: #fff;
