@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Qs from 'qs'
 import { sparkUrl } from './config'
-// import { Message } from 'element-ui'
+import { Message } from 'element-ui'
 
 const TIMEOUT = 30000; // 设置请求超时时间 常量
 
@@ -23,11 +23,11 @@ const service = axios.create({
  */
 service.interceptors.request.use(
     config => {
-        return config;
+        return config
     },
     error => {
-        Message.error('数据请求失败，请刷新页面');
-        return Promise.reject(err);
+        Message.error('数据请求失败，请刷新页面')
+        return Promise.reject(err)
     }
 );
 
@@ -38,15 +38,15 @@ service.interceptors.response.use(
     response => {
         // 如果返回的状态码为200，说明接口请求成功
         if(response.status === 200 && response.data) {
-            return Promise.resolve(response);
+            return Promise.resolve(response)
         } else {
-            return Promise.reject(error);
+            return Promise.reject(error)
         }
     },
     // http请求状态出错提示,直接返回错误data
     error => {
-        Message.error('数据请求失败，请刷新页面');
-        return Promise.reject(error);
+        Message.error('数据请求失败，请刷新页面')
+        return Promise.reject(error)
     }
 );
 
@@ -106,6 +106,8 @@ function putRequest(url,params = {}){
 }
 
 export {
-
-};
+    getRequest,
+    postRequest,
+    putRequest
+}
 

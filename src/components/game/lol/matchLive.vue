@@ -15,6 +15,7 @@
                     <type-list :placeData="placeRight"></type-list>
                     <type-list :placeData="placeLeft"></type-list>
                 </div>
+                <output-list></output-list>
             </div>
             <role-list></role-list>
         </div>
@@ -26,6 +27,7 @@
     import battle from '@/components/game/modules/battle'
     import typeList from '@/components/game/modules/typeList'
     import roleList from '@/components/game/modules/roleList'
+    import outputList from '@/components/game/modules/outputList'
 	export default {
 		data() {
 			return {
@@ -37,7 +39,8 @@
             headTab,
             battle,
             typeList,
-            roleList
+            roleList,
+            outputList
         }
 	}
 </script>
@@ -46,8 +49,7 @@
     .match-live {
         width: 360px;
         height: 260px;
-        margin-left: 100px;
-        margin-top: 50px;
+        margin: 0 auto;
         box-sizing: border-box;
         background-color: #fff;
         .live {

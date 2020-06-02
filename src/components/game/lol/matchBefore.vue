@@ -36,6 +36,7 @@
     .match-before {
         width: 826px;
         height: 262px;
+        margin: 20px auto;
         padding: 15px 75px;
         box-sizing: border-box;
         background-color: #fff;

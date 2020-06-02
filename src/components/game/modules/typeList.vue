@@ -2,7 +2,7 @@
 	<div :class="['type-list', 'flex', 'flex_wrap', 
         placeData?'flex_end':'flex_start']"
     >
-        <span class="block"
+        <span :class="['block',item.flag?'flag':'']"
             v-for="item in typeList"
             :key="item.type">
             {{item.type}}
@@ -22,25 +22,32 @@
 			return {
 				typeList: [
                     {
-                        type: '首水晶'
+                        type: '首水晶',
+                        flag: true
                     },
                     {
-                        type: '十杀'
+                        type: '十杀',
+                        flag: true
                     },
                     {
-                        type: '五杀'
+                        type: '五杀',
+                        flag: false
                     },
                     {
-                        type: '一血'
+                        type: '一血',
+                        flag: true
                     },
                     {
-                        type: '首大龙'
+                        type: '首大龙',
+                        flag: false
                     },
                     {
-                        type: '首小龙'
+                        type: '首小龙',
+                        flag: false
                     },
                     {
-                        type: '首塔'
+                        type: '首塔',
+                        flag: true
                     }
                 ]
 			}
@@ -62,8 +69,16 @@
             border-radius: 2px;
             background-color: #E7E7E7;
             transform: scale(0.833333);
-            &:nth-child(2n) {
+        }
+        .flag {
+            &:nth-child(n) {
                 background-color: @orange;
+            }
+            &:nth-child(2n) {
+                background-color: @blue;
+            }
+            &:nth-child(3n) {
+                background-color: @purple;
             }
         }
     }

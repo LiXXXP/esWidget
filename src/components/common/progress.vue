@@ -25,7 +25,10 @@
 			return {
 
 			}
-		}
+        },
+        mounted() {
+            
+        }
 	}
 </script>
 
