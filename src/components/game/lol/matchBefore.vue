@@ -15,9 +15,9 @@
 </template>
 
 <script>
-    import stateList from '@/components/game/modules/stateList'
-    import battle from '@/components/game/modules/battle'
-    import rateList from '@/components/game/modules/rateList'
+    import stateList from '@/components/game/modules/stateList'  // 胜负标记
+    import battle from '@/components/game/modules/battle'        // 对局
+    import rateList from '@/components/game/modules/rateList'    // 对战率占比
 	export default {
 		data() {
 			return {

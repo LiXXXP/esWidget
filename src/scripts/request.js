@@ -3,7 +3,7 @@ import Qs from 'qs'
 import { sparkUrl } from './config'
 import { Message } from 'element-ui'
 
-const TIMEOUT = 30000; // 设置请求超时时间 常量
+const TIMEOUT = 30000 // 设置请求超时时间
 
 // 创建axios实例
 const service = axios.create({
@@ -62,9 +62,9 @@ function getRequest(url,params={}){
         axios.get(fullUrl,{
             params:params
         }).then(response => {
-            resolve(response.data);
+            resolve(response.data)
         }).catch(err => {
-            reject(err);
+            reject(err)
         });
     });
 }
@@ -76,13 +76,13 @@ function getRequest(url,params={}){
  * @returns {Promise}
  */
 function postRequest(url,params={}) {
-    let fullUrl = sparkUrl + url;
+    let fullUrl = sparkUrl + url
     return new Promise((resolve, reject) => {
         axios.post(fullUrl, Qs.stringify(params))
         .then(response => {
-            resolve(response.data);
+            resolve(response.data)
         }).catch(err => {
-            reject(err);
+            reject(err)
         });
     });
 }
@@ -94,20 +94,31 @@ function postRequest(url,params={}) {
  * @returns {Promise}
  */
 function putRequest(url,params = {}){
-    let fullUrl = sparkUrl + url;
+    let fullUrl = sparkUrl + url
     return new Promise((resolve,reject) => {
         axios.put(fullUrl,params)
         .then(response => {
-             resolve(response.data);
+             resolve(response.data)
         },err => {
-             reject(err);
+             reject(err)
         });
     });
 }
 
+/**
+ * 单个对局详情
+ * @param {*} params
+ */
+function getBattle(params) {
+    return getRequest('/mock/11/v1/battles/detail', params)
+}
+
+
+
 export {
     getRequest,
     postRequest,
-    putRequest
+    putRequest,
+    getBattle
 }
 
