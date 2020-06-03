@@ -27,7 +27,7 @@
                     },
                     {
                         type: '十杀',
-                        flag: true
+                        flag: false
                     },
                     {
                         type: '五杀',
@@ -39,15 +39,15 @@
                     },
                     {
                         type: '首大龙',
-                        flag: false
+                        flag: true
                     },
                     {
                         type: '首小龙',
-                        flag: false
+                        flag: true
                     },
                     {
                         type: '首塔',
-                        flag: true
+                        flag: false
                     }
                 ]
 			}
