@@ -1,16 +1,29 @@
 <template>
-	<section class="match-before">
+	<section :class="['match-before',{'night-mode':definedStyle.type}]"
+        :style="{'width':definedStyle.widthData,
+                 'height': definedStyle.heightData,
+                 'background-color':definedStyle.colorData
+                }"
+    >
         <p class="point">(数据为最近3个月)</p>
         <div class="bar flex flex_center flex_only_start">
-            <state-list></state-list>
+            <state-list 
+                :colorData="definedStyle.type"
+            ></state-list>
             <battle>
                 <div slot="before" class="time">
-                    23:50
+                    <p>23 : 50</p>
+                    <p class="date">5月20日</p>
                 </div>
             </battle>
-            <state-list></state-list>
+            <state-list
+                :colorData="definedStyle.type"
+            ></state-list>
         </div>
-        <rate-list></rate-list>
+        <rate-list
+            :barColor="barColorData"
+            :colorData="definedStyle.type"
+        ></rate-list>
 	</section>
 </template>
 
@@ -19,9 +32,18 @@
     import battle from '@/components/game/modules/battle'        // 对局
     import rateList from '@/components/game/modules/rateList'    // 对战率占比
 	export default {
+        props: {
+            definedStyle: {
+                type: Object,
+                default: null
+            }
+        },
 		data() {
 			return {
-				
+				barColorData: {   // 进度条颜色
+                    left: '#A5A5A5',
+                    right: '#3BB42A',
+                },
 			}
         },
         components: {
@@ -34,12 +56,9 @@
 
 <style lang="less" scoped>
     .match-before {
-        width: 826px;
-        height: 262px;
         margin: 20px auto;
         padding: 15px 75px;
         box-sizing: border-box;
-        background-color: #fff;
         position: relative;
         .point {
             color: #CFCFCF;
@@ -53,6 +72,20 @@
                 color: #434343;
                 font-size: 18px;
                 font-weight: bold;
+                .date {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    .night-mode {
+        .point {
+            color: #5C5C79;
+        }
+        .bar {
+            .time {
+                color: #CFCFCF;
             }
         }
     }

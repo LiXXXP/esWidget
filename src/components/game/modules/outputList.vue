@@ -1,13 +1,13 @@
 <template>
-    <div class="output-list">
+    <div :class="['output-list',{'night-mode':colorData}]">
         <div class="list flex flex_around"
             v-for="item in outputList"
             :key="item.head">
             <div class="left flex flex_only_center">
-                <p>{{item.num1}}</p>
+                <p :style="{'color':barColor.left}">{{item.num1}}</p>
                 <progress-data
                     class="bar"
-                    :colorData="'#1167E8'"
+                    :progressColor="barColor.left"
                     :progressData="parseInt(item.num1/(item.num1+item.num2)*100)"
                 ></progress-data>
             </div>
@@ -15,10 +15,10 @@
             <div class="right flex flex_only_center">
                 <progress-data
                     class="bar"
-                    :colorData="'#D43F2F'"
+                    :progressColor="barColor.right"
                     :progressData="parseInt(item.num2/(item.num1+item.num2)*100)"
                 ></progress-data>
-                <p>{{item.num2}}</p>
+                <p :style="{'color':barColor.right}">{{item.num2}}</p>
             </div>
         </div>
     </div>
@@ -27,6 +27,16 @@
 <script>
     import progressData from '@/components/common/progress'
     export default {
+        props: {
+            colorData: {
+                type: Number,
+                default: 0,
+            },
+            barColor: {
+                type: Object,
+                default: null
+            }
+        },
         data() {
             return {
                 outputList: [
@@ -51,7 +61,7 @@
                         num2: 5
                     },
                     {
-                        head: '男爵',
+                        head: '远程营',
                         num1: 8,
                         num2: 5
                     }
@@ -76,7 +86,6 @@
                 }
                 p {
                     width: 15px;
-                    color: #1167E8;
                     text-align: right;
                 }
             }
@@ -90,8 +99,14 @@
                 }
                 p {
                     width: 15px;
-                    color: #D43F2F;
                 }
+            }
+        }
+    }
+    .night-mode {
+        .list {
+            .head {
+                color: #737397;
             }
         }
     }

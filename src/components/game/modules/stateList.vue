@@ -1,5 +1,5 @@
 <template>
-	<div class="state-list">
+	<div :class="['state-list',{'night-mode':colorData}]">
 		<div class="state flex flex_between">
 			<p :class="[{active:currentIndex===index},
                 item.sign?'win':'lose']"
@@ -23,6 +23,12 @@
 
 <script>
 	export default {
+        props: {
+            colorData: {
+                type: Number,
+                default: 0,
+            }
+        },
 		data() {
 			return {
                 currentIndex: 0,  //当前索引
@@ -130,6 +136,24 @@
                 color: #CFCFCF;
                 font-size: 10px;
                 white-space:nowrap;
+            }
+        }
+    }
+    .night-mode {
+        .state {
+            border-bottom: 1px solid #5C5C79;
+            p {
+                &.active::before {
+                    border-bottom: 4px solid #1E1E27;
+                }
+                &.active::after {
+                    border-bottom: 5px solid #5C5C79;
+                }
+            }
+        }
+        .date {
+            p {
+                color: #5C5C79;
             }
         }
     }

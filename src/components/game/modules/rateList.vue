@@ -1,5 +1,7 @@
 <template>
-	<div class="rate-list flex flex_wrap flex_between">
+	<div :class="['rate-list flex flex_wrap flex_between',
+                {'night-mode':colorData}]"
+    >
         <div class="item"
             v-for="item in rateData"
             :key="item.title">
@@ -15,7 +17,7 @@
                     </p>
                     <progress-data 
                         :progressData="parseInt(key.num)"
-                        :colorData="parseInt(key.num)>50?'#3BB42A':'#A5A5A5'"
+                        :progressColor="parseInt(key.num)>50?barColor.right:colorData?nightColor:barColor.left"
                     ></progress-data>
                 </div>
             </div>
@@ -27,8 +29,19 @@
 <script>
     import progressData from '@/components/common/progress'
 	export default {
+        props: {
+            barColor: {
+                type: Object,
+                default: null
+            },
+            colorData: {
+                type: Number,
+                default: 0,
+            }
+        },
 		data() {
 			return {
+                nightColor: '#737397',     // 深色模式进度条小于50%颜色
 				rateData: [
                     {
                         title: '交手胜率',
@@ -75,6 +88,7 @@
 <style lang="less" scoped>
     @high: #3BB42A;
     @low: #A5A5A5;
+    @night: #737397;
     .rate-list {
         margin-top: 15px;
         .item {
@@ -100,6 +114,18 @@
                     p {
                         text-align: right;
                     }
+                }
+            }
+        }
+    }
+    .night-mode {
+        .item {
+            .title {
+                color: #CFCFCF;
+            }
+            .twig {
+                .low {
+                    color: @night;
                 }
             }
         }

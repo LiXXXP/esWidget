@@ -4,7 +4,7 @@
             :stroke-width="8"
             :show-text="false"
             :percentage="progressData" 
-            :color="colorData"
+            :color="progressColor"
         ></el-progress>
 	</div>
 </template>
@@ -16,7 +16,7 @@
                 type: Number,
                 default: 0
             },
-            colorData: {
+            progressColor: {
                 type: String,
                 default: ''
             }

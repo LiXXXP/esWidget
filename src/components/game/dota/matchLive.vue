@@ -58,13 +58,13 @@
                 placeRight: true, // 位置是否右对齐
                 placeLeft: false, // 位置是否左对齐
                 barColorData: {   // 进度条颜色
-                    left: '#1167E8',
+                    left: '#3CAB3C',
                     right: '#D43F2F',
                 },
                 roleData: {       // 角色头像宽高
-                    width: '36px',
-                    height: '36px',
-                    type: 'lol'
+                    width: '40px',
+                    height: '28px',
+                    type: 'dota'
                 }
 			}
         },
@@ -85,7 +85,7 @@
 
 <style lang="less" scoped>
     .match-live {
-        margin: 0 auto;
+        margin: 20px auto;
         box-sizing: border-box;
         .live {
             span {
@@ -100,6 +100,9 @@
                 display: inline-block;
                 background: url('../../../assets/imgs/icon01.png') no-repeat 0 0;
                 background-size: 100%;
+            }
+            .num {
+                color: #434343;
             }
         }
     }
