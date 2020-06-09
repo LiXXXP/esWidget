@@ -1,5 +1,6 @@
 <template>
 	<div class="battle flex flex_center">
+        <slot name="left-info"></slot>
         <div class="team flex flex_start flex_center">
             <img :src="row1.head">
             <i class="team-win" v-if="row1.win"></i>
@@ -12,6 +13,7 @@
             <img :src="row2.head">
             <i class="team-win" v-if="row2.win"></i>
         </div>
+        <slot name="right-info"></slot>
 	</div>
 </template>
 

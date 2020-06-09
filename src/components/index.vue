@@ -12,6 +12,9 @@
         <cs-matchBefore
             :definedStyle="csBeforeData"
         ></cs-matchBefore>
+        <cs-match-live
+            :definedStyle="csLiveData"
+        ></cs-match-live>
 	</div>
 </template>
 
@@ -20,6 +23,7 @@
     import lolMatchLive from '@/components/game/lol/matchLive'
     import dotaMatchLive from '@/components/game/dota/matchLive'
     import csMatchBefore from '@/components/game/csgo/matchBefore'
+    import csMatchLive from '@/components/game/csgo/matchLive'
 	export default {
 		data() {
 			return {
@@ -47,13 +51,20 @@
                     widthData: '360px',
                     heightData: '260px',
                 },
+                csLiveData: {
+                    type: 1,          // 开启背景模式，0为浅色，1为深色
+                    colorData: '#1E1E27',
+                    widthData: '360px',
+                    heightData: '260px',
+                },
 			}
         },
         components: {
             matchBefore,
             lolMatchLive,
             dotaMatchLive,
-            csMatchBefore
+            csMatchBefore,
+            csMatchLive
         }
 	}
 </script>

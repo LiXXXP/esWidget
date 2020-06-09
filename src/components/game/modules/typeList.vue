@@ -37,22 +37,6 @@
                     {
                         type: '五杀',
                         flag: false
-                    },
-                    {
-                        type: '一血',
-                        flag: true
-                    },
-                    {
-                        type: '首龙long',
-                        flag: true
-                    },
-                    {
-                        type: '首小龙',
-                        flag: true
-                    },
-                    {
-                        type: '首塔',
-                        flag: false
                     }
                 ]
 			}

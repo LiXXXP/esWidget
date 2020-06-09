@@ -11,7 +11,11 @@
                 <war-list :isColor="colorData.left"></war-list>
                 <war-list :isColor="colorData.right"></war-list>
             </div>
-            <state-table></state-table>
+            <div class="flex flex_between">
+                <state-table :isBig="isBig"></state-table>
+                <hr>
+                <state-table :isBig="isBig"></state-table>
+            </div>
         </div>
 	</section>
 </template>
@@ -33,7 +37,8 @@
 				colorData: {
                     left: true,
                     right: false
-                }
+                },
+                isBig: false,    // 是否显示大图标
 			}
         },
         components: {
@@ -56,6 +61,13 @@
             box-sizing: border-box;
             background: url('../../../assets/imgs/bg.png') no-repeat 0 0;
             background-size: 100%;
+        }
+        hr {
+            border: 0;
+            margin: 0;
+            padding: 0;
+            margin: 15px auto 0;
+            border-right: 1px solid #878787;
         }
     }
 </style>
