@@ -18,10 +18,6 @@ body {
     user-select: none;
 }
 
-td, th, caption {
-    font-size: 14px;
-}
-
 a {
     text-decoration: none;
 }
