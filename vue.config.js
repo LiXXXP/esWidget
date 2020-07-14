@@ -29,6 +29,8 @@ module.exports = {
         port: 8088, // 端口号
         hot: true,
         disableHostCheck: true,
+        historyApiFallback: true,
+        headers: { 'Access-Control-Allow-Origin': '*' },
 		https: false, // https:{type:Boolean}
 		open: true, //配置自动启动浏览器
         compress: true,//配置热更新
