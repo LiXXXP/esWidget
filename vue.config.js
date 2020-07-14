@@ -39,6 +39,10 @@ module.exports = {
             warnings: false,
             errors: false
         },
+        devServer: {
+            host: '0.0.0.0',
+            disableHostCheck: true
+        }
 	},
 	pluginOptions: {
 		'style-resources-loader': {
