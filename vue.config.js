@@ -24,10 +24,12 @@ module.exports = {
         requireModuleExtension: true
 	},
 	devServer: {
+        host: '127.0.0.1',
 		port: 8088, // 端口号
 		https: false, // https:{type:Boolean}
 		open: true, //配置自动启动浏览器
-		compress: true,//配置热更新
+        compress: true,//配置热更新
+        disableHostCheck: true,
 		// proxy: {       // 跨域
         //     '/api': {
         //         target: '', //API服务器的地址
@@ -38,10 +40,6 @@ module.exports = {
 		overlay: {
             warnings: false,
             errors: false
-        },
-        devServer: {
-            host: '0.0.0.0',
-            disableHostCheck: true
         }
 	},
 	pluginOptions: {
