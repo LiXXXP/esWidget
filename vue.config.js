@@ -24,7 +24,7 @@ module.exports = {
         requireModuleExtension: true
 	},
 	devServer: {
-        host: '127.0.0.1',
+        host: '172.17.99.189',
 		port: 8088, // 端口号
 		https: false, // https:{type:Boolean}
 		open: true, //配置自动启动浏览器
