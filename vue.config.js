@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const IS_PRO = ['production', 'test'].includes(process.env.NODE_ENV)
+const getIPAdress = require('./src/scripts/utils')
 module.exports = {
 	// baseUrl: process.env.NODE_ENV === 'production' ? '/online/' : '/',
     publicPath:'./',//vue-cli3.3+新版本使用
@@ -24,7 +25,7 @@ module.exports = {
         requireModuleExtension: true
 	},
 	devServer: {
-        localhost: '127.0.0.1',
+        host: getIPAdress(),
 		port: 8088, // 端口号
 		https: false, // https:{type:Boolean}
 		open: true, //配置自动启动浏览器
