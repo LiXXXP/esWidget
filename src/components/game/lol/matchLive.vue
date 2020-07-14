@@ -80,7 +80,6 @@
 
 <style lang="less" scoped>
     .match-live {
-        margin: 0 auto;
         box-sizing: border-box;
         .live {
             span {

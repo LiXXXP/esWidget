@@ -56,7 +56,6 @@
 
 <style lang="less" scoped>
     .match-before {
-        margin: 20px auto;
         padding: 15px 75px;
         box-sizing: border-box;
         position: relative;

@@ -79,7 +79,6 @@
 
 <style lang="less" scoped>
     .cs-live {
-        margin: 20px auto;
         .live {
             p {
                 color: #FF7600;

@@ -52,7 +52,6 @@
 
 <style lang="less" scoped>
     .cs-before {
-        margin: 20px auto;
         .content {
             width: 360px;
             height: 230px;
