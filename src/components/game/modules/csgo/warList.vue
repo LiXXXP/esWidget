@@ -33,9 +33,13 @@
                         >
                     </td>
                     <td class="add-block">
-                        <p :class="item.add>0?'':'gray'">
+                        <progress-data
+                            :progressData="parseInt(item.add)"
+                            :progressColor="parseInt(item.add)>50?'#008D2B':'#878787'"
+                        ></progress-data>
+                        <!-- <p :class="item.add>0?'':'gray'">
                             {{item.add}}
-                        </p>
+                        </p> -->
                     </td>
                     <td>
                         <i class="icon-head" 
@@ -50,6 +54,7 @@
 </template>
 
 <script>
+    import progressData from '@/components/common/progress'
     export default {
         props: {
             isColor: {
@@ -96,6 +101,9 @@
                     }
                 ]
             }
+        },
+        components: {
+            progressData
         }
     }
 </script>

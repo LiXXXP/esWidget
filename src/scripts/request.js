@@ -110,7 +110,7 @@ function putRequest(url,params = {}){
  * @param {*} params
  */
 function getBattle(params) {
-    return getRequest('/mock/11/v1/battles/detail', params)
+    return getRequest('/iframe/list', params)
 }
 
 
