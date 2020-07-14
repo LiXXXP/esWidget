@@ -24,15 +24,10 @@ module.exports = {
         requireModuleExtension: true
     },
 	devServer: {
-        // host: '127.0.0.1',
-        host: '0.0.0.0',
         port: 8088, // 端口号
-        hot: true,
         disableHostCheck: true,
-        historyApiFallback: true,
-        headers: { 'Access-Control-Allow-Origin': '*' },
-		https: false, // https:{type:Boolean}
-		open: true, //配置自动启动浏览器
+		https: false,  // https:{type:Boolean}
+		open: true,    //配置自动启动浏览器
         compress: true,//配置热更新
 		// proxy: {       // 跨域
         //     '/api': {
@@ -51,5 +46,8 @@ module.exports = {
 			preProcessor: 'less',
 			patterns: [path.resolve(__dirname, './src/less/variables.less')]
 		}
-	},
+    },
+    configureWebpack: {
+        performance: false
+    }
 }
