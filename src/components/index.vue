@@ -1,20 +1,20 @@
 <template>
 	<div class="index">
-        <!-- <match-before 
+        <match-before 
             :definedStyle="beforeData"
-        ></match-before> -->
-        <!-- <lol-match-live
+        ></match-before>
+        <lol-match-live
             :definedStyle="lolLiveData"
-        ></lol-match-live> -->
+        ></lol-match-live>
         <dota-match-live
             :definedStyle="dotaLiveData"
         ></dota-match-live>
-        <!-- <cs-matchBefore
+        <cs-matchBefore
             :definedStyle="csBeforeData"
-        ></cs-matchBefore> -->
-        <!-- <cs-match-live
+        ></cs-matchBefore>
+        <cs-match-live
             :definedStyle="csLiveData"
-        ></cs-match-live> -->
+        ></cs-match-live>
 	</div>
 </template>
 

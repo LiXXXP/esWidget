@@ -27,8 +27,8 @@ module.exports = {
         port: 8088, // 端口号
         disableHostCheck: true,
 		https: false,  // https:{type:Boolean}
-		open: true,    //配置自动启动浏览器
-        compress: true,//配置热更新
+		open: false,    //配置自动启动浏览器
+        compress: false,//配置热更新
 		// proxy: {       // 跨域
         //     '/api': {
         //         target: '', //API服务器的地址

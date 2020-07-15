@@ -45,7 +45,6 @@
     import typeList from '@/components/game/modules/typeList'     // 标签列表
     import roleList from '@/components/game/modules/roleList'     // 角色列表
     import outputList from '@/components/game/modules/outputList' // 输出占比
-    // import { getBattle } from "@/scripts/request.js"           // 请求方法
 	export default {
         props: {
             definedStyle: {
@@ -67,11 +66,6 @@
                     type: 'dota'
                 }
 			}
-        },
-        mounted() {
-            // getBattle().then(res => {
-            //     console.log(res)
-            // })
         },
         components: {
             headTab,
