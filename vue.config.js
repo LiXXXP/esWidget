@@ -24,6 +24,7 @@ module.exports = {
         requireModuleExtension: true
     },
 	devServer: {
+        host: '39.106.24.22',
         port: 8088, // 端口号
         disableHostCheck: true,
 		https: false,  // https:{type:Boolean}
