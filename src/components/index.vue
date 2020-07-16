@@ -1,43 +1,61 @@
 <template>
 	<div class="index">
-        <!-- <match-before 
+        <!-- lol dota2 赛前 -->
+        <match-before 
+            v-if="(showType.gameId === 2
+            || showType.gameId === 3)
+            && showType.matchStatu !== 'start'"
             :definedStyle="beforeData"
-        ></match-before> -->
-        <!-- <lol-match-live
+        ></match-before>
+        <!-- lol赛事 -->
+        <lol-match-live
+            v-if="showType.gameId === 2
+            && showType.matchStatu === 'start'"
             :definedStyle="lolLiveData"
-        ></lol-match-live> -->
+            :battleData="showType.battleList"
+        ></lol-match-live>
+        <!-- dota2赛事 -->
         <dota-match-live
+            v-if="showType.gameId === 3
+            && showType.matchStatu === 'end'"
             :definedStyle="dotaLiveData"
         ></dota-match-live>
-        <!-- <cs-matchBefore
+        <!-- csgo赛前 -->
+        <cs-matchBefore
+            v-if="showType.gameId === 1
+            && showType.matchStatu === 'start'"
             :definedStyle="csBeforeData"
-        ></cs-matchBefore> -->
-        <!-- <cs-match-live
+        ></cs-matchBefore>
+        <!-- csgo赛事 -->
+        <cs-match-live
+            v-if="showType.gameId === 1
+            && showType.matchStatu === 'end'"
             :definedStyle="csLiveData"
-        ></cs-match-live> -->
+        ></cs-match-live>
 	</div>
 </template>
 
 <script>
-    import matchBefore from '@/components/game/lol/matchBefore'
-    import lolMatchLive from '@/components/game/lol/matchLive'
-    import dotaMatchLive from '@/components/game/dota/matchLive'
-    import csMatchBefore from '@/components/game/csgo/matchBefore'
-    import csMatchLive from '@/components/game/csgo/matchLive'
+    const matchBefore = ()=> import("@/components/game/lol/matchBefore")    // 赛事前
+    const lolMatchLive = ()=> import("@/components/game/lol/matchLive")     // lol赛事
+    const dotaMatchLive = ()=> import("@/components/game/dota/matchLive")   // dota2赛事
+    const csMatchBefore = ()=> import("@/components/game/csgo/matchBefore") // csgo赛前
+    const csMatchLive = ()=> import("@/components/game/csgo/matchLive")     // csgo赛事
+
     import { getBattle } from "@/scripts/request.js"              // 请求方法
-    import { getUrlParam } from '@/scripts/utils'
+    import { getUrlParam } from '@/scripts/utils'                 // 获取页面参数方法
 	export default {
 		data() {
 			return {
                 beforeData: {
-                    type: 0,          // 开启背景模式，0为浅色，1为深色
-                    colorData: '#fff',
+                    type: 0,           // 开启背景模式，0为浅色，1为深色
+                    colorData: '#fff', // 深色背景：1E1E27
                     widthData: '826px',
                     heightData: '262px',
                 },
                 lolLiveData: {
-                    type: 1,          // 开启背景模式，0为浅色，1为深色
-                    colorData: '#1E1E27',
+                    type: 0,          // 开启背景模式，0为浅色，1为深色
+                    colorData: '#fff',
                     widthData: '360px',
                     heightData: '260px',
                 },
@@ -59,17 +77,27 @@
                     widthData: '360px',
                     heightData: '260px',
                 },
-                keys: '',     // 页面参数key
+                keys: '',           // 获取页面参数key
+                showType: {         // 页面显示条件
+                    gameId: 0,      // 1:csgo, 2:lol, 3:dota2
+                    matchStatu: '', // 赛事状态: 赛前 赛后
+                    battleList: []  // 对局列表
+                }
 			}
         },
         mounted() {
-            this.keys = getUrlParam('keys') || 
+            let _this = this
+            _this.keys = getUrlParam('keys') || 
             'aWR0a2tpcXloMGVvY3R1ZGlMc29SOStTa2hLQkN2RUU='
             let params = {
-                keys: this.keys
+                keys: _this.keys
             }
             getBattle(params).then(res => {
-                // console.log(res)
+                if(res.code === 200) {
+                    _this.showType.gameId = res.data.game_id
+                    _this.showType.matchStatu = res.data.match_status
+                    _this.showType.battleList = res.data.battle_list
+                }
             })
         },
         components: {

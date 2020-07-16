@@ -1,11 +1,17 @@
 <template>
-	<div :class="['match-live',{'night-mode':definedStyle.type}]"
-        :style="{'width':definedStyle.widthData,
-                 'height': definedStyle.heightData,
-                 'background-color':definedStyle.colorData
-                }"
+	<div :class="[
+            'match-live',
+            {'night-mode':definedStyle.type}
+        ]"
+        :style="{
+            'width':definedStyle.widthData,
+            'height': definedStyle.heightData,
+            'background-color':definedStyle.colorData
+        }"
     >
-        <head-tab :colorData="definedStyle.type"></head-tab>
+        <head-tab 
+            :colorData="definedStyle.type"
+        ></head-tab>
         <battle>
             <div slot="living" class="live">
                 <p>
@@ -17,7 +23,9 @@
             </div>
         </battle>
         <div class="flex flex_between">
-            <role-list :roleData="roleData"></role-list>
+            <role-list 
+                :roleData="roleData"
+            ></role-list>
             <div>
                 <div class="flex flex_between">
                     <type-list 
@@ -34,24 +42,33 @@
                     :colorData="definedStyle.type"
                 ></output-list>
             </div>
-            <role-list :roleData="roleData"></role-list>
+            <role-list 
+                :roleData="roleData"
+            ></role-list>
         </div>
 	</div>
 </template>
 
 <script>
-    import headTab from '@/components/game/modules/headTab'       // 头部切换
-    import battle from '@/components/game/modules/battle'         // 对局
-    import typeList from '@/components/game/modules/typeList'     // 标签列表
-    import roleList from '@/components/game/modules/roleList'     // 角色列表
-    import outputList from '@/components/game/modules/outputList' // 输出占比
+    const headTab = ()=> import("@/components/game/modules/headTab")        // 头部切换
+    const battle = ()=> import("@/components/game/modules/battle")          // 对局
+    const typeList = ()=> import("@/components/game/modules/typeList")      // 标签列表
+    const roleList = ()=> import("@/components/game/modules/roleList")      // 角色列表
+    const outputList = ()=> import("@/components/game/modules/outputList")  // 输出占比
     
 	export default {
         props: {
             definedStyle: {
                 type: Object,
                 default: null
+            },
+            battleData: {
+                type: Array,
+                default: []
             }
+        },
+        created() {
+            // console.log(this.battleData)
         },
 		data() {
 			return {
