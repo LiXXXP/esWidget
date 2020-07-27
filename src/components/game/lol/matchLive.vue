@@ -68,7 +68,7 @@
             }
         },
         created() {
-            // console.log(this.battleData)
+            console.log(this.battleData)
         },
 		data() {
 			return {

@@ -113,12 +113,21 @@ function getBattle(params) {
     return getRequest('/iframe/list', params)
 }
 
+/**
+ * 单个对局详情 t = 1 时使用
+ * @param {*} params
+ */
+function getBattleT(params) {
+    return getRequest('/iframevip/list', params)
+}
+
 
 
 export {
     getRequest,
     postRequest,
     putRequest,
-    getBattle
+    getBattle,
+    getBattleT
 }
 

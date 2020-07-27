@@ -42,7 +42,7 @@
     const csMatchBefore = ()=> import("@/components/game/csgo/matchBefore") // csgo赛前
     const csMatchLive = ()=> import("@/components/game/csgo/matchLive")     // csgo赛事
 
-    import { getBattle } from "@/scripts/request.js"              // 请求方法
+    import { getBattle, getBattleT } from "@/scripts/request.js"              // 请求方法
     import { getUrlParam } from '@/scripts/utils'                 // 获取页面参数方法
 	export default {
 		data() {
@@ -89,16 +89,28 @@
             let _this = this
             _this.keys = getUrlParam('keys') || 
             'aWR0a2tpcXloMGVvY3R1ZGlMc29SOStTa2hLQkN2RUU='
+            let t = getUrlParam('t')
             let params = {
                 keys: _this.keys
             }
-            getBattle(params).then(res => {
-                if(res.code === 200) {
-                    _this.showType.gameId = res.data.game_id
-                    _this.showType.matchStatu = res.data.match_status
-                    _this.showType.battleList = res.data.battle_list
-                }
-            })
+            if(parseInt(t) === 1) {
+                getBattleT(params).then(res => {
+                    if(res.code === 200) {
+                        _this.showType.gameId = res.data.game_id
+                        _this.showType.matchStatu = res.data.match_status
+                        _this.showType.battleList = res.data.battle_list
+                    }
+                })
+            } else {
+                getBattle(params).then(res => {
+                    if(res.code === 200) {
+                        _this.showType.gameId = res.data.game_id
+                        _this.showType.matchStatu = res.data.match_status
+                        _this.showType.battleList = res.data.battle_list
+                    }
+                })
+            }
+            
         },
         components: {
             matchBefore,

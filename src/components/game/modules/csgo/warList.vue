@@ -35,11 +35,11 @@
                     <td class="add-block">
                         <progress-data
                             :progressData="parseInt(item.add)"
-                            :progressColor="parseInt(item.add)>50?'#008D2B':'#878787'"
+                            :progressColor="parseInt(item.add)>20?
+                                            parseInt(item.add)>60?
+                                            '#008D2B':'#DC8616':'#ED2011'"
                         ></progress-data>
-                        <!-- <p :class="item.add>0?'':'gray'">
-                            {{item.add}}
-                        </p> -->
+                        <p>{{item.add}}</p>
                     </td>
                     <td>
                         <i class="icon-head" 
@@ -152,18 +152,14 @@
             vertical-align: middle;
         }
         .add-block {
-            p {
-                width: 24px;
-                height: 12px;
-                margin: 0 auto;
-                font-size: 10px;
-                line-height: 12px;
-                border-radius:2px;
-                text-align: center;
-                background-color: #008D2B;
-                &.gray {
-                    background-color: #878787;
-                }
+            width: 24px;
+            position: relative;
+            p { 
+                font-size: 12px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
             }
         }
         table {
@@ -231,4 +227,16 @@
             }
         }
     }
+</style>
+
+<style lang="less">
+.war-list {
+    .el-progress-bar__outer {
+        border-radius: 2px;
+        background-color: #878787;
+        .el-progress-bar__inner {
+            border-radius: 2px;
+        }
+    }
+}
 </style>
