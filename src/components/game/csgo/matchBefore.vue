@@ -21,10 +21,10 @@
 </template>
 
 <script>
-    import headTab from '@/components/game/modules/headTab'            // 头部切换
-    import scoreBar from '@/components/game/modules/scoreBar'          // 时间条
-    import warList from '@/components/game/modules/csgo/warList'       // 战绩
-    import stateTable from '@/components/game/modules/csgo/stateTable' // 面板
+    const headTab = ()=> import("@/components/game/modules/headTab")             // 头部切换
+    const scoreBar = ()=> import("@/components/game/modules/scoreBar")           // 时间条
+    const warList = ()=> import("@/components/game/modules/csgo/warList")        // 战绩
+    const stateTable = ()=> import("@/components/game/modules/csgo/stateTable")  // 面板
 	export default {
         props: {
             definedStyle: {

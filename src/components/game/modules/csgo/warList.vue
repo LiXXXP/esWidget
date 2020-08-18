@@ -54,7 +54,8 @@
 </template>
 
 <script>
-    import progressData from '@/components/common/progress'
+    const progressData = ()=> import("@/components/common/progress")  // 进度条
+    import bus from '@/scripts/bus'
     export default {
         props: {
             isColor: {
@@ -101,6 +102,11 @@
                     }
                 ]
             }
+        },
+        mounted() {
+            // bus.$on('getParam', param => {
+            //     console.log(param)
+            // })
         },
         components: {
             progressData
@@ -198,7 +204,6 @@
                                 text-align: left;
                                 padding-left: 3px;
                             }
-                            
                         }
                     }
                 }

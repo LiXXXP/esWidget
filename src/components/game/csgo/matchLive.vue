@@ -1,72 +1,146 @@
 <template>
-	<section :class="['cs-live',{'night-mode':definedStyle.type}]"
-        :style="{'width':definedStyle.widthData,
-                 'height': definedStyle.heightData,
-                 'background-color':definedStyle.colorData
-                }">
-        <head-tab :colorData="definedStyle.type"></head-tab>
-        <battle>
-            <div slot="left-info" class="left-info flex flex_start">
-                <div class="flex flex_column flex_center">
-                    <p>10</p>
-                    <p>4</p>
+	<section>
+         <div v-for="(item,index) in battleData" 
+            :key="item.battle_id"
+        >
+            <div v-if="index === currentIndex"
+                :class="[
+                    'cs-live',
+                    {'night-mode':definedStyle.type}]"
+                :style="{
+                    'width':definedStyle.widthData,
+                    'height': definedStyle.heightData,
+                    'background-color':definedStyle.colorData}"
+            >
+                <head-tab 
+                    :colorData="definedStyle.type"
+                    :headData="item.score"
+                    :bureauIndex="index"
+                    @blockedOut="blockedOut"
+                ></head-tab>
+                <battle
+                    :battleData="item.score"
+                    :winerId="item.battle_detail.winner.team_id"
+                >
+                    <div slot="left-info" class="left-info flex flex_start">
+                        <div class="flex flex_column flex_center">
+                            <!-- <p>{{item.battle_detail.teams[0].1st_half_score}}</p> -->
+                            <!-- <p>{{item.battle_detail.teams[0].2nd_half_score}}</p> -->
+                        </div>
+                        <div class="circle flex flex_column flex_center">
+                            <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 'ct':'t']">
+                                {{item.battle_detail.teams[0].starting_side === 'ct' ? 'CT':'T'}}
+                            </p>
+                            <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 't':'ct']">
+                                {{item.battle_detail.teams[0].starting_side === 'ct' ? 'T':'CT'}}
+                            </p>
+                        </div>
+                    </div>
+                    <div slot="living" class="live">
+                        <p>{{item.battle_detail.teams[0].score}}:{{item.battle_detail.teams[1].score}}</p>
+                        <p class="num">{{item.battle_detail.winner.team_snapshot.short_name}}</p>
+                    </div>
+                    <div slot="right-info" class="right-info flex flex_start">
+                        <div class="circle flex flex_column flex_center">
+                            <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 'ct':'t']">
+                                {{item.battle_detail.teams[1].starting_side === 'ct' ? 'CT':'T'}}
+                            </p>
+                            <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 't':'ct']">
+                                {{item.battle_detail.teams[1].starting_side === 'ct' ? 'T':'CT'}}
+                            </p>
+                        </div>
+                        <div class="flex flex_column flex_center">
+                            <!-- <p>{{item.battle_detail.teams[1].1st_half_score}}</p> -->
+                            <!-- <p>{{item.battle_detail.teams[1].2nd_half_score}}</p> -->
+                        </div>
+                    </div>
+                </battle>
+                <div class="type flex flex_between">
+                    <type-list 
+                        :placeData="place.right" 
+                        :colorData="definedStyle.type"
+                        :typeList="item.battle_detail.special_events.typeList"
+                        :sideData="item.battle_detail.teams[0].starting_side"
+                    ></type-list>
+                    <type-list 
+                        :placeData="place.left"
+                        :colorData="definedStyle.type"
+                        :typeList="item.battle_detail.special_events.typeList"
+                        :sideData="item.battle_detail.teams[1].starting_side"
+                    ></type-list>
                 </div>
-                <div class="circle flex flex_column flex_center">
-                    <p>CT</p>
-                    <p>T</p>
-                </div>
+                <level-block
+                    :colorData="definedStyle.type"
+                    :levelData="item.battle_detail.rounds_detail"
+                ></level-block>
             </div>
-            <div slot="living" class="live">
-                <p>14:12</p>
-                <p class="num">NUK</p>
-            </div>
-            <div slot="right-info" class="right-info flex flex_start">
-                <div class="circle flex flex_column flex_center">
-                    <p>T</p>
-                    <p>CT</p>
-                </div>
-                <div class="flex flex_column flex_center">
-                    <p>10</p>
-                    <p>4</p>
-                </div>
-            </div>
-        </battle>
-        <div class="type flex flex_between">
-            <type-list 
-                :placeData="placeRight" 
-                :colorData="definedStyle.type"
-            ></type-list>
-            <type-list 
-                :placeData="placeLeft"
-                :colorData="definedStyle.type"
-            ></type-list>
-        </div>
-        <level-block
-            :colorData="definedStyle.type"
-        ></level-block>
+         </div>
 	</section>
 </template>
 
 <script>
-    import headTab from '@/components/game/modules/headTab'          // 头部切换
-    import battle from '@/components/game/modules/battle'            // 对局
-    import typeList from '@/components/game/modules/typeList'        // 标签列表
-    import levelBlock from '@/components/game/modules/csgo/levelBlock' // 场次
+    const headTab = ()=> import("@/components/game/modules/headTab")            // 头部切换
+    const battle = ()=> import("@/components/game/modules/battle")              // 对局
+    const typeList = ()=> import("@/components/game/modules/typeList")          // 标签列表
+    const levelBlock = ()=> import("@/components/game/modules/csgo/levelBlock") // 场次
+
 	export default {
         props: {
-            definedStyle: {
+            definedStyle: {  // 定义样式
                 type: Object,
                 default: null
+            },
+            battleData: {     // 对局数据
+                type: Array,
+                default: []
             }
         },
 		data() {
 			return {
-                placeRight: true, // 位置是否右对齐
-                placeLeft: false, // 位置是否左对齐
+                place: {
+                    right: true, // 位置是否右对齐
+                    left: false  // 位置是否左对齐
+                },
+                currentIndex: 0,  // 当前显示页index
 			}
         },
-        mounted() {
-
+        created() {
+            // console.log(this.battleData)
+            for(let item of this.battleData) {
+                // 特殊事件列表
+                item.battle_detail.special_events.typeList = [
+                    {
+                        text: '先5',
+                        type: 'first_to_5_rounds_wins',
+                        side: item.battle_detail.special_events.first_to_5_rounds_wins.side
+                    },
+                    {
+                        text: '1回合胜',
+                        type: 'win_round_1',
+                        side: item.battle_detail.special_events.win_round_1.side
+                    },
+                    {
+                        text: '16回合胜',
+                        type: 'win_round_16',
+                        side: item.battle_detail.special_events.win_round_16.side
+                    }
+                ]
+            }
+        },
+        methods: {
+            // 展示页切换（子传父）
+            blockedOut(type) {
+                // 下一局
+                if(type === 'next') {
+                    this.currentIndex += 1
+                    if(this.currentIndex > (this.battleData.length - 1)) return this.currentIndex = this.battleData.length -1
+                }
+                // 上一局
+                if(type === 'last') {
+                    this.currentIndex -= 1
+                    if(this.currentIndex < 0) return this.currentIndex = 0
+                }
+            }
         },
         components: {
             headTab,
@@ -80,6 +154,7 @@
 <style lang="less" scoped>
     .cs-live {
         .live {
+            padding: 0 5px;
             p {
                 color: #FF7600;
                 font-size: 18px;
@@ -107,11 +182,13 @@
             .circle {
                 color: #fff;
                 margin-left: 5px;
-                p:nth-child(1) {
-                    background-color: #008CD4;
-                }
-                p:nth-child(2) {
-                    background-color: #F7B600;
+                p {
+                    &.ct {
+                        background-color: #008CD4;
+                    }
+                    &.t {
+                        background-color: #F7B600;
+                    }
                 }
             }
         }
@@ -120,11 +197,13 @@
             .circle {
                 color: #fff;
                 margin-right: 5px;
-                p:nth-child(2) {
-                    background-color: #008CD4;
-                }
-                p:nth-child(1) {
-                    background-color: #F7B600;
+                p {
+                    &.ct {
+                        background-color: #008CD4;
+                    }
+                    &.t {
+                        background-color: #F7B600;
+                    }
                 }
             }
         }

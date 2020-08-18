@@ -2,16 +2,16 @@
 	<div class="battle flex flex_center">
         <slot name="left-info"></slot>
         <div class="team flex flex_start flex_center">
-            <img :src="row1.head">
-            <i class="team-win" v-if="row1.win"></i>
+            <img :src="battleData[0].team_snapshot.image">
+            <i class="team-win" v-if="winerId === battleData[0].team_id"></i>
         </div>
         <div class="text">
             <slot name="before"></slot>
             <slot name="living"></slot>
         </div>
         <div class="team flex flex_start flex_center">
-            <img :src="row2.head">
-            <i class="team-win" v-if="row2.win"></i>
+            <img :src="battleData[1].team_snapshot.image">
+            <i class="team-win" v-if="winerId === battleData[1].team_id"></i>
         </div>
         <slot name="right-info"></slot>
 	</div>
@@ -19,16 +19,19 @@
 
 <script>
 	export default {
+        props: {
+            battleData: {     // 对局队伍头像
+                type: Array,
+                default: []
+            },
+            winerId: {        // 赢家id
+                type: Number,
+                default: 0
+            }
+        },
 		data() {
 			return {
-				row1: {
-                    win: true,
-                    head: require('../../../assets/imgs/1.png'),
-                },
-                row2: {
-                    win: false,
-                    head: require('../../../assets/imgs/2.png'),
-                }
+				
 			}
 		}
 	}
@@ -50,7 +53,7 @@
                 background: url('../../../assets/imgs/win.png') no-repeat 0 0;
                 background-size: 100%;
                 position: absolute;
-                left: -18px;
+                left: -15px;
                 bottom: 0;
             }
         }

@@ -1,29 +1,50 @@
 <template>
     <div :class="['level-block',{'night-mode':colorData}]">
-        <div class="block flex flex_start">
-            <p>上半场</p>
-            <state-table :isBig="isBig"></state-table>
-        </div>
-        <div class="block flex flex_start">
-            <p>下半场</p>
-            <state-table :isBig="isBig"></state-table>
+        <div class="block flex flex_start"
+            v-for="item in levelList"
+            :key="item.text">
+            <p>{{item.text}}</p>
+            <state-table 
+                :isBig="item.isBig"
+                :stateData="item.stateData"
+            ></state-table>
         </div>
     </div>
 </template>
 
 <script>
-    import stateTable from '@/components/game/modules/csgo/stateTable' // 面板
+    const stateTable = ()=> import("@/components/game/modules/csgo/stateTable") // 击杀面板
+
     export default {
         props: {
             colorData: {
                 type: Number,
                 default: 0,
+            },
+            levelData: {
+                type: Array,
+                default: []
             }
         },
         data() {
             return {
-                isBig: true,     // 是否显示大图标
+                levelList: [
+                    {
+                        text: '上半场',
+                        isBig: true, // 显示大图标
+                        stateData: []
+                    },
+                    {
+                        text: '下半场',
+                        isBig: true, // 显示大图标
+                        stateData: []
+                    }
+                ]
             }
+        },
+        created() {
+            this.levelList[0].stateData = this.levelData.slice(0,15)
+            this.levelList[1].stateData = this.levelData.slice(15,30)
         },
         components: {
             stateTable

@@ -1,7 +1,7 @@
 <template>
 	<div class="progress">
         <el-progress 
-            :stroke-width="12"
+            :stroke-width="8"
             :show-text="false"
             :percentage="progressData" 
             :color="progressColor"

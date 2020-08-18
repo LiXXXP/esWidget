@@ -3,10 +3,12 @@
         placeData?'flex_end':'flex_start',
         {'night-mode':colorData}]"
     >
-        <span :class="['block',item.flag?'flag':'']"
+        <span :class="['block',
+            {'come': sideData === item.side}]"
             v-for="item in typeList"
-            :key="item.type">
-            {{item.type}}
+            :key="item.text"
+        >
+            {{item.text}}
         </span>
 	</div>
 </template>
@@ -14,31 +16,26 @@
 <script>
 	export default {
         props: {
-            placeData: {
+            placeData: {     // 显示左右对齐方式
                 type: Boolean,
                 default: true
             },
-            colorData: {
+            colorData: {     // 背景模式
                 type: Number,
                 default: 0,
-            }
+            },
+            typeList: {      // 特殊事件列表
+                type: Array,
+                default: ()=>[]
+            },
+            sideData: {      // 特殊事件显示队伍方
+                type: String,
+                default: ''
+            },
         },
 		data() {
 			return {
-				typeList: [
-                    {
-                        type: '首大龙',
-                        flag: true
-                    },
-                    {
-                        type: '十杀',
-                        flag: false
-                    },
-                    {
-                        type: '五杀',
-                        flag: false
-                    }
-                ]
+
 			}
 		}
 	}
@@ -59,19 +56,8 @@
             border-radius: 2px;
             background-color: #E7E7E7;
             transform: scale(0.833333);
-        }
-        .flag {
-            &:nth-child(n) {
-                color: #fff;
+            &.come {
                 background-color: @orange;
-            }
-            &:nth-child(2n) {
-                color: #fff;
-                background-color: @blue;
-            }
-            &:nth-child(3n) {
-                color: #fff;
-                background-color: @purple;
             }
         }
     }

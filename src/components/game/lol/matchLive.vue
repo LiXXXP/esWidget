@@ -1,50 +1,58 @@
 <template>
 	<div :class="[
             'match-live',
-            {'night-mode':definedStyle.type}
+            {'night-mode': definedStyle.type}
         ]"
         :style="{
-            'width':definedStyle.widthData,
+            'width': definedStyle.widthData,
             'height': definedStyle.heightData,
-            'background-color':definedStyle.colorData
+            'background-color': definedStyle.colorData
         }"
     >
-        <head-tab 
-            :colorData="definedStyle.type"
-        ></head-tab>
-        <battle>
-            <div slot="living" class="live">
-                <p>
-                    <span>23</span>
-                    <i></i>
-                    <span>27</span>
-                </p>
-                <p class="num">35'24''</p>
-            </div>
-        </battle>
-        <div class="flex flex_between">
-            <role-list 
-                :roleData="roleData"
-            ></role-list>
-            <div>
-                <div class="flex flex_between">
-                    <type-list 
-                        :placeData="placeRight" 
-                        :colorData="definedStyle.type"
-                    ></type-list>
-                    <type-list 
-                        :placeData="placeLeft"
-                        :colorData="definedStyle.type"
-                    ></type-list>
+        <div v-for="item in battleData" :key="item.battle_id">
+            <head-tab
+                :headData="item.score"
+                :colorData="definedStyle.type"
+            ></head-tab>
+            <battle 
+                :battleData="item.score"
+                :winerId="item.battle_detail.winner.team_id">
+                <div slot="living" class="live">
+                    <p>
+                        <span>{{item.score[0].score}}</span>
+                        <i></i>
+                        <span>{{item.score[1].score}}</span>
+                    </p>
+                    <p class="num">35'24''</p>
                 </div>
-                <output-list
-                    :barColor="barColorData"
-                    :colorData="definedStyle.type"
-                ></output-list>
+            </battle>
+            <div class="flex flex_between">
+                <role-list
+                    :heroList="item.battle_detail.factions[0].players"
+                    :roleData="roleData"
+                ></role-list>
+                <div>
+                    <div class="flex flex_between">
+                        <type-list 
+                            :placeData="placeRight" 
+                            :colorData="definedStyle.type"
+                        ></type-list>
+                        <type-list 
+                            :placeData="placeLeft"
+                            :colorData="definedStyle.type"
+                        ></type-list>
+                    </div>
+                    <output-list
+                        :barColor="barColorData"
+                        :colorData="definedStyle.type"
+                        :outputData="item.battle_detail.factions"
+                    ></output-list>
+                </div>
+                <role-list 
+                    :heroList="item.battle_detail.factions[1].players"
+                    :roleData="roleData"
+                ></role-list>
             </div>
-            <role-list 
-                :roleData="roleData"
-            ></role-list>
         </div>
 	</div>
 </template>
@@ -68,7 +76,7 @@
             }
         },
         created() {
-            console.log(this.battleData)
+            // console.log(this.battleData)
         },
 		data() {
 			return {

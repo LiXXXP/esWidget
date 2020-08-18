@@ -1,33 +1,55 @@
 <template>
 	<div :class="['head-tab', 'flex', 'flex_between',{'night-mode':colorData}]">
         <div class="flex flex_start flex_only_center">
-            <p class="left"></p>
-            <p>第三局</p>
+            <p class="left" @click="nextStep('last')"></p>
+            <p>第{{bureauNum}}局</p>
         </div>
         <div class="flex flex_start flex_only_center">
             <div class="flex flex_start">
-                <img src="../../../assets/imgs/1.png">
-                <p>2:1</p>
-                <img src="../../../assets/imgs/2.png">
+                <img :src="headData[0].team_snapshot.image">
+                <p>{{headData[0].score || 0}} : {{headData[1].score || 0}}</p>
+                <img :src="headData[1].team_snapshot.image">
             </div>
-            <p class="right"></p>
+            <p class="right" @click="nextStep('next')"></p>
         </div>
 	</div>
 </template>
 
 <script>
+    import { toChinesNum } from '@/scripts/utils'
 	export default {
         props: {
-            colorData: {
+            colorData: {    // 背景色模式
                 type: Number,
                 default: 0,
-            }
+            },
+            headData: {     // 对局分数
+                type: Array,
+                default: []
+            },
+            bureauIndex: {   // 对局数
+                type: Number,
+                default: 0
+            },
+            
         },
 		data() {
 			return {
-				
+				lastPage: 1,
+                nextPage: 1
 			}
-		}
+        },
+        methods: {
+            // 上一局 下一局
+            nextStep(type) {
+                this.$emit('blockedOut',type)
+            }
+        },
+        computed: {
+            bureauNum() {
+                return toChinesNum((this.bureauIndex + 1))
+            }
+        }
 	}
 </script>
 

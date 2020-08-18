@@ -8,7 +8,7 @@
                 <progress-data
                     class="bar"
                     :progressColor="barColor.left"
-                    :progressData="parseInt(item.num1/(item.num1+item.num2)*100)"
+                    :progressData="parseInt(item.num1/(item.num1+item.num2)*100) || 0"
                 ></progress-data>
             </div>
             <p class="head">{{item.head}}</p>
@@ -16,7 +16,7 @@
                 <progress-data
                     class="bar"
                     :progressColor="barColor.right"
-                    :progressData="parseInt(item.num2/(item.num1+item.num2)*100)"
+                    :progressData="parseInt(item.num2/(item.num1+item.num2)*100) || 0"
                 ></progress-data>
                 <p :style="{'color':barColor.right}">{{item.num2}}</p>
             </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-    import progressData from '@/components/common/progress'
+    const progressData = ()=> import("@/components/common/progress")   // 进度条
     export default {
         props: {
             colorData: {
@@ -35,6 +35,10 @@
             barColor: {
                 type: Object,
                 default: null
+            },
+            outputData: {
+                type: Array,
+                default: []
             }
         },
         data() {
@@ -42,31 +46,43 @@
                 outputList: [
                     {
                         head: '经济',
-                        num1: 32,
-                        num2: 28
+                        type: 'gold',
+                        num1: 0,
+                        num2: 0
                     },
                     {
                         head: '推塔',
-                        num1: 8,
-                        num2: 5
+                        type: 'turret_kills',
+                        num1: 0,
+                        num2: 0
                     },
                     {
                         head: '水晶',
-                        num1: 32,
-                        num2: 28
+                        type: 'inhibitor_kills',
+                        num1: 0,
+                        num2: 0
                     },
                     {
                         head: '小龙',
-                        num1: 8,
-                        num2: 5
+                        type: 'dragon_kills',
+                        num1: 0,
+                        num2: 0
                     },
                     {
-                        head: '远程营',
-                        num1: 8,
-                        num2: 5
+                        head: '男爵',
+                        type: 'baron_nashor_kills',
+                        num1: 0,
+                        num2: 0
                     }
                 ]
             }
+        },
+        mounted() {
+            this.outputList.forEach( e => {
+                let field = e.type
+                e.num1 = this.outputData[0].field || 0
+                e.num2 = this.outputData[1].field || 0
+            })
         },
         components: {
             progressData

@@ -3,11 +3,11 @@
         <div class="role"
             :style="{'width':roleData.width,
                      'height':roleData.height}"
-            v-for="item in roleList"
-            :key="item.id"
+            v-for="item in heroList[0]"
+            :key="item.player.player_id"
         >
-            <img :src="item.url">
-            <span>{{item.id}}</span>
+            <img :src="item.champion.image.image">
+            <span>{{item.level}}</span>
             <i v-if="roleData.type==='dota'" :class="{'sign':item.sign}"></i>
         </div>
 	</div>
@@ -19,6 +19,10 @@
             roleData: {
                 type: Object,
                 default: null
+            },
+            heroList: {
+                type: Array,
+                default: []
             }
         },
 		data() {

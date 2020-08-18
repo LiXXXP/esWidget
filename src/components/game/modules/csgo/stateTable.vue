@@ -1,5 +1,5 @@
 <template>
-    <div :class="['state-table',isBig?'state-big':'']">
+    <div :class="['state-table',{'state-big':isBig}]">
         <div class="item flex flex_start">
             <div class="block flex flex_center"
                 v-for="item in list"
@@ -25,6 +25,10 @@
             isBig: {
                 type: Boolean,
                 default: false
+            },
+            stateData: {
+                type: Array,
+                default: []
             }
         },
         data() {
@@ -32,7 +36,7 @@
                 list: [
                     {
                         id: 0,
-                        url: require('../../../../assets/imgs/sign01.png')
+                        url: require('../../../../assets/imgs/big/sign01.png')
                     },
                     {
                         id: 1
@@ -42,7 +46,7 @@
                     },
                     {
                         id: 3,
-                        url: require('../../../../assets/imgs/sign02.png')
+                        url: require('../../../../assets/imgs/big/sign02.png')
                     },
                     {
                         id: 4
@@ -52,14 +56,14 @@
                     },
                     {
                         id: 6,
-                        url: require('../../../../assets/imgs/sign03.png')
+                        url: require('../../../../assets/imgs/big/sign03.png')
                     },
                     {
                         id: 7
                     },
                     {
                         id: 8,
-                        url: require('../../../../assets/imgs/sign05.png')
+                        url: require('../../../../assets/imgs/big/sign05.png')
                     },
                     {
                         id: 9

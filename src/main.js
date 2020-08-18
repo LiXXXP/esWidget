@@ -5,6 +5,8 @@ import router from './router'
 /* 引入公共样式 */
 import '@/styles/common.css'
 
+import bus from './scripts/bus'
+
 /* 引入 ElementUI */
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -21,5 +23,6 @@ Vue.config.productionTip = false
 
 new Vue({
 	render: h => h(App),
-	router,
+    router,
+    bus,
 }).$mount('#screen')
