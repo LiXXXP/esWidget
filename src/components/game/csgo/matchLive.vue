@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<section>
          <div v-for="(item,index) in battleData" 
             :key="item.battle_id"
@@ -24,8 +24,8 @@
                 >
                     <div slot="left-info" class="left-info flex flex_start">
                         <div class="flex flex_column flex_center">
-                            <!-- <p>{{item.battle_detail.teams[0].1st_half_score}}</p> -->
-                            <!-- <p>{{item.battle_detail.teams[0].2nd_half_score}}</p> -->
+                            <p>{{item.battle_detail.teams[0].first_half_score}}</p>
+                            <p>{{item.battle_detail.teams[0].second_half_score}}</p>
                         </div>
                         <div class="circle flex flex_column flex_center">
                             <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 'ct':'t']">
@@ -50,8 +50,8 @@
                             </p>
                         </div>
                         <div class="flex flex_column flex_center">
-                            <!-- <p>{{item.battle_detail.teams[1].1st_half_score}}</p> -->
-                            <!-- <p>{{item.battle_detail.teams[1].2nd_half_score}}</p> -->
+                            <p>{{item.battle_detail.teams[1].first_half_score}}</p>
+                            <p>{{item.battle_detail.teams[1].second_half_score}}</p>
                         </div>
                     </div>
                 </battle>
@@ -106,26 +106,7 @@
         },
         created() {
             // console.log(this.battleData)
-            for(let item of this.battleData) {
-                // 特殊事件列表
-                item.battle_detail.special_events.typeList = [
-                    {
-                        text: '先5',
-                        type: 'first_to_5_rounds_wins',
-                        side: item.battle_detail.special_events.first_to_5_rounds_wins.side
-                    },
-                    {
-                        text: '1回合胜',
-                        type: 'win_round_1',
-                        side: item.battle_detail.special_events.win_round_1.side
-                    },
-                    {
-                        text: '16回合胜',
-                        type: 'win_round_16',
-                        side: item.battle_detail.special_events.win_round_16.side
-                    }
-                ]
-            }
+            this.getTypeList()
         },
         methods: {
             // 展示页切换（子传父）
@@ -140,6 +121,33 @@
                     this.currentIndex -= 1
                     if(this.currentIndex < 0) return this.currentIndex = 0
                 }
+            },
+            getTypeList() {
+                for(let item of this.battleData) {
+                    // 特殊事件列表
+                    item.battle_detail.special_events.typeList = [
+                        {
+                            text: '先5',
+                            type: 'first_to_5_rounds_wins',
+                            side: item.battle_detail.special_events.first_to_5_rounds_wins.side
+                        },
+                        {
+                            text: '1回合胜',
+                            type: 'win_round_1',
+                            side: item.battle_detail.special_events.win_round_1.side
+                        },
+                        {
+                            text: '16回合胜',
+                            type: 'win_round_16',
+                            side: item.battle_detail.special_events.win_round_16.side
+                        }
+                    ]
+                }
+            }
+        },
+        watch: {
+            battleData(old,val) {
+                this.getTypeList()
             }
         },
         components: {

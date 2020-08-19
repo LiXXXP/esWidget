@@ -2,18 +2,21 @@
     <div :class="['state-table',{'state-big':isBig}]">
         <div class="item flex flex_start">
             <div class="block flex flex_center"
-                v-for="item in list"
-                :key="item.id"
+                v-for="item in stateData"
+                :key="item.round_ordinal"
             >
-                <img :src="item.url" v-if="item.url">
+                <img src="../../../../assets/imgs/big/sign01.png" v-if="item.win_type === 'cts_win'">
+                <img src="../../../../assets/imgs/big/sign02.png" v-if="item.win_type === 'target_saved'">
+                <img src="../../../../assets/imgs/big/sign03.png" v-if="item.win_type === 'bomb_defused'">
             </div>
         </div>
         <div class="item flex flex_start">
             <div class="block flex flex_center"
-                v-for="item in list"
-                :key="item.id"
+                v-for="item in stateData"
+                :key="item.round_ordinal"
             >
-                <img :src="item.url" v-if="item.url">
+                <img src="../../../../assets/imgs/big/sign04.png" v-if="item.win_type === 'terrorists_win'">
+                <img src="../../../../assets/imgs/big/sign04.png" v-if="item.win_type === 'target_bombed'">
             </div>
         </div>
     </div>
@@ -33,58 +36,11 @@
         },
         data() {
             return {
-                list: [
-                    {
-                        id: 0,
-                        url: require('../../../../assets/imgs/big/sign01.png')
-                    },
-                    {
-                        id: 1
-                    },
-                    {
-                        id: 2
-                    },
-                    {
-                        id: 3,
-                        url: require('../../../../assets/imgs/big/sign02.png')
-                    },
-                    {
-                        id: 4
-                    },
-                    {
-                        id: 5
-                    },
-                    {
-                        id: 6,
-                        url: require('../../../../assets/imgs/big/sign03.png')
-                    },
-                    {
-                        id: 7
-                    },
-                    {
-                        id: 8,
-                        url: require('../../../../assets/imgs/big/sign05.png')
-                    },
-                    {
-                        id: 9
-                    },
-                    {
-                        id: 10
-                    },
-                    {
-                        id: 11
-                    },
-                    {
-                        id: 12
-                    },
-                    {
-                        id: 13
-                    },
-                    {
-                        id: 14
-                    },
-                ]
+
             }
+        },
+        created() {
+            
         }
     }
 </script>
@@ -125,6 +81,10 @@
             .block {
                 width: 16px;
                 height: 16px;
+                margin-left: 4px;
+                &:nth-child(1) {
+                    margin-left: 0;
+                }
             }
         }
     }

@@ -46,6 +46,12 @@
             this.levelList[0].stateData = this.levelData.slice(0,15)
             this.levelList[1].stateData = this.levelData.slice(15,30)
         },
+        watch: {
+            levelData(old,val) {
+                this.levelList[0].stateData = this.levelData.slice(0,15)
+                this.levelList[1].stateData = this.levelData.slice(15,30)
+            }
+        },
         components: {
             stateTable
         }

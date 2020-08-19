@@ -85,34 +85,46 @@
                     gameId: 0,      // 1:csgo, 2:lol, 3:dota2
                     matchStatu: '', // 赛事状态: 赛前 赛后
                     battleList: []  // 对局列表
-                }
+                },
+                timer: null,        // 定义的轮询
 			}
         },
         mounted() {
+            this.getMatch()
             let _this = this
-            let keys = getUrlParam('keys')
-            let t = getUrlParam('t')
-            let params = {
-                keys: keys
+            this.timer = setInterval( () => {
+                _this.getMatch()
+            }, 5000)
+        },
+        destroyed() {
+            clearInterval(this.timer)
+        },
+        methods: {
+            getMatch() {
+                let _this = this
+                let keys = getUrlParam('keys')
+                let t = getUrlParam('t')
+                let params = {
+                    keys: keys
+                }
+                if(parseInt(t) === 1) {
+                    getBattleT(params).then(res => {
+                        if(res.code === 200) {
+                            _this.showType.gameId = res.data.game_id
+                            _this.showType.matchStatu = res.data.match_status
+                            _this.showType.battleList = res.data.battle_list
+                        }
+                    })
+                } else {
+                    getBattle(params).then(res => {
+                        if(res.code === 200) {
+                            _this.showType.gameId = res.data.game_id
+                            _this.showType.matchStatu = res.data.match_status
+                            _this.showType.battleList = res.data.battle_list
+                        }
+                    })
+                }
             }
-            if(parseInt(t) === 1) {
-                getBattleT(params).then(res => {
-                    if(res.code === 200) {
-                        _this.showType.gameId = res.data.game_id
-                        _this.showType.matchStatu = res.data.match_status
-                        _this.showType.battleList = res.data.battle_list
-                    }
-                })
-            } else {
-                getBattle(params).then(res => {
-                    if(res.code === 200) {
-                        _this.showType.gameId = res.data.game_id
-                        _this.showType.matchStatu = res.data.match_status
-                        _this.showType.battleList = res.data.battle_list
-                    }
-                })
-            }
-            
         },
         components: {
             matchBefore,

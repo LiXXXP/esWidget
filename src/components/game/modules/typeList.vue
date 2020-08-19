@@ -71,6 +71,10 @@
         .block {
             color: #454558;
             background-color: @night;
+            &.come {
+                color: #fff;
+                background-color: @orange;
+            }
         }
     }
 </style>
