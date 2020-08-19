@@ -2,36 +2,36 @@
 	<div class="index">
         <!-- lol dota2 赛前 -->
         <match-before 
-            v-if="(showType.gameId === '2'
-            || showType.gameId === '3')
+            v-if="(parseInt(showType.gameId) === 2
+            || parseInt(showType.gameId) === 3)
             && showType.matchStatu === 'Upcoming'"
             :definedStyle="beforeData"
             :battleData="showType.battleList"
         ></match-before>
         <!-- lol赛事 -->
         <lol-match-live
-            v-if="showType.gameId === '2'
+            v-if="parseInt(showType.gameId) === 2
             && showType.matchStatu !== 'Upcoming'"
             :definedStyle="lolLiveData"
             :battleData="showType.battleList"
         ></lol-match-live>
         <!-- dota2赛事 -->
         <dota-match-live
-            v-if="showType.gameId === '3'
+            v-if="parseInt(showType.gameId) === 3
             && showType.matchStatu !== 'Upcoming'"
             :definedStyle="dotaLiveData"
             :battleData="showType.battleList"
         ></dota-match-live>
         <!-- csgo赛前 -->
         <cs-matchBefore
-            v-if="showType.gameId === '1'
+            v-if="parseInt(showType.gameId) === 1
             && showType.matchStatu === 'Upcoming'"
             :definedStyle="csBeforeData"
             :battleData="showType.battleList"
         ></cs-matchBefore>
         <!-- csgo赛事 -->
         <cs-match-live
-            v-if="showType.gameId === '1'
+            v-if="parseInt(showType.gameId) === 1
             && showType.matchStatu !== 'Upcoming'"
             :definedStyle="csLiveData"
             :battleData="showType.battleList"
