@@ -3,8 +3,10 @@
         placeData?'flex_end':'flex_start',
         {'night-mode':colorData}]"
     >
-        <span :class="['block',
-            {'come': sideData === item.side}]"
+        <span :class="[
+                'block',
+                {'come': sideData === item.side}
+            ]"
             v-for="item in typeList"
             :key="item.text"
         >
@@ -58,6 +60,15 @@
             transform: scale(0.833333);
             &.come {
                 background-color: @orange;
+                &:nth-child(4) {
+                    background-color: @blue;
+                }
+                &:nth-child(5) {
+                    background-color: @purple;
+                }
+                &:nth-child(7) {
+                    background-color: @blue;
+                }
             }
         }
     }
@@ -74,6 +85,15 @@
             &.come {
                 color: #fff;
                 background-color: @orange;
+                &:nth-child(4) {
+                    background-color: @blue;
+                }
+                &:nth-child(5) {
+                    background-color: @purple;
+                }
+                &:nth-child(7) {
+                    background-color: @blue;
+                }
             }
         }
     }

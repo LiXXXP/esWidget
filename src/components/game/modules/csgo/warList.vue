@@ -104,9 +104,7 @@
             }
         },
         mounted() {
-            // bus.$on('getParam', param => {
-            //     console.log(param)
-            // })
+            
         },
         components: {
             progressData

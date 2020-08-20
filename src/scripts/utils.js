@@ -324,6 +324,48 @@ function toChinesNum(num) {
     return overWan ? getWan(overWan) + "万" + getWan(noWan) : getWan(num)
 }
 
+/**
+ * 秒数转换时间
+ * @param {*} sec 秒
+ */
+function formatSeconds(sec) {
+    let theTime = parseInt(sec) // 秒
+    let middle = 0  // 分
+    let hour = 0    // 小时
+    if(theTime > 60) {
+        middle = parseInt( theTime / 60 )
+        theTime = parseInt( theTime % 60 )
+        if( middle > 60 ) {
+            hour = parseInt( middle / 60 )
+            middle = parseInt( middle % 60 )
+        }
+    }
+    let result = `${parseInt(theTime)}''`
+    if( middle > 0 ) {
+        result = `${parseInt(middle)}'${result}`
+    }
+    if( hour > 0 ) {
+        result = `${parseInt(hour)}h${result}`
+    }
+    return result
+}
+
+/**
+ * 将数值四舍五入后格式化.
+ *
+ * @param num 数值(Number或者String)
+ * @param cent 要保留的小数位(Number)
+ * @param isThousand 是否需要千分位 0:不需要,1:需要(数值类型);
+ * @return 格式的字符串,如'1,234,567.45'
+ * @type String
+ */
+function formatNumber(num) {
+    if( parseInt(num) > 1000 ) {
+        return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, 'k').match(/(\S*)k/)[0]
+    }
+    return num
+}
+
 export {
     setTitle,
     transHtml,
@@ -341,5 +383,7 @@ export {
     formatDate,
     resolveDeleteKey,
     getCurrentDate,
-    toChinesNum
+    toChinesNum,
+    formatSeconds,
+    formatNumber
 };

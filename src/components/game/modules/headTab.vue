@@ -27,7 +27,7 @@
                 type: Array,
                 default: []
             },
-            bureauIndex: {   // 对局数
+            bureauPage: {   // 对局数
                 type: Number,
                 default: 0
             },
@@ -35,8 +35,7 @@
         },
 		data() {
 			return {
-				lastPage: 1,
-                nextPage: 1
+
 			}
         },
         methods: {
@@ -47,7 +46,7 @@
         },
         computed: {
             bureauNum() {
-                return toChinesNum((this.bureauIndex + 1))
+                return toChinesNum((this.bureauPage))
             }
         }
 	}

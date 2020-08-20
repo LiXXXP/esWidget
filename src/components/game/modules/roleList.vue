@@ -3,7 +3,7 @@
         <div class="role"
             :style="{'width':roleData.width,
                      'height':roleData.height}"
-            v-for="item in heroList[0]"
+            v-for="item in heroList"
             :key="item.player.player_id"
         >
             <img :src="item.champion.image.image">
@@ -27,31 +27,7 @@
         },
 		data() {
 			return {
-				roleList: [
-                    {
-                        id: 11,
-                        sign: true,
-                        url: require('../../../assets/imgs/3.png')
-                    },
-                    {
-                        id: 12,
-                        url: require('../../../assets/imgs/3.png')
-                    },
-                    {
-                        id: 23,
-                        sign: true,
-                        url: require('../../../assets/imgs/3.png')
-                    },
-                    {
-                        id: 34,
-                        sign: true,
-                        url: require('../../../assets/imgs/3.png')
-                    },
-                    {
-                        id: 43,
-                        url: require('../../../assets/imgs/3.png')
-                    }
-                ]
+                
 			}
 		}
 	}

@@ -15,7 +15,7 @@
                 <head-tab 
                     :colorData="definedStyle.type"
                     :headData="item.score"
-                    :bureauIndex="index"
+                    :bureauPage="pageNum"
                     @blockedOut="blockedOut"
                 ></head-tab>
                 <battle
@@ -24,8 +24,8 @@
                 >
                     <div slot="left-info" class="left-info flex flex_start">
                         <div class="flex flex_column flex_center">
-                            <p>{{item.battle_detail.teams[0].first_half_score}}</p>
-                            <p>{{item.battle_detail.teams[0].second_half_score}}</p>
+                            <p>{{item.battle_detail.teams[0].first_half_score || 0}}</p>
+                            <p>{{item.battle_detail.teams[0].second_half_score || 0}}</p>
                         </div>
                         <div class="circle flex flex_column flex_center">
                             <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 'ct':'t']">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div slot="living" class="live">
-                        <p>{{item.battle_detail.teams[0].score}}:{{item.battle_detail.teams[1].score}}</p>
+                        <p>{{item.battle_detail.teams[0].score || 0}}:{{item.battle_detail.teams[1].score || 0}}</p>
                         <p class="num">{{item.battle_detail.winner.team_snapshot.short_name}}</p>
                     </div>
                     <div slot="right-info" class="right-info flex flex_start">
@@ -50,8 +50,8 @@
                             </p>
                         </div>
                         <div class="flex flex_column flex_center">
-                            <p>{{item.battle_detail.teams[1].first_half_score}}</p>
-                            <p>{{item.battle_detail.teams[1].second_half_score}}</p>
+                            <p>{{item.battle_detail.teams[1].first_half_score || 0}}</p>
+                            <p>{{item.battle_detail.teams[1].second_half_score || 0}}</p>
                         </div>
                     </div>
                 </battle>
@@ -102,10 +102,10 @@
                     left: false  // 位置是否左对齐
                 },
                 currentIndex: 0,  // 当前显示页index
+                pageNum: this.battleData.length  // 当前第几局
 			}
         },
         created() {
-            // console.log(this.battleData)
             this.getTypeList()
         },
         methods: {
@@ -113,13 +113,23 @@
             blockedOut(type) {
                 // 下一局
                 if(type === 'next') {
+                    this.pageNum -= 1
                     this.currentIndex += 1
-                    if(this.currentIndex > (this.battleData.length - 1)) return this.currentIndex = this.battleData.length -1
+                    if(this.currentIndex > (this.battleData.length - 1)) {
+                        this.currentIndex = this.battleData.length -1
+                        this.pageNum = 1
+                        return false
+                    }
                 }
                 // 上一局
                 if(type === 'last') {
+                    this.pageNum += 1
                     this.currentIndex -= 1
-                    if(this.currentIndex < 0) return this.currentIndex = 0
+                    if(this.currentIndex < 0) {
+                        this.currentIndex = 0
+                        this.pageNum = this.battleData.length
+                        return false
+                    } 
                 }
             },
             getTypeList() {

@@ -2,9 +2,11 @@
     <div :class="['output-list',{'night-mode':colorData}]">
         <div class="list flex flex_around"
             v-for="item in outputList"
-            :key="item.head">
+            :key="item.type">
             <div class="left flex flex_only_center">
-                <p :style="{'color':barColor.left}">{{item.num1}}</p>
+                <p :style="{'color':barColor.left}">
+                    {{thousands(parseInt(item.num1))}}
+                </p>
                 <progress-data
                     class="bar"
                     :progressColor="barColor.left"
@@ -18,7 +20,9 @@
                     :progressColor="barColor.right"
                     :progressData="parseInt(item.num2/(item.num1+item.num2)*100) || 0"
                 ></progress-data>
-                <p :style="{'color':barColor.right}">{{item.num2}}</p>
+                <p :style="{'color':barColor.right}">
+                    {{thousands(parseInt(item.num2))}}
+                </p>
             </div>
         </div>
     </div>
@@ -26,6 +30,9 @@
 
 <script>
     const progressData = ()=> import("@/components/common/progress")   // 进度条
+
+    import {formatNumber} from '@/scripts/utils'
+
     export default {
         props: {
             colorData: {
@@ -36,53 +43,25 @@
                 type: Object,
                 default: null
             },
-            outputData: {
+            outputList: {
                 type: Array,
                 default: []
             }
         },
         data() {
             return {
-                outputList: [
-                    {
-                        head: '经济',
-                        type: 'gold',
-                        num1: 0,
-                        num2: 0
-                    },
-                    {
-                        head: '推塔',
-                        type: 'turret_kills',
-                        num1: 0,
-                        num2: 0
-                    },
-                    {
-                        head: '水晶',
-                        type: 'inhibitor_kills',
-                        num1: 0,
-                        num2: 0
-                    },
-                    {
-                        head: '小龙',
-                        type: 'dragon_kills',
-                        num1: 0,
-                        num2: 0
-                    },
-                    {
-                        head: '男爵',
-                        type: 'baron_nashor_kills',
-                        num1: 0,
-                        num2: 0
-                    }
-                ]
+                
             }
         },
         mounted() {
-            this.outputList.forEach( e => {
-                let field = e.type
-                e.num1 = this.outputData[0].field || 0
-                e.num2 = this.outputData[1].field || 0
-            })
+            
+        },
+        computed: {
+            thousands(num) {
+                return function (num) {
+                    return formatNumber(num)
+                }
+            }
         },
         components: {
             progressData
