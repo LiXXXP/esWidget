@@ -80,7 +80,7 @@
                     transform:rotate(180deg);
                 }
                 p {
-                    width: 15px;
+                    width: 20px;
                     text-align: right;
                 }
             }
@@ -93,7 +93,7 @@
                     margin-right: 2px;
                 }
                 p {
-                    width: 15px;
+                    width: 20px;
                 }
             }
         }

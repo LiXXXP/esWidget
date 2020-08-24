@@ -354,14 +354,12 @@ function formatSeconds(sec) {
  * 将数值四舍五入后格式化.
  *
  * @param num 数值(Number或者String)
- * @param cent 要保留的小数位(Number)
- * @param isThousand 是否需要千分位 0:不需要,1:需要(数值类型);
  * @return 格式的字符串,如'1,234,567.45'
  * @type String
  */
 function formatNumber(num) {
-    if( parseInt(num) > 1000 ) {
-        return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, 'k').match(/(\S*)k/)[0]
+    if(num>=1000) {
+        return `${num}`.slice(0,-3) + 'k'
     }
     return num
 }
