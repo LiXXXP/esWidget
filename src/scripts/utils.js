@@ -359,7 +359,7 @@ function formatSeconds(sec) {
  */
 function formatNumber(num) {
     if(num>=1000) {
-        return `${num}`.slice(0,-3) + 'k'
+        return `${num.toLocaleString()}`.slice(0,-2) + 'k'
     }
     return num
 }
@@ -384,4 +384,4 @@ export {
     toChinesNum,
     formatSeconds,
     formatNumber
-};
+}

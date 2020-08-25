@@ -75,12 +75,12 @@
             margin-bottom: 8px;
             .left {
                 .bar {
-                    width: 100px;
+                    width: 80px;
                     margin-left: 2px;
                     transform:rotate(180deg);
                 }
                 p {
-                    width: 20px;
+                    width: 30px;
                     text-align: right;
                 }
             }
@@ -89,11 +89,11 @@
             }
             .right {
                 .bar {
-                    width: 100px;
+                    width: 80px;
                     margin-right: 2px;
                 }
                 p {
-                    width: 20px;
+                    width: 30px;
                 }
             }
         }

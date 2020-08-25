@@ -17,17 +17,26 @@
                 <head-tab
                     :colorData="definedStyle.type"
                     :headData="item.score"
+                    :factionsData="item.battle_detail.factions"
                     :bureauPage="pageNum"
                     @blockedOut="blockedOut"
                 ></head-tab>
                 <battle 
                     :battleData="item.score"
+                    :factionsData="item.battle_detail.factions"
                     :winerId="item.battle_detail.winner.team_id">
                     <div slot="living" class="live">
-                        <p>
+                        <p v-if="
+                            item.battle_detail.factions[0].faction === 'blue'&&
+                            item.battle_detail.factions[0].team_id === item.score[0].team_id">
                             <span>{{item.score[0].score}}</span>
                             <i></i>
                             <span>{{item.score[1].score}}</span>
+                        </p>
+                        <p v-else>
+                            <span>{{item.score[1].score}}</span>
+                            <i></i>
+                            <span>{{item.score[0].score}}</span>
                         </p>
                         <p class="num">
                             {{durationTime(item.battle_detail.duration)}}
@@ -36,7 +45,9 @@
                 </battle>
                 <div class="flex flex_between">
                     <role-list
-                        :heroList="item.battle_detail.factions[0].players"
+                        :heroList="item.battle_detail.factions[0].faction === 'blue'?
+                                    item.battle_detail.factions[0].players:
+                                    item.battle_detail.factions[1].players"
                         :roleData="roleData"
                     ></role-list>
                     <div>
@@ -45,13 +56,17 @@
                                 :placeData="place.right" 
                                 :colorData="definedStyle.type"
                                 :typeList="item.battle_detail.first_events.typeList"
-                                :sideData="item.battle_detail.factions[0].faction"
+                                :sideData="item.battle_detail.factions[0].faction === 'blue'?
+                                            item.battle_detail.factions[0].faction:
+                                            item.battle_detail.factions[1].faction"
                             ></type-list>
                             <type-list 
                                 :placeData="place.left"
                                 :colorData="definedStyle.type"
                                 :typeList="item.battle_detail.first_events.typeList"
-                                :sideData="item.battle_detail.factions[1].faction"
+                                :sideData="item.battle_detail.factions[1].faction === 'red'?
+                                            item.battle_detail.factions[1].faction:
+                                            item.battle_detail.factions[0].faction"
                             ></type-list>
                         </div>
                         <output-list
@@ -61,7 +76,9 @@
                         ></output-list>
                     </div>
                     <role-list 
-                        :heroList="item.battle_detail.factions[1].players"
+                        :heroList="item.battle_detail.factions[1].faction === 'red'?
+                                    item.battle_detail.factions[1].players:
+                                    item.battle_detail.factions[0].players"
                         :roleData="roleData"
                     ></role-list>
                 </div>
