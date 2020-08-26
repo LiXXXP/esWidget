@@ -15,11 +15,13 @@
                 <head-tab 
                     :colorData="definedStyle.type"
                     :headData="item.score"
+                    :factionsData="item.battle_detail.teams"
                     :bureauPage="pageNum"
                     @blockedOut="blockedOut"
                 ></head-tab>
                 <battle
                     :battleData="item.score"
+                    :factionsData="item.battle_detail.teams"
                     :winerId="item.battle_detail.winner.team_id"
                 >
                     <div slot="left-info" class="left-info flex flex_start">
