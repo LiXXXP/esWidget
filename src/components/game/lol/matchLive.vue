@@ -243,7 +243,10 @@
         },
         watch: {
             battleData(old,val) {
-                this.pageNum = this.battleData.length
+                if(val.length > old.length) {
+                    this.pageNum = this.battleData.length
+                    this.currentIndex = 0
+                }
                 this.getTypeList()
                 this.getPutList()
             }
