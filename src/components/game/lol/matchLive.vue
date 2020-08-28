@@ -123,7 +123,7 @@
                     type: 'lol'
                 },
                 currentIndex: 0,  // 当前显示页index
-                pageNum: this.battleData.length,  // 当前第几局
+                pageNum: this.battleData.length || 1,  // 当前第几局
 			}
         },
         created() {
