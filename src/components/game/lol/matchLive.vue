@@ -26,17 +26,15 @@
                     :factionsData="item.battle_detail.factions"
                     :winerId="item.battle_detail.winner.team_id">
                     <div slot="living" class="live">
-                        <p v-if="
-                            item.battle_detail.factions[0].faction === 'blue'&&
-                            item.battle_detail.factions[0].team_id === item.score[0].team_id">
-                            <span>{{item.score[0].score}}</span>
+                        <p v-if="item.battle_detail.factions[0].faction === 'blue'">
+                            <span>{{item.battle_detail.factions[0].kills}}</span>
                             <i></i>
-                            <span>{{item.score[1].score}}</span>
+                            <span>{{item.battle_detail.factions[1].kills}}</span>
                         </p>
                         <p v-else>
-                            <span>{{item.score[1].score}}</span>
+                            <span>{{item.battle_detail.factions[1].kills}}</span>
                             <i></i>
-                            <span>{{item.score[0].score}}</span>
+                            <span>{{item.battle_detail.factions[0].kills}}</span>
                         </p>
                         <p class="num">
                             {{durationTime(item.battle_detail.duration)}}
