@@ -1,8 +1,7 @@
  <template>
 	<section>
          <div v-for="(item,index) in battleData" 
-            :key="item.battle_id"
-        >
+            :key="item.battle_id">
             <div v-if="index === currentIndex"
                 :class="[
                     'cs-live',
