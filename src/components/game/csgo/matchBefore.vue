@@ -10,22 +10,23 @@
                     'background-color':definedStyle.colorData
                 }"
             >
-            <head-tab 
-                :colorData="definedStyle.type"
-                :headData="item.score"
-                :bureauIndex="index"
-                @blockedOut="blockedOut"
-            ></head-tab>
-            <div class="content">
-                <score-bar></score-bar>
-                <div class="flex flex_between">
-                    <war-list :isColor="colorData.left"></war-list>
-                    <war-list :isColor="colorData.right"></war-list>
-                </div>
-                <div class="flex flex_between">
-                    <state-table :isBig="isBig"></state-table>
-                    <hr>
-                    <state-table :isBig="isBig"></state-table>
+                <head-tab 
+                    :colorData="definedStyle.type"
+                    :headData="item.score"
+                    :bureauIndex="index"
+                    @blockedOut="blockedOut"
+                ></head-tab>
+                <div class="content">
+                    <score-bar></score-bar>
+                    <div class="flex flex_between">
+                        <war-list :isColor="colorData.left"></war-list>
+                        <war-list :isColor="colorData.right"></war-list>
+                    </div>
+                    <div class="flex flex_between">
+                        <state-table :isBig="isBig"></state-table>
+                        <hr>
+                        <state-table :isBig="isBig"></state-table>
+                    </div>
                 </div>
             </div>
         </div>
