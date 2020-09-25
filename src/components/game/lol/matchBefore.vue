@@ -16,7 +16,11 @@
             <state-list 
                 :colorData="definedStyle.type"
             ></state-list>
-            <battle>
+            <battle
+                :winerId="0"
+                :battleData="[]"
+                :factionsData="[]"
+            >
                 <div slot="before" class="time">
                     <p>23 : 50</p>
                     <p class="date">5月20日</p>
