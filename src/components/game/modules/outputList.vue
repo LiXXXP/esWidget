@@ -5,7 +5,7 @@
             :key="item.type">
             <div class="left flex flex_only_center">
                 <p :style="{'color':barColor.left}">
-                    {{thousands(parseInt(item.num1))}}
+                    {{thousands(parseInt(item.num1)) || 0}}
                 </p>
                 <progress-data
                     class="bar"
@@ -21,7 +21,7 @@
                     :progressData="parseInt(item.num2/(item.num1+item.num2)*100) || 0"
                 ></progress-data>
                 <p :style="{'color':barColor.right}">
-                    {{thousands(parseInt(item.num2))}}
+                    {{thousands(parseInt(item.num2)) || 0}}
                 </p>
             </div>
         </div>
