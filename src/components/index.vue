@@ -151,22 +151,30 @@
                     getBattleT(params).then(res => {
                         if(res.code === 200) {
                             _this.showType.gameId = res.data.game_id
-                            // _this.showType.matchStatu = res.data.match_status
                             _this.showType.battleList = res.data.battle_list
-                            if(res.data.match_status === 'completed') {
-                                clearInterval(_this.timer)
+                            for(let item of res.data.battle_list) {
+                                if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
+                                    clearInterval(_this.timer)
+                                }
                             }
+                        }
+                        else {
+                            clearInterval(_this.timer)
                         }
                     })
                 } else {
                     getBattle(params).then(res => {
                         if(res.code === 200) {
                             _this.showType.gameId = res.data.game_id
-                            // _this.showType.matchStatu = res.data.match_status
                             _this.showType.battleList = res.data.battle_list
-                            if(res.data.match_status === 'completed') {
-                                clearInterval(_this.timer)
+                            for(let item of res.data.battle_list) {
+                                if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
+                                    clearInterval(_this.timer)
+                                }
                             }
+                        }
+                        else {
+                            clearInterval(_this.timer)
                         }
                     })
                 }

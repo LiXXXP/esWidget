@@ -26,17 +26,17 @@
                     :winerId="item.battle_detail.winner.team_id">
                     <div slot="living" class="live">
                         <p v-if="item.battle_detail.factions[0].faction === 'blue'">
-                            <span>{{item.battle_detail.factions[0].kills}}</span>
+                            <span>{{item.battle_detail.factions[0].kills || 0}}</span>
                             <i></i>
-                            <span>{{item.battle_detail.factions[1].kills}}</span>
+                            <span>{{item.battle_detail.factions[1].kills || 0}}</span>
                         </p>
                         <p v-else>
-                            <span>{{item.battle_detail.factions[1].kills}}</span>
+                            <span>{{item.battle_detail.factions[1].kills || 0}}</span>
                             <i></i>
-                            <span>{{item.battle_detail.factions[0].kills}}</span>
+                            <span>{{item.battle_detail.factions[0].kills || 0}}</span>
                         </p>
                         <p class="num">
-                            {{durationTime(item.battle_detail.duration)}}
+                            {{durationTime(item.battle_detail.duration) || "00`00"}}
                         </p>
                     </div>
                 </battle>
@@ -232,8 +232,8 @@
                     ]
                     item.battle_detail.outputList.forEach( e => {
                         let field = e.type
-                        e.num1 = item.battle_detail.factions[0][field]
-                        e.num2 = item.battle_detail.factions[1][field]
+                        e.num1 = item.battle_detail.factions[0][field] || 0
+                        e.num2 = item.battle_detail.factions[1][field] || 0
                     })
                 }
             }
