@@ -12,7 +12,7 @@
             <p class="bo">BO{{matchData.number_of_games}}</p>
             <div class="flex flex_around">
                 <div class="team flex">
-                    <div>
+                    <div class="flex flex_column flex_only_center">
                         <img :src="matchData.blue_team_image">
                         <p>{{matchData.blue_teams}}</p>
                     </div>
@@ -21,7 +21,7 @@
                 <div class="vs"> VS </div>
                 <div class="team flex">
                     <div class="red">T</div>
-                    <div>
+                    <div class="flex flex_column flex_only_center">
                         <img :src="matchData.red_team_image">
                         <p>{{matchData.red_teams}}</p>
                     </div>
