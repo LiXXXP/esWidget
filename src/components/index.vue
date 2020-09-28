@@ -14,6 +14,7 @@
             && parseInt(showType.matchStatu) === 1"
             :definedStyle="defined.lolLiveData"
             :battleData="showType.battleList"
+            :matchData="showType.matchInfo"
         ></lol-match-live>
         <!-- dota2赛事 -->
         <dota-match-live
@@ -21,6 +22,7 @@
             && parseInt(showType.matchStatu) === 1"
             :definedStyle="defined.dotaLiveData"
             :battleData="showType.battleList"
+            :matchData="showType.matchInfo"
         ></dota-match-live>
         <!-- csgo赛前 -->
         <cs-matchBefore
@@ -35,6 +37,7 @@
             && parseInt(showType.matchStatu) === 1"
             :definedStyle="defined.csLiveData"
             :battleData="showType.battleList"
+            :matchData="showType.matchInfo"
         ></cs-match-live>
 	</div>
 </template>
@@ -55,7 +58,8 @@
                 showType: {         // 页面显示条件
                     gameId: 0,      // 1:csgo, 2:lol, 3:dota2
                     matchStatu: '', // 赛事状态: 赛前 赛后
-                    battleList: []  // 对局列表
+                    battleList: [], // 对局列表
+                    matchInfo: {}   // 显示比赛
                 },
                 timer: null,        // 定义的轮询
 			}
@@ -151,10 +155,15 @@
                     getBattleT(params).then(res => {
                         if(res.code === 200) {
                             _this.showType.gameId = res.data.game_id
-                            _this.showType.battleList = res.data.battle_list
-                            for(let item of res.data.battle_list) {
-                                if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
-                                    clearInterval(_this.timer)
+                            if(res.data.battle_list.length === 0) {
+                                _this.showType.matchInfo = res.data.match_info
+                            }
+                            else {
+                                _this.showType.battleList = res.data.battle_list
+                                for(let item of res.data.battle_list) {
+                                    if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
+                                        clearInterval(_this.timer)
+                                    }
                                 }
                             }
                         }
@@ -166,10 +175,15 @@
                     getBattle(params).then(res => {
                         if(res.code === 200) {
                             _this.showType.gameId = res.data.game_id
-                            _this.showType.battleList = res.data.battle_list
-                            for(let item of res.data.battle_list) {
-                                if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
-                                    clearInterval(_this.timer)
+                            if(res.data.battle_list.length === 0) {
+                                _this.showType.matchInfo = res.data.match_info
+                            }
+                            else {
+                               _this.showType.battleList = res.data.battle_list
+                                for(let item of res.data.battle_list) {
+                                    if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
+                                        clearInterval(_this.timer)
+                                    }
                                 }
                             }
                         }

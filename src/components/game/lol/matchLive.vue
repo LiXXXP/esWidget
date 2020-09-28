@@ -1,83 +1,113 @@
 <template>
     <section>
-        <div v-for="(item,index) in battleData" 
-            :key="item.battle_id">
-            <div v-if="index === currentIndex"
-                :class="[
-                    'match-live',
-                    {'night-mode': definedStyle.type}
-                ]"
-                :style="{
-                    'width': definedStyle.widthData,
-                    'height': definedStyle.heightData,
-                    'background-color': definedStyle.colorData
-                }"
-            >
-                <head-tab
-                    :colorData="definedStyle.type"
-                    :headData="item.score"
-                    :factionsData="item.battle_detail.factions"
-                    :bureauPage="pageNum"
-                    @blockedOut="blockedOut"
-                ></head-tab>
-                <battle 
-                    :battleData="item.score"
-                    :factionsData="item.battle_detail.factions"
-                    :winerId="item.battle_detail.winner.team_id">
-                    <div slot="living" class="live">
-                        <p v-if="item.battle_detail.factions[0].faction === 'blue'">
-                            <span>{{item.battle_detail.factions[0].kills || 0}}</span>
-                            <i></i>
-                            <span>{{item.battle_detail.factions[1].kills || 0}}</span>
-                        </p>
-                        <p v-else>
-                            <span>{{item.battle_detail.factions[1].kills || 0}}</span>
-                            <i></i>
-                            <span>{{item.battle_detail.factions[0].kills || 0}}</span>
-                        </p>
-                        <p class="num">
-                            {{durationTime(item.battle_detail.duration) || "00`00"}}
-                        </p>
-                    </div>
-                </battle>
-                <div class="flex flex_between">
-                    <role-list
-                        :heroList="item.battle_detail.factions[0].faction === 'blue'?
-                                    item.battle_detail.factions[0].players:
-                                    item.battle_detail.factions[1].players"
-                        :roleData="roleData"
-                    ></role-list>
+        <div v-if="battleData.length === 0" 
+            class="match-before"
+            :style="{
+                'width': definedStyle.widthData,
+                'height': definedStyle.heightData,
+                'background-color': definedStyle.colorData
+        }">
+            <p class="name">{{matchData.tournament_name}}</p>
+            <p class="time">{{durationDate(matchData.begin_at)}}</p>
+            <p class="bo">BO{{matchData.number_of_games}}</p>
+            <div class="flex flex_around">
+                <div class="team flex">
                     <div>
-                        <div class="flex flex_between">
-                            <type-list 
-                                :placeData="place.right" 
-                                :colorData="definedStyle.type"
-                                :typeList="item.battle_detail.first_events.typeList"
-                                :sideData="item.battle_detail.factions[0].faction === 'blue'?
-                                            item.battle_detail.factions[0].faction:
-                                            item.battle_detail.factions[1].faction"
-                            ></type-list>
-                            <type-list 
-                                :placeData="place.left"
-                                :colorData="definedStyle.type"
-                                :typeList="item.battle_detail.first_events.typeList"
-                                :sideData="item.battle_detail.factions[1].faction === 'red'?
-                                            item.battle_detail.factions[1].faction:
-                                            item.battle_detail.factions[0].faction"
-                            ></type-list>
-                        </div>
-                        <output-list
-                            :barColor="barColorData"
-                            :colorData="definedStyle.type"
-                            :outputList="item.battle_detail.outputList"
-                        ></output-list>
+                        <img :src="matchData.blue_team_image">
+                        <p>{{matchData.blue_teams}}</p>
                     </div>
-                    <role-list 
-                        :heroList="item.battle_detail.factions[1].faction === 'red'?
-                                    item.battle_detail.factions[1].players:
-                                    item.battle_detail.factions[0].players"
-                        :roleData="roleData"
-                    ></role-list>
+                    <div class="blue">B</div>
+                </div>
+                <div class="vs"> VS </div>
+                <div class="team flex">
+                    <div class="red">R</div>
+                    <div>
+                        <img :src="matchData.red_team_image">
+                        <p>{{matchData.red_teams}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div v-for="(item,index) in battleData" 
+                :key="item.battle_id">
+                <div v-if="index === currentIndex"
+                    :class="[
+                        'match-live',
+                        {'night-mode': definedStyle.type}
+                    ]"
+                    :style="{
+                        'width': definedStyle.widthData,
+                        'height': definedStyle.heightData,
+                        'background-color': definedStyle.colorData
+                    }"
+                >
+                    <head-tab
+                        :colorData="definedStyle.type"
+                        :headData="item.score"
+                        :factionsData="item.battle_detail.factions"
+                        :bureauPage="pageNum"
+                        @blockedOut="blockedOut"
+                    ></head-tab>
+                    <battle 
+                        :battleData="item.score"
+                        :factionsData="item.battle_detail.factions"
+                        :winerId="item.battle_detail.winner.team_id">
+                        <div slot="living" class="live">
+                            <p v-if="item.battle_detail.factions[0].faction === 'blue'">
+                                <span>{{item.battle_detail.factions[0].kills || 0}}</span>
+                                <i></i>
+                                <span>{{item.battle_detail.factions[1].kills || 0}}</span>
+                            </p>
+                            <p v-else>
+                                <span>{{item.battle_detail.factions[1].kills || 0}}</span>
+                                <i></i>
+                                <span>{{item.battle_detail.factions[0].kills || 0}}</span>
+                            </p>
+                            <p class="num">
+                                {{durationTime(item.battle_detail.duration) || "00`00"}}
+                            </p>
+                        </div>
+                    </battle>
+                    <div class="flex flex_between">
+                        <role-list
+                            :heroList="item.battle_detail.factions[0].faction === 'blue'?
+                                        item.battle_detail.factions[0].players:
+                                        item.battle_detail.factions[1].players"
+                            :roleData="roleData"
+                        ></role-list>
+                        <div>
+                            <div class="flex flex_between">
+                                <type-list 
+                                    :placeData="place.right" 
+                                    :colorData="definedStyle.type"
+                                    :typeList="item.battle_detail.first_events.typeList"
+                                    :sideData="item.battle_detail.factions[0].faction === 'blue'?
+                                                item.battle_detail.factions[0].faction:
+                                                item.battle_detail.factions[1].faction"
+                                ></type-list>
+                                <type-list 
+                                    :placeData="place.left"
+                                    :colorData="definedStyle.type"
+                                    :typeList="item.battle_detail.first_events.typeList"
+                                    :sideData="item.battle_detail.factions[1].faction === 'red'?
+                                                item.battle_detail.factions[1].faction:
+                                                item.battle_detail.factions[0].faction"
+                                ></type-list>
+                            </div>
+                            <output-list
+                                :barColor="barColorData"
+                                :colorData="definedStyle.type"
+                                :outputList="item.battle_detail.outputList"
+                            ></output-list>
+                        </div>
+                        <role-list 
+                            :heroList="item.battle_detail.factions[1].faction === 'red'?
+                                        item.battle_detail.factions[1].players:
+                                        item.battle_detail.factions[0].players"
+                            :roleData="roleData"
+                        ></role-list>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,7 +121,7 @@
     const roleList = ()=> import("@/components/game/modules/roleList")      // 角色列表
     const outputList = ()=> import("@/components/game/modules/outputList")  // 输出占比
     
-    import { formatSeconds } from '@/scripts/utils'
+    import { formatSeconds, rTime } from '@/scripts/utils'
 
 	export default {
         props: {
@@ -102,6 +132,10 @@
             battleData: {
                 type: Array,
                 default: []
+            },
+            matchData: {
+                type: Object,
+                default: {}
             }
         },
 		data() {
@@ -253,6 +287,11 @@
                 return function(sec) {
                     return formatSeconds(sec)
                 }
+            },
+            durationDate(date) {
+                return function(date) {
+                    return rTime(date)
+                }
             }
         },
         components: {
@@ -266,6 +305,62 @@
 </script>
 
 <style lang="less" scoped>
+    .match-before {
+        padding: 20px 10px;
+        box-sizing: border-box;
+        .name {
+            font-size: 18px;
+            color: #434343;
+            text-align: center;
+        }
+        .time {
+            font-size: 14px;
+            color: #777777;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .bo {
+            color: #878787;
+            font-size: 14px;
+            text-align: center;
+            padding: 10px 0 30px;
+        }
+        .team {
+            img {
+                width: 36px;
+                height: 36px;
+                display: block;
+                margin: 0 auto;
+            }
+            p {
+                font-size: 14px;
+                color: #434343;
+                padding-top: 5px;
+            }
+            .blue {
+                width: 18px;
+                height: 18px;
+                color: #fff;
+                line-height: 18px;
+                text-align: center;
+                border-radius: 100%;
+                background-color: #1167E8;
+            }
+            .red {
+                width: 18px;
+                height: 18px;
+                color: #fff;
+                line-height: 18px;
+                text-align: center;
+                border-radius: 100%;
+                background-color: #D43F2F;
+            }
+        }
+        .vs {
+            color: #FF7600;
+            font-size: 28px;
+        }
+    }
     .match-live {
         box-sizing: border-box;
         .live {

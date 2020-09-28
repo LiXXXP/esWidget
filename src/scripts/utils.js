@@ -364,6 +364,18 @@ function formatNumber(num) {
     return num
 }
 
+/**
+ * 日期转换
+ *
+ * @param date 需要格式的日期形式
+ * @return 格式的字符串
+ * @type String
+ */
+function rTime(date) {
+    var json_date = new Date(date).toJSON();
+    return new Date(new Date(json_date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '') 
+}
+
 export {
     setTitle,
     transHtml,
@@ -383,5 +395,6 @@ export {
     getCurrentDate,
     toChinesNum,
     formatSeconds,
-    formatNumber
+    formatNumber,
+    rTime
 }
