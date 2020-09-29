@@ -15,7 +15,7 @@
                 v-for="item in stateData"
                 :key="item.round_ordinal"
             >
-                <img src="../../../../assets/imgs/big/sign04.png" v-if="item.win_type === 'terrorists_win'">
+                <img src="../../../../assets/imgs/big/sign05.png" v-if="item.win_type === 'terrorists_win'">
                 <img src="../../../../assets/imgs/big/sign04.png" v-if="item.win_type === 'target_bombed'">
             </div>
         </div>
