@@ -162,6 +162,9 @@
                                 _this.showType.battleList = res.data.battle_list.reverse()
                                 if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
                                     clearInterval(_this.timer)
+                                    localStorage.clear()
+                                } else {
+                                    localStorage.setItem('ongoing',true)
                                 }
                             }
                         }
@@ -180,6 +183,9 @@
                                 _this.showType.battleList = res.data.battle_list.reverse()
                                 if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
                                     clearInterval(_this.timer)
+                                    localStorage.clear()
+                                } else {
+                                    localStorage.setItem('ongoing',true)
                                 }
                             }
                         }

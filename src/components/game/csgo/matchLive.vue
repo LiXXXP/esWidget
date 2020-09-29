@@ -144,6 +144,10 @@
         },
         created() {
             this.getTypeList()
+            if ( localStorage.getItem('ongoing') ) {
+                this.pageNum = this.battleData.length
+                this.currentIndex = this.battleData.length -1
+            }
         },
         methods: {
             // 展示页切换（子传父）
