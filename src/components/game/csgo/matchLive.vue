@@ -52,7 +52,10 @@
                         :factionsData="item.battle_detail.teams"
                         :winerId="item.battle_detail.winner.team_id"
                     >
-                        <div slot="left-info" class="left-info flex flex_start">
+                        <div slot="left-info" class="left-info flex flex_start" 
+                            v-if="item.battle_detail.teams[0].starting_side === 'ct' 
+                            && item.battle_detail.teams[0].team_id===item.score[0].team_id"
+                        >
                             <div class="flex flex_column flex_center">
                                 <p>{{item.battle_detail.teams[0].first_half_score || 0}}</p>
                                 <p>{{item.battle_detail.teams[0].second_half_score || 0}}</p>
@@ -66,11 +69,35 @@
                                 </p>
                             </div>
                         </div>
-                        <div slot="living" class="live">
+                        <div slot="left-info" class="left-info flex flex_start" v-else>
+                            <div class="flex flex_column flex_center">
+                                <p>{{item.battle_detail.teams[1].first_half_score || 0}}</p>
+                                <p>{{item.battle_detail.teams[1].second_half_score || 0}}</p>
+                            </div>
+                            <div class="circle flex flex_column flex_center">
+                                <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 'ct':'t']">
+                                    {{item.battle_detail.teams[1].starting_side === 'ct' ? 'CT':'T'}}
+                                </p>
+                                <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 't':'ct']">
+                                    {{item.battle_detail.teams[1].starting_side === 'ct' ? 'T':'CT'}}
+                                </p>
+                            </div>
+                        </div>
+                        <div slot="living" class="live" 
+                            v-if="item.battle_detail.teams[0].starting_side === 'ct' 
+                            && item.battle_detail.teams[0].team_id===item.score[0].team_id"
+                        >
                             <p>{{item.battle_detail.teams[0].score || 0}}:{{item.battle_detail.teams[1].score || 0}}</p>
                             <p class="num">{{item.battle_detail.winner.team_snapshot.short_name}}</p>
                         </div>
-                        <div slot="right-info" class="right-info flex flex_start">
+                        <div slot="living" class="live" v-else>
+                            <p>{{item.battle_detail.teams[1].score || 0}}:{{item.battle_detail.teams[0].score || 0}}</p>
+                            <p class="num">{{item.battle_detail.winner.team_snapshot.short_name}}</p>
+                        </div>
+                        <div slot="right-info" class="right-info flex flex_start"
+                            v-if="item.battle_detail.teams[1].starting_side === 'terrorist' 
+                            && item.battle_detail.teams[1].team_id===item.score[1].team_id"
+                        >
                             <div class="circle flex flex_column flex_center">
                                 <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 'ct':'t']">
                                     {{item.battle_detail.teams[1].starting_side === 'ct' ? 'CT':'T'}}
@@ -82,6 +109,20 @@
                             <div class="flex flex_column flex_center">
                                 <p>{{item.battle_detail.teams[1].first_half_score || 0}}</p>
                                 <p>{{item.battle_detail.teams[1].second_half_score || 0}}</p>
+                            </div>
+                        </div>
+                        <div slot="right-info" class="right-info flex flex_start" v-else>
+                            <div class="circle flex flex_column flex_center">
+                                <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 'ct':'t']">
+                                    {{item.battle_detail.teams[0].starting_side === 'ct' ? 'CT':'T'}}
+                                </p>
+                                <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 't':'ct']">
+                                    {{item.battle_detail.teams[0].starting_side === 'ct' ? 'T':'CT'}}
+                                </p>
+                            </div>
+                            <div class="flex flex_column flex_center">
+                                <p>{{item.battle_detail.teams[0].first_half_score || 0}}</p>
+                                <p>{{item.battle_detail.teams[0].second_half_score || 0}}</p>
                             </div>
                         </div>
                     </battle>
