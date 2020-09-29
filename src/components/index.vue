@@ -159,11 +159,10 @@
                                 _this.showType.matchInfo = res.data.match_info
                             }
                             else {
-                                _this.showType.battleList = res.data.battle_list
-                                for(let item of res.data.battle_list) {
-                                    if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
-                                        clearInterval(_this.timer)
-                                    }
+                                _this.showType.battleList = res.data.battle_list.reverse()
+                                console.log(res.data.battle_list[0].battle_status)
+                                if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
+                                    clearInterval(_this.timer)
                                 }
                             }
                         }
@@ -179,11 +178,9 @@
                                 _this.showType.matchInfo = res.data.match_info
                             }
                             else {
-                               _this.showType.battleList = res.data.battle_list
-                                for(let item of res.data.battle_list) {
-                                    if( res.data.match_status === 'completed' && item.battle_status === 'completed') {
-                                        clearInterval(_this.timer)
-                                    }
+                                _this.showType.battleList = res.data.battle_list.reverse()
+                                if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
+                                    clearInterval(_this.timer)
                                 }
                             }
                         }

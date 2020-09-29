@@ -154,7 +154,7 @@
                     type: 'lol'
                 },
                 currentIndex: 0,  // 当前显示页index
-                pageNum: this.battleData.length || 1,  // 当前第几局
+                pageNum: 1,       // 当前第几局
 			}
         },
         created() {
@@ -166,21 +166,21 @@
             blockedOut(type) {
                 // 下一局
                 if(type === 'next') {
-                    this.pageNum -= 1
+                    this.pageNum += 1
                     this.currentIndex += 1
                     if(this.currentIndex > (this.battleData.length - 1)) {
                         this.currentIndex = this.battleData.length -1
-                        this.pageNum = 1
+                        this.pageNum = this.battleData.length
                         return false
                     }
                 }
                 // 上一局
                 if(type === 'last') {
-                    this.pageNum += 1
+                    this.pageNum -= 1
                     this.currentIndex -= 1
                     if(this.currentIndex < 0) {
                         this.currentIndex = 0
-                        this.pageNum = this.battleData.length
+                        this.pageNum = 1
                         return false
                     } 
                 }
@@ -276,7 +276,7 @@
             battleData(old,val) {
                 if(val.length > old.length) {
                     this.pageNum = this.battleData.length
-                    this.currentIndex = 0
+                    this.currentIndex = this.battleData.length -1
                 }
                 this.getTypeList()
                 this.getPutList()
