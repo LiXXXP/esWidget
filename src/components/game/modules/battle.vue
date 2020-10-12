@@ -8,7 +8,7 @@
                 v-if="
                     (factionsData[0].faction==='blue' || 
                     factionsData[0].starting_side==='ct') &&
-                    factionsData[0].team_id===battleData[0].team_id"
+                    teamId===battleData[0].team_id"
             >
                 <img :src="battleData[0].team_snapshot.image">
                 <i class="team-win" v-if="winerId === battleData[0].team_id"></i>
@@ -25,14 +25,14 @@
                 v-if="
                     (factionsData[1].faction==='red' || 
                     factionsData[1].starting_side==='terrorist') &&
-                    factionsData[1].team_id===battleData[1].team_id"
+                    teamId===battleData[1].team_id"
             >
-                <img :src="battleData[1].team_snapshot.image">
-                <i class="team-win" v-if="winerId === battleData[1].team_id"></i>
-            </div>
-            <div class="team flex flex_start flex_center" v-else>
                 <img :src="battleData[0].team_snapshot.image">
                 <i class="team-win" v-if="winerId === battleData[0].team_id"></i>
+            </div>
+            <div class="team flex flex_start flex_center" v-else>
+                <img :src="battleData[1].team_snapshot.image">
+                <i class="team-win" v-if="winerId === battleData[1].team_id"></i>
             </div>
             <slot name="right-info"></slot>
         </div>
@@ -53,6 +53,10 @@
             factionsData: {
                 type: Array,
                 default: []
+            },
+            teamId: {
+                type: Number,
+                default: 0
             }
         },
 		data() {

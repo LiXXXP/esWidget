@@ -50,6 +50,7 @@
                     <battle
                         :battleData="item.score"
                         :factionsData="item.battle_detail.teams"
+                        :teamId="item.battle_detail.teams[0].team_id===item.score[0].team_id ?item.battle_detail.teams[0].team_id : item.battle_detail.teams[1].team_id"
                         :winerId="item.battle_detail.winner.team_id"
                     >
                         <div slot="left-info" class="left-info flex flex_start" 
@@ -189,6 +190,7 @@
                 this.pageNum = this.battleData.length
                 this.currentIndex = this.battleData.length -1
             }
+            console.log(this.battleData)
         },
         methods: {
             // 展示页切换（子传父）
