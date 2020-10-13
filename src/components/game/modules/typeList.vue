@@ -31,8 +31,8 @@
                 default: ()=>[]
             },
             sideData: {      // 特殊事件显示队伍方
-                type: String,
-                default: ''
+                type: Number,
+                default: 0
             },
         },
 		data() {

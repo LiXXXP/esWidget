@@ -132,13 +132,13 @@
                             :placeData="place.right" 
                             :colorData="definedStyle.type"
                             :typeList="item.battle_detail.special_events.typeList"
-                            :sideData="item.battle_detail.teams[0].starting_side"
+                            :sideData="item.battle_detail.teams[0].team_id===item.score[0].team_id ?item.battle_detail.teams[0].team_id : item.battle_detail.teams[1].team_id"
                         ></type-list>
                         <type-list 
                             :placeData="place.left"
                             :colorData="definedStyle.type"
                             :typeList="item.battle_detail.special_events.typeList"
-                            :sideData="item.battle_detail.teams[1].starting_side"
+                            :sideData="item.battle_detail.teams[1].team_id===item.score[1].team_id ?item.battle_detail.teams[1].team_id : item.battle_detail.teams[0].team_id"
                         ></type-list>
                     </div>
                     <level-block
@@ -190,7 +190,6 @@
                 this.pageNum = this.battleData.length
                 this.currentIndex = this.battleData.length -1
             }
-            console.log(this.battleData)
         },
         methods: {
             // 展示页切换（子传父）
@@ -223,17 +222,17 @@
                         {
                             text: '先5',
                             type: 'first_to_5_rounds_wins',
-                            side: item.battle_detail.special_events.first_to_5_rounds_wins.side
+                            side: item.battle_detail.special_events.first_to_5_rounds_wins.team_id
                         },
                         {
                             text: '1回合胜',
                             type: 'win_round_1',
-                            side: item.battle_detail.special_events.win_round_1.side
+                            side: item.battle_detail.special_events.win_round_1.team_id
                         },
                         {
                             text: '16回合胜',
                             type: 'win_round_16',
-                            side: item.battle_detail.special_events.win_round_16.side
+                            side: item.battle_detail.special_events.win_round_16.team_id
                         }
                     ]
                 }
