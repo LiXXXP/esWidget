@@ -5,7 +5,7 @@
     >
         <span :class="[
                 'block',
-                {'come': sideData === item.side}
+                {'come': sideData === item.teamId}
             ]"
             v-for="item in typeList"
             :key="item.text"
