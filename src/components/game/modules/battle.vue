@@ -6,8 +6,7 @@
             <slot name="left-info"></slot>
             <div class="team flex flex_start flex_center"
                 v-if="
-                    (factionsData[0].faction==='blue' || 
-                    factionsData[0].starting_side==='ct') &&
+                    (factionsData[0].faction==='blue' || 1) &&
                     teamId===battleData[0].team_id"
             >
                 <img :src="battleData[0].team_snapshot.image">
@@ -23,8 +22,7 @@
             </div>
             <div class="team flex flex_start flex_center"
                 v-if="
-                    (factionsData[1].faction==='red' || 
-                    factionsData[1].starting_side==='terrorist') &&
+                    (factionsData[1].faction==='red' || 1) &&
                     teamId===battleData[1].team_id"
             >
                 <img :src="battleData[0].team_snapshot.image">
