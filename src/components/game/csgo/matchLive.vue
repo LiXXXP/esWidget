@@ -48,82 +48,31 @@
                         @blockedOut="blockedOut"
                     ></head-tab>
                     <battle
-                        :battleData="item.score"
                         :factionsData="item.battle_detail.teams"
-                        :teamId="item.battle_detail.teams[0].team_id===item.score[0].team_id ?item.battle_detail.teams[0].team_id : item.battle_detail.teams[1].team_id"
                         :winerId="item.battle_detail.winner.team_id"
                     >
-                        <div slot="left-info" class="left-info flex flex_start" 
-                            v-if="item.battle_detail.teams[0].starting_side === 'ct' 
-                            && item.battle_detail.teams[0].team_id===item.score[0].team_id"
-                        >
+                        <div slot="left-info" class="left-info flex flex_start">
                             <div class="flex flex_column flex_center">
                                 <p>{{item.battle_detail.teams[0].first_half_score || 0}}</p>
                                 <p>{{item.battle_detail.teams[0].second_half_score || 0}}</p>
                             </div>
                             <div class="circle flex flex_column flex_center">
-                                <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 'ct':'t']">
-                                    {{item.battle_detail.teams[0].starting_side === 'ct' ? 'CT':'T'}}
-                                </p>
-                                <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 't':'ct']">
-                                    {{item.battle_detail.teams[0].starting_side === 'ct' ? 'T':'CT'}}
-                                </p>
+                                <p class="ct">CT</p>
+                                <p class="t">T</p>
                             </div>
                         </div>
-                        <div slot="left-info" class="left-info flex flex_start" v-else>
-                            <div class="flex flex_column flex_center">
-                                <p>{{item.battle_detail.teams[1].first_half_score || 0}}</p>
-                                <p>{{item.battle_detail.teams[1].second_half_score || 0}}</p>
-                            </div>
-                            <div class="circle flex flex_column flex_center">
-                                <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 'ct':'t']">
-                                    {{item.battle_detail.teams[1].starting_side === 'ct' ? 'CT':'T'}}
-                                </p>
-                                <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 't':'ct']">
-                                    {{item.battle_detail.teams[1].starting_side === 'ct' ? 'T':'CT'}}
-                                </p>
-                            </div>
-                        </div>
-                        <div slot="living" class="live" 
-                            v-if="item.battle_detail.teams[0].starting_side === 'ct' 
-                            && item.battle_detail.teams[0].team_id===item.score[0].team_id"
-                        >
+                        <div slot="living" class="live">
                             <p>{{item.battle_detail.teams[0].score || 0}}:{{item.battle_detail.teams[1].score || 0}}</p>
                             <p class="num">{{item.battle_detail.winner.team_snapshot.short_name}}</p>
                         </div>
-                        <div slot="living" class="live" v-else>
-                            <p>{{item.battle_detail.teams[1].score || 0}}:{{item.battle_detail.teams[0].score || 0}}</p>
-                            <p class="num">{{item.battle_detail.winner.team_snapshot.short_name}}</p>
-                        </div>
-                        <div slot="right-info" class="right-info flex flex_start"
-                            v-if="item.battle_detail.teams[1].starting_side === 'terrorist' 
-                            && item.battle_detail.teams[1].team_id===item.score[1].team_id"
-                        >
+                        <div slot="right-info" class="right-info flex flex_start">
                             <div class="circle flex flex_column flex_center">
-                                <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 'ct':'t']">
-                                    {{item.battle_detail.teams[1].starting_side === 'ct' ? 'CT':'T'}}
-                                </p>
-                                <p :class="[item.battle_detail.teams[1].starting_side === 'ct' ? 't':'ct']">
-                                    {{item.battle_detail.teams[1].starting_side === 'ct' ? 'T':'CT'}}
-                                </p>
+                                <p class="t">T</p>
+                                <p class="ct">CT</p>
                             </div>
                             <div class="flex flex_column flex_center">
                                 <p>{{item.battle_detail.teams[1].first_half_score || 0}}</p>
                                 <p>{{item.battle_detail.teams[1].second_half_score || 0}}</p>
-                            </div>
-                        </div>
-                        <div slot="right-info" class="right-info flex flex_start" v-else>
-                            <div class="circle flex flex_column flex_center">
-                                <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 'ct':'t']">
-                                    {{item.battle_detail.teams[0].starting_side === 'ct' ? 'CT':'T'}}
-                                </p>
-                                <p :class="[item.battle_detail.teams[0].starting_side === 'ct' ? 't':'ct']">
-                                    {{item.battle_detail.teams[0].starting_side === 'ct' ? 'T':'CT'}}
-                                </p>
-                            </div>
-                            <div class="flex flex_column flex_center">
-                                <p>{{item.battle_detail.teams[0].first_half_score || 0}}</p>
-                                <p>{{item.battle_detail.teams[0].second_half_score || 0}}</p>
                             </div>
                         </div>
                     </battle>
@@ -132,13 +81,13 @@
                             :placeData="place.right" 
                             :colorData="definedStyle.type"
                             :typeList="item.battle_detail.special_events.typeList"
-                            :sideData="item.battle_detail.teams[0].team_id===item.score[0].team_id ?item.battle_detail.teams[0].team_id : item.battle_detail.teams[1].team_id"
+                            :sideData="item.battle_detail.teams[0].team_id"
                         ></type-list>
                         <type-list 
                             :placeData="place.left"
                             :colorData="definedStyle.type"
                             :typeList="item.battle_detail.special_events.typeList"
-                            :sideData="item.battle_detail.teams[1].team_id===item.score[1].team_id ?item.battle_detail.teams[1].team_id : item.battle_detail.teams[0].team_id"
+                            :sideData="item.battle_detail.teams[1].team_id"
                         ></type-list>
                     </div>
                     <level-block
@@ -181,10 +130,11 @@
                     left: false  // 位置是否左对齐
                 },
                 currentIndex: 0,  // 当前显示页index
-                pageNum: 1        // 当前第几局
+                pageNum: 1,        // 当前第几局
 			}
         },
         created() {
+            this.sortTeam()
             this.getTypeList()
             if ( localStorage.getItem('ongoing') ) {
                 this.pageNum = this.battleData.length
@@ -222,19 +172,33 @@
                         {
                             text: '先5',
                             type: 'first_to_5_rounds_wins',
-                            side: item.battle_detail.special_events.first_to_5_rounds_wins.team_id
+                            teamId: item.battle_detail.special_events.first_to_5_rounds_wins.team_id
                         },
                         {
                             text: '1回合胜',
                             type: 'win_round_1',
-                            side: item.battle_detail.special_events.win_round_1.team_id
+                            teamId: item.battle_detail.special_events.win_round_1.team_id
                         },
                         {
                             text: '16回合胜',
                             type: 'win_round_16',
-                            side: item.battle_detail.special_events.win_round_16.team_id
+                            teamId: item.battle_detail.special_events.win_round_16.team_id
                         }
                     ]
+                }
+            },
+            sortTeam() {
+                for(let item of this.battleData) {
+                    item.battle_detail.teams.forEach(e => {
+                        item.score.forEach(i => {
+                            if(e.team_id === i.team_id) {
+                                e.team_snapshot = i.team_snapshot
+                            }
+                        })
+                    })
+                    if(item.battle_detail.teams[0].starting_side !== 'ct') {
+                        item.battle_detail.teams.reverse()
+                    }
                 }
             }
         },
@@ -244,6 +208,7 @@
                     this.pageNum = this.battleData.length
                     this.currentIndex = this.battleData.length -1
                 }
+                this.sortTeam()
                 this.getTypeList()
             }
         },

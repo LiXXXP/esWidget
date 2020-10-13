@@ -4,33 +4,17 @@
             v-if="factionsData.length!==0"
         >
             <slot name="left-info"></slot>
-            <div class="team flex flex_start flex_center"
-                v-if="
-                    (factionsData[0].faction==='blue' || 1) &&
-                    teamId===battleData[0].team_id"
-            >
-                <img :src="battleData[0].team_snapshot.image">
-                <i class="team-win" v-if="winerId === battleData[0].team_id"></i>
-            </div>
-            <div class="team flex flex_start flex_center" v-else>
-                <img :src="battleData[1].team_snapshot.image">
-                <i class="team-win" v-if="winerId === battleData[1].team_id"></i>
+            <div class="team flex flex_start flex_center">
+                <img :src="factionsData[0].team_snapshot.image">
+                <i class="team-win" v-if="winerId === factionsData[0].team_id"></i>
             </div>
             <div class="text">
                 <slot name="before"></slot>
                 <slot name="living"></slot>
             </div>
-            <div class="team flex flex_start flex_center"
-                v-if="
-                    (factionsData[1].faction==='red' || 1) &&
-                    teamId===battleData[1].team_id"
-            >
-                <img :src="battleData[0].team_snapshot.image">
-                <i class="team-win" v-if="winerId === battleData[0].team_id"></i>
-            </div>
-            <div class="team flex flex_start flex_center" v-else>
-                <img :src="battleData[1].team_snapshot.image">
-                <i class="team-win" v-if="winerId === battleData[1].team_id"></i>
+            <div class="team flex flex_start flex_center">
+                <img :src="factionsData[1].team_snapshot.image">
+                <i class="team-win" v-if="winerId === factionsData[1].team_id"></i>
             </div>
             <slot name="right-info"></slot>
         </div>
@@ -40,10 +24,6 @@
 <script>
 	export default {
         props: {
-            battleData: {     // 对局队伍头像
-                type: Array,
-                default: []
-            },
             winerId: {        // 赢家id
                 type: Number,
                 default: 0
@@ -51,10 +31,6 @@
             factionsData: {
                 type: Array,
                 default: []
-            },
-            teamId: {
-                type: Number,
-                default: 0
             }
         },
 		data() {
