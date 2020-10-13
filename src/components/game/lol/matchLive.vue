@@ -49,20 +49,14 @@
                         :bureauPage="pageNum"
                         @blockedOut="blockedOut"
                     ></head-tab>
-                    <battle 
-                        :battleData="item.score"
+                    <battle
                         :factionsData="item.battle_detail.factions"
                         :winerId="item.battle_detail.winner.team_id">
                         <div slot="living" class="live">
-                            <p v-if="item.battle_detail.factions[0].faction === 'blue'">
+                            <p>
                                 <span>{{item.battle_detail.factions[0].kills || 0}}</span>
                                 <i></i>
                                 <span>{{item.battle_detail.factions[1].kills || 0}}</span>
-                            </p>
-                            <p v-else>
-                                <span>{{item.battle_detail.factions[1].kills || 0}}</span>
-                                <i></i>
-                                <span>{{item.battle_detail.factions[0].kills || 0}}</span>
                             </p>
                             <p class="num">
                                 {{durationTime(item.battle_detail.duration) || "00`00"}}
@@ -71,9 +65,7 @@
                     </battle>
                     <div class="flex flex_between">
                         <role-list
-                            :heroList="item.battle_detail.factions[0].faction === 'blue'?
-                                        item.battle_detail.factions[0].players:
-                                        item.battle_detail.factions[1].players"
+                            :heroList="item.battle_detail.factions[0].players"
                             :roleData="roleData"
                         ></role-list>
                         <div>
@@ -82,17 +74,13 @@
                                     :placeData="place.right" 
                                     :colorData="definedStyle.type"
                                     :typeList="item.battle_detail.first_events.typeList"
-                                    :sideData="item.battle_detail.factions[0].faction === 'blue'?
-                                                item.battle_detail.factions[0].faction:
-                                                item.battle_detail.factions[1].faction"
+                                    :sideData="item.battle_detail.factions[0].team_id"
                                 ></type-list>
                                 <type-list 
                                     :placeData="place.left"
                                     :colorData="definedStyle.type"
                                     :typeList="item.battle_detail.first_events.typeList"
-                                    :sideData="item.battle_detail.factions[1].faction === 'red'?
-                                                item.battle_detail.factions[1].faction:
-                                                item.battle_detail.factions[0].faction"
+                                    :sideData="item.battle_detail.factions[1].team_id"
                                 ></type-list>
                             </div>
                             <output-list
@@ -102,9 +90,7 @@
                             ></output-list>
                         </div>
                         <role-list 
-                            :heroList="item.battle_detail.factions[1].faction === 'red'?
-                                        item.battle_detail.factions[1].players:
-                                        item.battle_detail.factions[0].players"
+                            :heroList="item.battle_detail.factions[1].players"
                             :roleData="roleData"
                         ></role-list>
                     </div>
@@ -158,6 +144,7 @@
 			}
         },
         created() {
+            this.sortTeam()
             this.getTypeList()
             this.getPutList()
             if ( localStorage.getItem('ongoing') ) {
@@ -197,37 +184,37 @@
                         {
                             text: '一血',
                             type: 'first_blood',
-                            side:item.battle_detail.first_events.first_blood.faction
+                            teamId:item.battle_detail.first_events.first_blood.team_id
                         },
                         {
                             text: '五杀',
                             type: 'first_to_5_kills',
-                            side: item.battle_detail.first_events.first_to_5_kills.faction
+                            teamId: item.battle_detail.first_events.first_to_5_kills.team_id
                         },
                         {
                             text: '十杀',
                             type: 'first_to_10_kills',
-                            side: item.battle_detail.first_events.first_to_10_kills.faction
+                            teamId: item.battle_detail.first_events.first_to_10_kills.team_id
                         },
                         {
                             text: '首塔',
                             type: 'first_turret',
-                            side: item.battle_detail.first_events.first_turret.faction
+                            teamId: item.battle_detail.first_events.first_turret.team_id
                         },
                         {
                             text: '首水晶',
                             type: 'first_inhibitor',
-                            side: item.battle_detail.first_events.first_inhibitor.faction
+                            teamId: item.battle_detail.first_events.first_inhibitor.team_id
                         },
                         {
                             text: '首大龙',
                             type: 'first_baron_nasho',
-                            side: item.battle_detail.first_events.first_baron_nashor.faction
+                            teamId: item.battle_detail.first_events.first_baron_nashor.team_id
                         },
                         {
                             text: '首小龙',
                             type: 'first_dragon',
-                            side: item.battle_detail.first_events.first_dragon.faction
+                            teamId: item.battle_detail.first_events.first_dragon.team_id
                         },
                     ]
                 }
@@ -274,6 +261,20 @@
                         e.num2 = item.battle_detail.factions[1][field] || 0
                     })
                 }
+            },
+            sortTeam() {
+                for(let item of this.battleData) {
+                    item.battle_detail.factions.forEach(e => {
+                        item.score.forEach(i => {
+                            if(e.team_id === i.team_id) {
+                                e.team_snapshot = i.team_snapshot
+                            }
+                        })
+                    })
+                    if(item.battle_detail.factions[0].faction !== 'blue') {
+                        item.battle_detail.factions.reverse()
+                    }
+                }
             }
         },
         watch: {
@@ -282,6 +283,7 @@
                     this.pageNum = this.battleData.length
                     this.currentIndex = this.battleData.length -1
                 }
+                this.sortTeam()
                 this.getTypeList()
                 this.getPutList()
             }
