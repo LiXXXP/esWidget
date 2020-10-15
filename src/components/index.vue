@@ -151,17 +151,14 @@
                     keys: keys
                 }
                 let t = getUrlParam('t')
-                let sendDate = (new Date()).getTime()
                 if(parseInt(t) === 1) {
                     getBattleT(params).then(res => {
                         if(res.code === 200) {
-                            let recDate = (new Date()).getTime()
-                            let resDate = recDate - sendDate
                             _this.showType.gameId = res.data.game_id
                             if(res.data.battle_list.length === 0) {
                                 _this.showType.matchInfo = res.data.match_info
                             }
-                            else if(resDate < 5000){
+                            else {
                                 _this.showType.battleList = res.data.battle_list.reverse()
                                 if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
                                     clearInterval(_this.timer)
@@ -178,13 +175,11 @@
                 } else {
                     getBattle(params).then(res => {
                         if(res.code === 200) {
-                            let recDate = (new Date()).getTime()
-                            let resDate = recDate - sendDate
                             _this.showType.gameId = res.data.game_id
                             if(res.data.battle_list.length === 0) {
                                 _this.showType.matchInfo = res.data.match_info
                             }
-                            else if(resDate < 5000){
+                            else {
                                 _this.showType.battleList = res.data.battle_list.reverse()
                                 if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
                                     clearInterval(_this.timer)
