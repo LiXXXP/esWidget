@@ -47,12 +47,12 @@
     const lolMatchLive = ()=> import("@/components/game/lol/matchLive")     // lol赛事
     const dotaMatchLive = ()=> import("@/components/game/dota/matchLive")   // dota2赛事
     const csMatchBefore = ()=> import("@/components/game/csgo/matchBefore") // csgo赛前
-    const csMatchLive = ()=> import("@/components/game/csgo/matchLive")     // csgo赛事
+    const csMatchLive = ()=> import("@/components/game/csgo/newMatchLive")     // csgo赛事
 
-    import { getBattle, getBattleT } from "@/scripts/request.js"  // 请求方法
+    import { newMatch } from "@/scripts/request.js"  // 请求方法
     import { getUrlParam } from '@/scripts/utils'                 // 获取页面参数方法
 	export default {
-        name: 'index',
+        name: 'indexnew',
 		data() {
 			return {
                 defined: {},        // 背景模式
@@ -152,49 +152,26 @@
                     keys: keys
                 }
                 let t = getUrlParam('t')
-                if(parseInt(t) === 1) {
-                    getBattleT(params).then(res => {
-                        if(res.code === 200) {
-                            _this.showType.gameId = res.data.game_id
-                            if(res.data.battle_list.length === 0) {
-                                _this.showType.matchInfo = res.data.match_info
-                            }
-                            else {
-                                _this.showType.battleList = res.data.battle_list.reverse()
-                                if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
-                                    clearInterval(_this.timer)
-                                    localStorage.clear()
-                                } else {
-                                    localStorage.setItem('ongoing',true)
-                                }
-                            }
+                newMatch(params).then(res => {
+                    if(res.code === 200) {
+                        _this.showType.gameId = res.data.game_id
+                        if(res.data.battle_list.length === 0) {
+                            _this.showType.matchInfo = res.data.match_info
                         }
                         else {
-                            clearInterval(_this.timer)
-                        }
-                    })
-                } else {
-                    getBattle(params).then(res => {
-                        if(res.code === 200) {
-                            _this.showType.gameId = res.data.game_id
-                            if(res.data.battle_list.length === 0) {
-                                _this.showType.matchInfo = res.data.match_info
-                            }
-                            else {
-                                _this.showType.battleList = res.data.battle_list.reverse()
-                                if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
-                                    clearInterval(_this.timer)
-                                    localStorage.clear()
-                                } else {
-                                    localStorage.setItem('ongoing',true)
-                                }
+                            _this.showType.battleList = res.data.battle_list.reverse()
+                            if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
+                                clearInterval(_this.timer)
+                                localStorage.clear()
+                            } else {
+                                localStorage.setItem('ongoing',true)
                             }
                         }
-                        else {
-                            clearInterval(_this.timer)
-                        }
-                    })
-                }
+                    }
+                    else {
+                        clearInterval(_this.timer)
+                    }
+                })
             }
         },
         components: {

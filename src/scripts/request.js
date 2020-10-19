@@ -121,13 +121,29 @@ function getBattleT(params) {
     return getRequest('/iframevip/list', params)
 }
 
+/**
+ * 新的 match接口
+ * @param {*} params
+ */
+function newMatch(params) {
+    return getRequest('/iframe/new_list', params)
+}
 
+ /**
+ * 新的 battle接口
+ * @param {*} params battle_id
+ */
+function newBattle(params) {
+    return getRequest('/iframe/battle_detail', params)
+}
 
 export {
     getRequest,
     postRequest,
     putRequest,
     getBattle,
-    getBattleT
+    getBattleT,
+    newMatch,
+    newBattle
 }
 

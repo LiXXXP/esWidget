@@ -8,6 +8,7 @@ import { BASE_PATH } from '@/scripts/config'
 
 /* 异步引入路由 */
 const Index =() => import('@/components/index')
+const IndexNew =() => import('@/components/indexNew')
 
 const routes = [
     {
@@ -17,6 +18,14 @@ const routes = [
             title: 'screen',
         },
         component: Index
+    },
+    {
+        path: '/new',
+        name: 'indexnew',
+        meta: {
+            title: 'screen',
+        },
+        component: IndexNew
     }
 ]
 
