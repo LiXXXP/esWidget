@@ -43,11 +43,11 @@
 </template>
 
 <script>
-    const matchBefore = ()=> import("@/components/game/lol/matchBefore")    // 赛事前
-    const lolMatchLive = ()=> import("@/components/game/lol/matchLive")     // lol赛事
-    const dotaMatchLive = ()=> import("@/components/game/dota/matchLive")   // dota2赛事
-    const csMatchBefore = ()=> import("@/components/game/csgo/matchBefore") // csgo赛前
-    const csMatchLive = ()=> import("@/components/game/csgo/newMatchLive")     // csgo赛事
+    const matchBefore = ()=> import("@/components/game/lol/matchBefore")        // 赛事前
+    const lolMatchLive = ()=> import("@/components/game/lol/newMatchLive")         // lol赛事
+    const dotaMatchLive = ()=> import("@/components/game/dota/matchLive")       // dota2赛事
+    const csMatchBefore = ()=> import("@/components/game/csgo/matchBefore")     // csgo赛前
+    const csMatchLive = ()=> import("@/components/game/csgo/newMatchLive")      // csgo赛事
 
     import { newMatch } from "@/scripts/request.js"  // 请求方法
     import { getUrlParam } from '@/scripts/utils'                 // 获取页面参数方法
