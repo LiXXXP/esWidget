@@ -2,7 +2,8 @@
 	<div :class="['head-tab', 'flex', 'flex_between',{'night-mode':colorData}]">
         <div class="flex flex_start flex_only_center">
             <p class="left" @click="nextStep('last')"></p>
-            <p>第{{bureauNum}}局</p>
+            <p v-if="lang === 'en'">Round {{bureauPage}}</p>
+            <p v-else>第{{bureauNum}}局</p>
         </div>
         <div class="flex flex_start flex_only_center">
             <div class="flex flex_start" 
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-    import { toChinesNum } from '@/scripts/utils'
+    import { toChinesNum,getUrlParam } from '@/scripts/utils'
 	export default {
         props: {
             colorData: {    // 背景色模式
@@ -47,9 +48,12 @@
             }
         },
 		data() {
-			return {
-
-			}
+            return {
+                lang: 'cn'
+            }
+        },
+        created() {
+            this.lang = getUrlParam('l')
         },
         methods: {
             // 上一局 下一局

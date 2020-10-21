@@ -13,7 +13,9 @@
                     :progressData="parseInt(item.num1/(item.num1+item.num2)*100) || 0"
                 ></progress-data>
             </div>
-            <p class="head">{{item.head}}</p>
+            <p class="head">
+                {{lang === 'en'?item.textEn:item.head}}
+            </p>
             <div class="right flex flex_only_center">
                 <progress-data
                     class="bar"
@@ -31,7 +33,7 @@
 <script>
     const progressData = ()=> import("@/components/common/progress")   // 进度条
 
-    import {formatNumber} from '@/scripts/utils'
+    import { formatNumber, getUrlParam } from '@/scripts/utils'
 
     export default {
         props: {
@@ -50,11 +52,11 @@
         },
         data() {
             return {
-                
+                lang: 'cn'
             }
         },
-        mounted() {
-            
+        created() {
+            this.lang = getUrlParam('l')
         },
         computed: {
             thousands(num) {

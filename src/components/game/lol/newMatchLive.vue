@@ -206,36 +206,43 @@
                 this.battleItem.battle_detail.first_events.typeList = [
                     {
                         text: '一血',
+                        textEn: 'FB',
                         type: 'first_blood',
                         teamId:this.battleItem.battle_detail.first_events.first_blood.team_id
                     },
                     {
                         text: '五杀',
+                        textEn: 'F5K',
                         type: 'first_to_5_kills',
                         teamId: this.battleItem.battle_detail.first_events.first_to_5_kills.team_id
                     },
                     {
                         text: '十杀',
+                        textEn: 'F10K',
                         type: 'first_to_10_kills',
                         teamId: this.battleItem.battle_detail.first_events.first_to_10_kills.team_id
                     },
                     {
                         text: '首塔',
+                        textEn: 'FT',
                         type: 'first_turret',
                         teamId: this.battleItem.battle_detail.first_events.first_turret.team_id
                     },
                     {
                         text: '首水晶',
+                        textEn: 'FI',
                         type: 'first_inhibitor',
                         teamId: this.battleItem.battle_detail.first_events.first_inhibitor.team_id
                     },
                     {
                         text: '首大龙',
+                        textEn: 'FBN',
                         type: 'first_baron_nasho',
                         teamId: this.battleItem.battle_detail.first_events.first_baron_nashor.team_id
                     },
                     {
                         text: '首小龙',
+                        textEn: 'FD',
                         type: 'first_dragon',
                         teamId: this.battleItem.battle_detail.first_events.first_dragon.team_id
                     },
@@ -247,30 +254,35 @@
                 this.battleItem.battle_detail.outputList = [
                     {
                         head: '经济',
+                        textEn: 'Gold',
                         type: 'gold',
                         num1: 0,
                         num2: 0
                     },
                     {
                         head: '推塔',
+                        textEn: 'Towers',
                         type: 'turret_kills',
                         num1: 0,
                         num2: 0
                     },
                     {
                         head: '水晶',
+                        textEn: 'Inhibitor',
                         type: 'inhibitor_kills',
                         num1: 0,
                         num2: 0
                     },
                     {
                         head: '小龙',
+                        textEn: 'Dragon',
                         type: 'dragon_kills',
                         num1: 0,
                         num2: 0
                     },
                     {
                         head: '男爵',
+                        textEn: 'Baron',
                         type: 'baron_nashor_kills',
                         num1: 0,
                         num2: 0

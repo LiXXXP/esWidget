@@ -10,12 +10,14 @@
             v-for="item in typeList"
             :key="item.text"
         >
-            {{item.text}}
+            {{lang === 'en'?item.textEn:item.text}}
         </span>
 	</div>
 </template>
 
 <script>
+    import { getUrlParam } from '@/scripts/utils'    // 获取页面参数方法
+
 	export default {
         props: {
             placeData: {     // 显示左右对齐方式
@@ -35,11 +37,14 @@
                 default: 0
             },
         },
-		data() {
-			return {
-
-			}
-		}
+        data() {
+            return {
+                lang: 'cn'
+            }
+        },
+        created() {
+            this.lang = getUrlParam('l')
+        },
 	}
 </script>
 
