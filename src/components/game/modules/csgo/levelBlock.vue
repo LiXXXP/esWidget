@@ -3,7 +3,7 @@
         <div class="block flex flex_start"
             v-for="item in levelList"
             :key="item.text">
-            <p>{{item.text}}</p>
+            <p>{{lang === 'en'?item.textEn:item.text}}</p>
             <state-table 
                 :isBig="item.isBig"
                 :stateData="item.stateData"
@@ -14,6 +14,8 @@
 
 <script>
     const stateTable = ()=> import("@/components/game/modules/csgo/stateTable") // 击杀面板
+
+    import { getUrlParam } from '@/scripts/utils'    // 获取页面参数方法
 
     export default {
         props: {
@@ -31,18 +33,22 @@
                 levelList: [
                     {
                         text: '上半场',
+                        textEn: 'UP',
                         isBig: true, // 显示大图标
                         stateData: []
                     },
                     {
                         text: '下半场',
+                        textEn: 'DN',
                         isBig: true, // 显示大图标
                         stateData: []
                     }
-                ]
+                ],
+                lang: 'cn'
             }
         },
         created() {
+            this.lang = getUrlParam('l')
             this.levelList[0].stateData = this.levelData.slice(0,15)
             this.levelList[1].stateData = this.levelData.slice(15,30)
         },

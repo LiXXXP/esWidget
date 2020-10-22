@@ -191,16 +191,19 @@
                 this.battleItem.battle_detail.special_events.typeList = [
                     {
                         text: '先5',
+                        textEn: 'F5RW',
                         type: 'first_to_5_rounds_wins',
                         teamId: this.battleItem.battle_detail.special_events.first_to_5_rounds_wins.team_id
                     },
                     {
                         text: '1回合胜',
+                        textEn: 'WinR1',
                         type: 'win_round_1',
                         teamId: this.battleItem.battle_detail.special_events.win_round_1.team_id
                     },
                     {
                         text: '16回合胜',
+                        textEn: 'WinR16',
                         type: 'win_round_16',
                         teamId: this.battleItem.battle_detail.special_events.win_round_16.team_id
                     }
