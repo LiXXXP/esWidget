@@ -227,8 +227,8 @@
                 if(val.length > old.length) {
                     this.pageNum = this.battleData.length
                     this.currentIndex = this.battleData.length -1
-                    this.getBattle(this.battleData[this.currentIndex].battle_id)
                 }
+                this.getBattle(this.battleData[this.currentIndex].battle_id)
             }
         },
         computed: {
