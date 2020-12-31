@@ -9,6 +9,7 @@ import { BASE_PATH } from '@/scripts/config'
 /* 异步引入路由 */
 const Index =() => import('@/components/index')
 const IndexNew =() => import('@/components/indexNew')
+const Stream =() => import('@/components/streams/stream.vue')
 
 const routes = [
     {
@@ -26,6 +27,14 @@ const routes = [
             title: 'screen',
         },
         component: IndexNew
+    },
+    {
+        path: '/stream',
+        name: 'stream',
+        meta: {
+            title: 'stream',
+        },
+        component: Stream
     }
 ]
 

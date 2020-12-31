@@ -192,7 +192,7 @@
                 }
                 newBattle(params).then(res => {
                     if(res.code === 200) {
-                        console.log(res.data)
+                        // console.log(res.data)
                         _this.battleItem = res.data
                         _this.sortTeam()
                         _this.getTypeList()
