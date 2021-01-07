@@ -49,7 +49,7 @@
                     ></head-tab>
                     <battle
                         :factionsData="battleItem.battle_detail.teams"
-                        :winerId="battleItem.battle_detail.winner.team_id"
+                        :winerId="battleItem.battle_detail.winner?battleItem.battle_detail.winner.team_id:0"
                     >
                         <div slot="left-info" class="left-info flex flex_start">
                             <div class="flex flex_column flex_center">
@@ -63,7 +63,7 @@
                         </div>
                         <div slot="living" class="live">
                             <p>{{battleItem.battle_detail.teams[0].score || 0}}:{{battleItem.battle_detail.teams[1].score || 0}}</p>
-                            <p class="num">{{battleItem.battle_detail.winner.team_snapshot.short_name}}</p>
+                            <p class="num">{{battleItem.battle_detail.winner?battleItem.battle_detail.winner.team_snapshot.short_name:''}}</p>
                         </div>
                         <div slot="right-info" class="right-info flex flex_start">
                             <div class="circle flex flex_column flex_center">
