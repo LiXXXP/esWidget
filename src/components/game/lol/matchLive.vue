@@ -107,7 +107,7 @@
     const roleList = ()=> import("@/components/game/modules/roleList")      // 角色列表
     const outputList = ()=> import("@/components/game/modules/outputList")  // 输出占比
     
-    import { formatSeconds, rTime } from '@/scripts/utils'
+    import { formatSeconds, UTCDateToLocalDate } from '@/scripts/utils'
 
 	export default {
         props: {
@@ -308,7 +308,7 @@
             },
             durationDate(date) {
                 return function(date) {
-                    return rTime(date)
+                    return UTCDateToLocalDate(date)
                 }
             }
         },

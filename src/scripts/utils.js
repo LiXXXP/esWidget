@@ -372,8 +372,17 @@ function formatNumber(num) {
  * @type String
  */
 function rTime(date) {
-    var json_date = new Date(date).toJSON();
+    var json_date = new Date(date).toJSON()
     return new Date(new Date(json_date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '') 
+}
+
+function UTCDateToLocalDate(dateStr) {
+    var date1 = new Date()
+    var offsetMinute = date1.getTimezoneOffset()
+    var offsetHours = offsetMinute / 60
+    var date2 = new Date(dateStr)
+    date2.setHours(date2.getHours() - offsetHours)
+    return date2.toLocaleString()
 }
 
 export {
@@ -396,5 +405,6 @@ export {
     toChinesNum,
     formatSeconds,
     formatNumber,
-    rTime
+    rTime,
+    UTCDateToLocalDate
 }

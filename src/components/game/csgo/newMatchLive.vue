@@ -107,7 +107,7 @@
     const levelBlock = ()=> import("@/components/game/modules/csgo/levelBlock") // 场次
 
     import { newBattle } from "@/scripts/request.js"  // 请求方法
-    import { rTime } from '@/scripts/utils'
+    import { UTCDateToLocalDate } from '@/scripts/utils'
 
 	export default {
         props: {
@@ -234,7 +234,7 @@
         computed: {
             durationDate(date) {
                 return function(date) {
-                    return rTime(date)
+                    return UTCDateToLocalDate(date)
                 }
             }
         },

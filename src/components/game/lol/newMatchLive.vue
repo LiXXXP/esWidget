@@ -108,7 +108,7 @@
     const outputList = ()=> import("@/components/game/modules/outputList")  // 输出占比
     
     import { newBattle } from "@/scripts/request.js"        // 请求方法
-    import { formatSeconds, rTime } from '@/scripts/utils'
+    import { formatSeconds, UTCDateToLocalDate } from '@/scripts/utils'
 
 	export default {
         props: {
@@ -324,7 +324,7 @@
             },
             durationDate(date) {
                 return function(date) {
-                    return rTime(date)
+                    return UTCDateToLocalDate(date)
                 }
             }
         },

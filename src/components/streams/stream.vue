@@ -16,7 +16,6 @@
         <div class="none" v-else>
             <div>暂无直播内容...</div>
         </div>
-        
     </div>
 </template>
 

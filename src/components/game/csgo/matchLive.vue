@@ -106,7 +106,7 @@
     const typeList = ()=> import("@/components/game/modules/typeList")          // 标签列表
     const levelBlock = ()=> import("@/components/game/modules/csgo/levelBlock") // 场次
 
-    import { rTime } from '@/scripts/utils'
+    import { UTCDateToLocalDate } from '@/scripts/utils'
 
 	export default {
         props: {
@@ -218,7 +218,7 @@
         computed: {
             durationDate(date) {
                 return function(date) {
-                    return rTime(date)
+                    return UTCDateToLocalDate(date)
                 }
             }
         },
