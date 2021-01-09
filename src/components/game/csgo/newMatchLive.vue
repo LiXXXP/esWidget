@@ -117,7 +117,7 @@
             },
             battleData: {     // 对局数据
                 type: Array,
-                default: []
+                default: () => []
             },
             matchData: {
                 type: Object,

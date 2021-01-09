@@ -47,7 +47,7 @@
             },
             outputList: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
         data() {

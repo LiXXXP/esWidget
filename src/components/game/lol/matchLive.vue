@@ -117,7 +117,7 @@
             },
             battleData: {
                 type: Array,
-                default: []
+                default: () => []
             },
             matchData: {
                 type: Object,

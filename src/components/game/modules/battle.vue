@@ -30,7 +30,7 @@
             },
             factionsData: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
 		data() {

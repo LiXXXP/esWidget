@@ -22,7 +22,7 @@
             },
             heroList: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
 		data() {

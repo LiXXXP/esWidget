@@ -31,7 +31,7 @@
             },
             stateData: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
         data() {

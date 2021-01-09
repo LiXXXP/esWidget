@@ -36,7 +36,7 @@
             },
             headData: {     // 对局分数
                 type: Array,
-                default: []
+                default: () => []
             },
             bureauPage: {   // 对局数
                 type: Number,
@@ -44,7 +44,7 @@
             },
             factionsData: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
 		data() {

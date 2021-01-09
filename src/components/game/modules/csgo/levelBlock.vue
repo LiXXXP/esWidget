@@ -25,7 +25,7 @@
             },
             levelData: {
                 type: Array,
-                default: []
+                default: () => []
             }
         },
         data() {
