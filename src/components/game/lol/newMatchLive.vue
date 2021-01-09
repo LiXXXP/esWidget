@@ -205,47 +205,47 @@
                 // 特殊事件列表
                 this.battleItem.battle_detail.first_events.typeList = [
                     {
-                        text: '一血',
-                        textEn: 'FB',
-                        type: 'first_blood',
-                        teamId:this.battleItem.battle_detail.first_events.first_blood.team_id
-                    },
-                    {
-                        text: '五杀',
-                        textEn: 'F5K',
-                        type: 'first_to_5_kills',
-                        teamId: this.battleItem.battle_detail.first_events.first_to_5_kills.team_id
-                    },
-                    {
-                        text: '十杀',
-                        textEn: 'F10K',
-                        type: 'first_to_10_kills',
-                        teamId: this.battleItem.battle_detail.first_events.first_to_10_kills.team_id
-                    },
-                    {
-                        text: '首塔',
-                        textEn: 'FT',
-                        type: 'first_turret',
-                        teamId: this.battleItem.battle_detail.first_events.first_turret.team_id
-                    },
-                    {
-                        text: '首水晶',
-                        textEn: 'FI',
-                        type: 'first_inhibitor',
-                        teamId: this.battleItem.battle_detail.first_events.first_inhibitor.team_id
-                    },
-                    {
-                        text: '首大龙',
-                        textEn: 'FBN',
-                        type: 'first_baron_nasho',
-                        teamId: this.battleItem.battle_detail.first_events.first_baron_nashor.team_id
-                    },
-                    {
-                        text: '首小龙',
-                        textEn: 'FD',
-                        type: 'first_dragon',
-                        teamId: this.battleItem.battle_detail.first_events.first_dragon.team_id
-                    },
+                            text: '一血',
+                            textEn: 'FB',
+                            type: 'first_blood',
+                            teamId:item.battle_detail.first_events.first_blood?item.battle_detail.first_events.first_blood.team_id:0
+                        },
+                        {
+                            text: '五杀',
+                            textEn: 'F5K',
+                            type: 'first_to_5_kills',
+                            teamId: item.battle_detail.first_events.first_to_5_kills?item.battle_detail.first_events.first_to_5_kills.team_id:0
+                        },
+                        {
+                            text: '十杀',
+                            textEn: 'F10K',
+                            type: 'first_to_10_kills',
+                            teamId: item.battle_detail.first_events.first_to_10_kills?item.battle_detail.first_events.first_to_10_kills.team_id:0
+                        },
+                        {
+                            text: '首塔',
+                            textEn: 'FT',
+                            type: 'first_turret',
+                            teamId: item.battle_detail.first_events.first_turret?item.battle_detail.first_events.first_turret.team_id:0
+                        },
+                        {
+                            text: '首水晶',
+                            textEn: 'FI',
+                            type: 'first_inhibitor',
+                            teamId: item.battle_detail.first_events.first_inhibitor?item.battle_detail.first_events.first_inhibitor.team_id:0
+                        },
+                        {
+                            text: '首大龙',
+                            textEn: 'FBN',
+                            type: 'first_baron_nasho',
+                            teamId: item.battle_detail.first_events.first_baron_nashor?item.battle_detail.first_events.first_baron_nashor.team_id:0
+                        },
+                        {
+                            text: '首小龙',
+                            textEn: 'FD',
+                            type: 'first_dragon',
+                            teamId: item.battle_detail.first_events.first_dragon?item.battle_detail.first_events.first_dragon.team_id:0
+                        },
                 ]
             },
             // 经济输出
