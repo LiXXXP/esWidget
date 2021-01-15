@@ -14,12 +14,12 @@
             >
                 <img :src="headData[0].team_snapshot.image">
                 <p>{{headData[0].score || 0}} : {{headData[1].score || 0}}</p>
-                <img :src="headData[1].team_snapshot.image">
+                <img :src="headData[1].team_snapshot?headData[1].team_snapshot.image:''">
             </div>
             <div class="flex flex_start" v-else>
                 <img :src="headData[1].team_snapshot.image">
                 <p>{{headData[1].score || 0}} : {{headData[0].score || 0}}</p>
-                <img :src="headData[0].team_snapshot.image">
+                <img :src="headData[0].team_snapshot?headData[0].team_snapshot.image:''">
             </div>
             <p class="right" @click="nextStep('next')"></p>
         </div>

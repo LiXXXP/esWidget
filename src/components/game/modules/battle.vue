@@ -1,11 +1,9 @@
 <template>
     <div>
-        <div class="battle flex flex_center" 
-            v-if="factionsData.length!==0"
-        >
+        <div class="battle flex flex_center" v-if="factionsData.length!==0">
             <slot name="left-info"></slot>
             <div class="team flex flex_start flex_center">
-                <img :src="factionsData[0].team_snapshot.image">
+                <img :src="factionsData[0].team_snapshot?factionsData[0].team_snapshot.image:''">
                 <i class="team-win" v-if="winerId === factionsData[0].team_id"></i>
             </div>
             <div class="text">
@@ -13,7 +11,7 @@
                 <slot name="living"></slot>
             </div>
             <div class="team flex flex_start flex_center">
-                <img :src="factionsData[1].team_snapshot.image">
+                <img :src="factionsData[1].team_snapshot?factionsData[1].team_snapshot.image:''">
                 <i class="team-win" v-if="winerId === factionsData[1].team_id"></i>
             </div>
             <slot name="right-info"></slot>

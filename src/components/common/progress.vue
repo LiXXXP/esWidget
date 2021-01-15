@@ -1,5 +1,5 @@
 <template>
-	<div class="progress">
+	<div :class="['progress',{'night-mode':colorData}]">
         <el-progress 
             :stroke-width="8"
             :show-text="false"
@@ -12,6 +12,10 @@
 <script>
 	export default {
         props: {
+            colorData: {
+                type: Number,
+                default: 0,
+            },
             progressData: {
                 type: Number,
                 default: 0
@@ -32,8 +36,10 @@
 	}
 </script>
 
-<style lang="less" scoped>
-    .progress {
-
+<style lang="less">
+    .night-mode {
+        .el-progress-bar__outer {
+            background-color: #202020;
+        }
     }
 </style>

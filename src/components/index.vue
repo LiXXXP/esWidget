@@ -68,9 +68,9 @@
         mounted() {
             this.getMatch()
             let _this = this
-            this.timer = setInterval( () => {
-                _this.getMatch()
-            }, 5000)
+            // this.timer = setInterval( () => {
+            //     _this.getMatch()
+            // }, 5000)
         },
         destroyed() {
             clearInterval(this.timer)
@@ -84,31 +84,31 @@
                     _this.defined = {
                         beforeData: {
                             type: 1,           // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27', // 深色背景：1E1E27
+                            colorData: '#181818', // 深色背景：1E1E27
                             widthData: '826px',
                             heightData: '262px',
                         },
                         lolLiveData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
+                            colorData: '#181818',// 深色背景：1E1E27
                             widthData: '360px',
                             heightData: '260px',
                         },
                         dotaLiveData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
+                            colorData: '#181818',// 深色背景：1E1E27
                             widthData: '360px',
                             heightData: '260px',
                         },
                         csBeforeData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
+                            colorData: '#181818',// 深色背景：1E1E27
                             widthData: '360px',
                             heightData: '260px',
                         },
                         csLiveData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
+                            colorData: '#181818',// 深色背景：1E1E27
                             widthData: '360px',
                             heightData: '260px',
                         }

@@ -6,7 +6,7 @@
             v-for="item in heroList"
             :key="item.player.player_id"
         >
-            <img :src="item.champion.image.image">
+            <img :src="item.champion?item.champion.image.image:''">
             <span>{{item.level}}</span>
             <i v-if="roleData.type==='dota'" :class="{'sign':item.sign}"></i>
         </div>

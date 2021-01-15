@@ -106,11 +106,11 @@ function putRequest(url,params = {}){
 }
 
 /**
- * 单个对局详情
+ * 单个对局详情iframe
  * @param {*} params
  */
 function getBattle(params) {
-    return getRequest('/iframe/list', params)
+    return getRequest('/iframevip/list', params)
 }
 
 /**

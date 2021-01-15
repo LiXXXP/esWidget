@@ -19,6 +19,7 @@
             <div class="right flex flex_only_center">
                 <progress-data
                     class="bar"
+                    :colorData="colorData"
                     :progressColor="barColor.right"
                     :progressData="parseInt(item.num2/(item.num1+item.num2)*100) || 0"
                 ></progress-data>

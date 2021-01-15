@@ -54,9 +54,9 @@
                         :winerId="battleItem.battle_detail.winner?battleItem.battle_detail.winner.team_id:0">
                         <div slot="living" class="live">
                             <p>
-                                <span>{{battleItem.battle_detail.factions[0].kills || 0}}</span>
+                                <span>{{battleItem.battle_detail.factions[0]?battleItem.battle_detail.factions[0].kills : 0}}</span>
                                 <i></i>
-                                <span>{{battleItem.battle_detail.factions[1].kills || 0}}</span>
+                                <span>{{battleItem.battle_detail.factions[1]?battleItem.battle_detail.factions[1].kills : 0}}</span>
                             </p>
                             <p class="num">
                                 {{durationTime(battleItem.battle_detail.duration) || "00`00"}}
