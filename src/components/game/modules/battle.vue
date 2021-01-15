@@ -52,11 +52,35 @@
                 width: 36px;
                 height: 20px;
                 display: block;
+                overflow: hidden;
                 background: url('../../../assets/imgs/win.png') no-repeat 0 0;
                 background-size: 100%;
                 position: absolute;
                 left: -15px;
                 bottom: 0;
+                &::after {
+                    content: '';
+                    width: 10px;
+                    z-index: 999;
+                    animation: 2.2s loadingframe infinite;
+                    -webkit-animation: 2.2s loadingframe infinite;
+                    transform: translateX(-50%) skew(140deg);
+                    background: linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, .7));
+                    position: absolute;
+                    left: 0;
+                }
+                @keyframes loadingframe{
+                    from {
+                        top: 0;
+                        left: -30%;
+                        height: 16px;
+                    }
+                    to {
+                        left: 100%;
+                        top: 70%;
+                        height: 8px;
+                    }
+                }
             }
         }
         .text {

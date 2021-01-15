@@ -3,15 +3,17 @@
         placeData?'flex_end':'flex_start',
         {'night-mode':colorData}]"
     >
-        <span :class="[
+        <div :class="[
                 'block',
-                {'come': sideData === item.teamId}
+                {'come': sideData === item.teamId,
+                 'stuts': battleStatus !== 'completed'
+                }
             ]"
             v-for="item in typeList"
             :key="item.text"
         >
             {{lang === 'en'?item.textEn:item.text}}
-        </span>
+        </div>
 	</div>
 </template>
 
@@ -36,6 +38,10 @@
                 type: Number,
                 default: 0
             },
+            battleStatus: {  // 比赛状态
+                type: String,
+                default: ''
+            }
         },
         data() {
             return {
@@ -44,7 +50,7 @@
         },
         created() {
             this.lang = getUrlParam('l')
-        },
+        }
 	}
 </script>
 
@@ -53,13 +59,19 @@
     @blue: #4D62FF;
     @purple: #CF4DFF;
     @night: #2D2D3A;
+    @keyframes loadingframe{
+        from {left: 0%;}
+        to {left: 140%;}
+    }
     .type-list {
         margin: 10px 0;
+        position: relative;
         .block {
             color: #fff;
             font-size: 10px;
             font-weight: 500;
             padding: 1px 2px;
+            overflow: hidden;
             border-radius: 2px;
             background-color: #E7E7E7;
             transform: scale(0.833333);
@@ -73,6 +85,21 @@
                 }
                 &:nth-child(7) {
                     background-color: @blue;
+                }
+                &.stuts {
+                    &::after {
+                        content: '';
+                        width: 15px;
+                        height: 18px;
+                        z-index: 999;
+                        animation: 2s loadingframe infinite;
+                        -webkit-animation: 2s loadingframe infinite;
+                        transform: translateX(-50%) skew(160deg);
+                        background: linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, .7));
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
                 }
             }
         }

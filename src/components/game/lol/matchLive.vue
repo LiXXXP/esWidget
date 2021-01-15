@@ -71,16 +71,13 @@
                         <div>
                             <div class="flex flex_between">
                                 <type-list 
-                                    :placeData="place.right" 
+                                    v-for="(key,index) in item.battle_detail.factions"
+                                    :key="key.team_id"
+                                    :placeData="place[index].right" 
                                     :colorData="definedStyle.type"
+                                    :battleStatus="item.battle_status"
                                     :typeList="item.battle_detail.first_events.typeList"
-                                    :sideData="item.battle_detail.factions[0].team_id"
-                                ></type-list>
-                                <type-list 
-                                    :placeData="place.left"
-                                    :colorData="definedStyle.type"
-                                    :typeList="item.battle_detail.first_events.typeList"
-                                    :sideData="item.battle_detail.factions[1].team_id"
+                                    :sideData="key.team_id"
                                 ></type-list>
                             </div>
                             <output-list
@@ -126,10 +123,14 @@
         },
 		data() {
 			return {
-                place: {
-                    right: true, // 位置是否右对齐
-                    left: false  // 位置是否左对齐
-                },
+                place: [   // 位置是否右对齐
+                    {
+                        right: true,
+                    },
+                    {
+                        right: false
+                    }
+                ],
                 barColorData: {   // 进度条颜色
                     left: '#1167E8',
                     right: '#D43F2F',

@@ -9,6 +9,7 @@
                 </p>
                 <progress-data
                     class="bar"
+                    :isRevolve="item.num1 > item.num2"
                     :progressColor="barColor.left"
                     :progressData="parseInt(item.num1/(item.num1+item.num2)*100) || 0"
                 ></progress-data>
@@ -19,6 +20,7 @@
             <div class="right flex flex_only_center">
                 <progress-data
                     class="bar"
+                    :isRevolve="item.num2 > item.num1"
                     :colorData="colorData"
                     :progressColor="barColor.right"
                     :progressData="parseInt(item.num2/(item.num1+item.num2)*100) || 0"

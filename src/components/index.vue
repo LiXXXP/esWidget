@@ -68,9 +68,9 @@
         mounted() {
             this.getMatch()
             let _this = this
-            // this.timer = setInterval( () => {
-            //     _this.getMatch()
-            // }, 5000)
+            this.timer = setInterval( () => {
+                _this.getMatch()
+            }, 5000)
         },
         destroyed() {
             clearInterval(this.timer)
