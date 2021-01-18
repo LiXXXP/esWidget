@@ -80,12 +80,14 @@
                         <type-list 
                             :placeData="place.right" 
                             :colorData="definedStyle.type"
+                            :battleStatus="item.battle_status"
                             :typeList="item.battle_detail.special_events.typeList"
                             :sideData="item.battle_detail.teams[0].team_id"
                         ></type-list>
                         <type-list 
                             :placeData="place.left"
                             :colorData="definedStyle.type"
+                            :battleStatus="item.battle_status"
                             :typeList="item.battle_detail.special_events.typeList"
                             :sideData="item.battle_detail.teams[1].team_id"
                         ></type-list>

@@ -83,6 +83,7 @@
                             <output-list
                                 :barColor="barColorData"
                                 :colorData="definedStyle.type"
+                                :battleStatus="item.battle_status"
                                 :outputList="item.battle_detail.outputList"
                             ></output-list>
                         </div>
