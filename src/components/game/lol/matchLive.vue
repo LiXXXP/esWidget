@@ -47,6 +47,9 @@
                         :headData="item.score"
                         :factionsData="item.battle_detail.factions"
                         :bureauPage="pageNum"
+                        :gamesNum="parseInt(matchData.number_of_games)"
+                        :currentLast="currentLast"
+                        :currentNext="currentNext"
                         @blockedOut="blockedOut"
                     ></head-tab>
                     <battle
@@ -143,6 +146,8 @@
                 },
                 currentIndex: 0,  // 当前显示页index
                 pageNum: 1,       // 当前第几局
+                currentLast: 0,
+                currentNext: 1
 			}
         },
         created() {
@@ -159,6 +164,8 @@
             blockedOut(type) {
                 // 下一局
                 if(type === 'next') {
+                    this.currentLast = 0
+                    this.currentNext = 1
                     this.pageNum += 1
                     this.currentIndex += 1
                     if(this.currentIndex > (this.battleData.length - 1)) {
@@ -169,6 +176,8 @@
                 }
                 // 上一局
                 if(type === 'last') {
+                    this.currentLast = 1
+                    this.currentNext = 0
                     this.pageNum -= 1
                     this.currentIndex -= 1
                     if(this.currentIndex < 0) {
@@ -278,6 +287,7 @@
             },
             sortTeam() {
                 for(let item of this.battleData) {
+
                     item.battle_detail.factions.forEach(e => {
                         item.score.forEach(i => {
                             if(e.team_id === i.team_id) {
@@ -285,6 +295,7 @@
                             }
                         })
                     })
+                    
                     if(item.battle_detail.factions[0].faction !== 'blue') {
                         item.battle_detail.factions.reverse()
                     }

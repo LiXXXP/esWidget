@@ -50,55 +50,21 @@
                         :currentNext="currentNext"
                         @blockedOut="blockedOut"
                     ></head-tab>
-                    <battle
-                        :factionsData="item.battle_detail.teams"
-                        :winerId="item.battle_detail.winner?item.battle_detail.winner.team_id : 0"
-                    >
-                        <div slot="left-info" class="left-info flex flex_start">
-                            <div class="flex flex_column flex_center">
-                                <p>{{item.battle_detail.teams[0].first_half_score || 0}}</p>
-                                <p>{{item.battle_detail.teams[0].second_half_score || 0}}</p>
-                            </div>
-                            <div class="circle flex flex_column flex_center">
-                                <p class="ct">CT</p>
-                                <p class="t">T</p>
-                            </div>
-                        </div>
-                        <div slot="living" class="live">
-                            <p>{{item.battle_detail.teams[0].score || 0}}:{{item.battle_detail.teams[1].score || 0}}</p>
-                            <p class="num">{{item.battle_detail.winner?item.battle_detail.winner.team_snapshot.short_name : ''}}</p>
-                        </div>
-                        <div slot="right-info" class="right-info flex flex_start">
-                            <div class="circle flex flex_column flex_center">
-                                <p class="t">T</p>
-                                <p class="ct">CT</p>
-                            </div>
-                            <div class="flex flex_column flex_center">
-                                <p>{{item.battle_detail.teams[1].first_half_score || 0}}</p>
-                                <p>{{item.battle_detail.teams[1].second_half_score || 0}}</p>
-                            </div>
-                        </div>
-                    </battle>
-                    <div class="type flex flex_between">
-                        <type-list 
-                            :placeData="place.right" 
-                            :colorData="definedStyle.type"
+                    <div class="cont">
+                        <score-view
+                            :teamsData="item.battle_detail.teams"
+                            :durationData="item.battle_detail.duration"
+                        ></score-view>
+                        <player-view
+                            :teamsData="item.battle_detail.teams"
                             :battleStatus="item.battle_status"
-                            :typeList="item.battle_detail.special_events.typeList"
-                            :sideData="item.battle_detail.teams[0].team_id"
-                        ></type-list>
-                        <type-list 
-                            :placeData="place.left"
-                            :colorData="definedStyle.type"
-                            :battleStatus="item.battle_status"
-                            :typeList="item.battle_detail.special_events.typeList"
-                            :sideData="item.battle_detail.teams[1].team_id"
-                        ></type-list>
+                            :roundData="item.battle_detail.rounds_detail"
+                        ></player-view>
+                        <team-view
+                            :roundData="item.battle_detail.rounds_detail"
+                            :teamsData="item.battle_detail.teams"
+                        ></team-view>
                     </div>
-                    <level-block
-                        :colorData="definedStyle.type"
-                        :levelData="item.battle_detail.rounds_detail"
-                    ></level-block>
                 </div>
             </div>
         </div>
@@ -107,9 +73,9 @@
 
 <script>
     const headTab = ()=> import("@/components/game/modules/headTab")            // 头部切换
-    const battle = ()=> import("@/components/game/modules/battle")              // 对局
-    const typeList = ()=> import("@/components/game/modules/typeList")          // 标签列表
-    const levelBlock = ()=> import("@/components/game/modules/csgo/levelBlock") // 场次
+    const scoreView = ()=> import("@/components/game/modules/csgo/score")       // 比分
+    const playerView = ()=> import("@/components/game/modules/csgo/player")     // 队伍经济
+    const teamView = ()=> import("@/components/game/modules/csgo/team")         // 战队
 
     import { UTCDateToLocalDate } from '@/scripts/utils'
 
@@ -130,19 +96,14 @@
         },
 		data() {
 			return {
-                place: {
-                    right: true, // 位置是否右对齐
-                    left: false  // 位置是否左对齐
-                },
                 currentIndex: 0,  // 当前显示页index
-                pageNum: 1,        // 当前第几局
+                pageNum: 1,       // 当前第几局
                 currentLast: 0,
                 currentNext: 1
 			}
         },
         created() {
             this.sortTeam()
-            this.getTypeList()
             if ( localStorage.getItem('ongoing') ) {
                 this.pageNum = this.battleData.length
                 this.currentIndex = this.battleData.length -1
@@ -176,31 +137,6 @@
                     } 
                 }
             },
-            getTypeList() {
-                for(let item of this.battleData) {
-                    // 特殊事件列表
-                    item.battle_detail.special_events.typeList = [
-                        {
-                            text: '先5',
-                            textEn: 'F5RW',
-                            type: 'first_to_5_rounds_wins',
-                            teamId: item.battle_detail.special_events.first_to_5_rounds_wins?item.battle_detail.special_events.first_to_5_rounds_wins.team_id:0
-                        },
-                        {
-                            text: '1回合胜',
-                            textEn: 'WinR1',
-                            type: 'win_round_1',
-                            teamId: item.battle_detail.special_events.win_round_1?item.battle_detail.special_events.win_round_1.team_id:0
-                        },
-                        {
-                            text: '16回合胜',
-                            textEn: 'WinR16',
-                            type: 'win_round_16',
-                            teamId: item.battle_detail.special_events.win_round_16?item.battle_detail.special_events.win_round_16.team_id:0
-                        }
-                    ]
-                }
-            },
             sortTeam() {
                 for(let item of this.battleData) {
                     item.battle_detail.teams.forEach(e => {
@@ -210,9 +146,6 @@
                             }
                         })
                     })
-                    if(item.battle_detail.teams[0].starting_side !== 'ct') {
-                        item.battle_detail.teams.reverse()
-                    }
                 }
             }
         },
@@ -223,7 +156,6 @@
                     this.currentIndex = this.battleData.length -1
                 }
                 this.sortTeam()
-                this.getTypeList()
             }
         },
         computed: {
@@ -235,9 +167,9 @@
         },
         components: {
             headTab,
-            battle,
-            typeList,
-            levelBlock
+            scoreView,
+            playerView,
+            teamView
         }
 	}
 </script>
@@ -300,80 +232,11 @@
         }
     }
     .cs-live {
-        .live {
-            padding: 0 5px;
-            p {
-                color: #FF7600;
-                font-size: 18px;
-                font-weight: bold;
-            }
-            .num {
-                color: #434343;
-                font-size: 14px;
-                font-weight: 500;
-            }
-        }
-        .left-info,
-        .right-info {
-            p {
-                width: 17px;
-                height: 17px;
-                line-height: 17px;
-                margin-bottom: 2px;
-                text-align: center;
-                border-radius: 100%;
-            }
-        }
-        .left-info {
-            margin-right: 20px;
-            .circle {
-                color: #fff;
-                margin-left: 5px;
-                p {
-                    &.ct {
-                        background-color: #008CD4;
-                    }
-                    &.t {
-                        background-color: #F7B600;
-                    }
-                }
-            }
-        }
-        .right-info {
-            margin-left: 20px;
-            .circle {
-                color: #fff;
-                margin-right: 5px;
-                p {
-                    &.ct {
-                        background-color: #008CD4;
-                    }
-                    &.t {
-                        background-color: #F7B600;
-                    }
-                }
-            }
-        }
-        .type {
-            padding: 0 30px;
+        .cont {
+            padding: 0 8px;
         }
         &.night-mode {
-            .live {
-                .num {
-                    color: #737397;
-                }
-            }
-            .left-info,
-            .right-info {
-                p {
-                    color: #737397;
-                }
-                .circle {
-                    p {
-                        color: #fff;
-                    }
-                }
-            }
+            
         }
     }
 </style>

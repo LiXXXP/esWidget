@@ -1,0 +1,105 @@
+<template>
+    <div class="score flex flex_between flex_only_center">
+        <div class="vs flex flex_only_center">
+            <p :class="[{
+                blue: teamsData[0].starting_side === 'ct',
+                yellow: teamsData[0].starting_side === 'terrorist'
+            }]">
+                {{teamsData[0].team_snapshot.name}}
+            </p>
+            <p>vs</p>
+            <p :class="[{
+                blue: teamsData[1].starting_side === 'ct',
+                yellow: teamsData[1].starting_side === 'terrorist'
+            }]">
+                {{teamsData[1].team_snapshot.name}}
+            </p>
+        </div>
+        <div class="num">
+            <span :class="[{
+                blue: teamsData[0].starting_side === 'ct',
+                yellow: teamsData[0].starting_side === 'terrorist'
+            }]">
+                {{teamsData[0].score}}
+            </span>
+            <span>:</span>
+            <span :class="[{
+                blue: teamsData[1].starting_side === 'ct',
+                yellow: teamsData[1].starting_side === 'terrorist'
+            }]">
+                {{teamsData[1].score}}
+            </span>
+        </div>
+        <div class="time flex flex_end flex_only_center">
+            <p>{{durationTime(durationData)}}</p>
+            <img src="../../../../assets/imgs/csgo/bomb.png">
+        </div>
+    </div>
+</template>
+
+<script>
+    import { formatSecond } from '@/scripts/utils'
+
+    export default {
+        props: {
+            teamsData: {
+                type: Array,
+                default: () => []
+            },
+            durationData: {
+                type: Number,
+                default: 0
+            }
+        },
+        data() {
+            return {
+                
+            }
+        },
+        computed: {
+            durationTime(sec) {
+                return function(sec) {
+                    return formatSecond(sec)
+                }
+            },
+        }
+    }
+</script>
+
+<style lang="less" scoped>
+    @blue: #0091EC;
+    @yellow: #CDB200;
+    .score {
+        color: #CFCFCF;
+        font-size: 12px;
+        margin-bottom: 6px;
+        .blue {
+            color: @blue;
+        }
+        .yellow {
+            color: @yellow;
+        }
+        .vs {
+            width: 100px;
+            p {
+                padding: 0 2px;
+                padding-left: 0;
+            }
+        }
+        .num {
+            font-size: 20px;
+            font-weight: 600;
+            span {
+                padding: 0 3px;
+            }
+        }
+        .time {
+            width: 100px;
+            img {
+                width: 14px;
+                height: 15px;
+                margin-left: 5px;
+            }
+        }
+    }
+</style>

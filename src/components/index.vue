@@ -1,5 +1,30 @@
 <template>
 	<div class="index">
+        <!-- csgo赛前 -->
+        <cs-matchBefore
+            v-if="parseInt(showType.gameId) === 1
+            && parseInt(showType.matchStatu) === 2"
+            :definedStyle="defined.csBeforeData"
+            :battleData="showType.battleList"
+        ></cs-matchBefore>
+        <!-- csgo赛事 -->
+        <cs-match-live
+            v-if="parseInt(showType.gameId) === 1
+            && parseInt(showType.matchStatu) === 1
+            && parseInt(n) === 2"
+            :definedStyle="defined.csLiveData"
+            :battleData="showType.battleList"
+            :matchData="showType.matchInfo"
+        ></cs-match-live>
+        <!-- csgo 迪拜样式 -->
+        <db-match-live
+            v-if="parseInt(showType.gameId) === 1
+            && parseInt(showType.matchStatu) === 1
+            && parseInt(n) === 1"
+            :definedStyle="defined.csLiveData"
+            :battleData="showType.battleList"
+            :matchData="showType.matchInfo"
+        ></db-match-live>
         <!-- lol dota2 赛前 -->
         <match-before 
             v-if="(parseInt(showType.gameId) === 2
@@ -24,21 +49,6 @@
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></dota-match-live>
-        <!-- csgo赛前 -->
-        <cs-matchBefore
-            v-if="parseInt(showType.gameId) === 1
-            && parseInt(showType.matchStatu) === 2"
-            :definedStyle="defined.csBeforeData"
-            :battleData="showType.battleList"
-        ></cs-matchBefore>
-        <!-- csgo赛事 -->
-        <cs-match-live
-            v-if="parseInt(showType.gameId) === 1
-            && parseInt(showType.matchStatu) === 1"
-            :definedStyle="defined.csLiveData"
-            :battleData="showType.battleList"
-            :matchData="showType.matchInfo"
-        ></cs-match-live>
 	</div>
 </template>
 
@@ -48,6 +58,7 @@
     const dotaMatchLive = ()=> import("@/components/game/dota/matchLive")   // dota2赛事
     const csMatchBefore = ()=> import("@/components/game/csgo/matchBefore") // csgo赛前
     const csMatchLive = ()=> import("@/components/game/csgo/matchLive")     // csgo赛事
+    const dbMatchLive = ()=> import("@/components/game/csgo/matchLiveDB")   // csgo赛事 迪拜样式
 
     import { getBattle, getBattleT } from "@/scripts/request.js"  // 请求方法
     import { getUrlParam } from '@/scripts/utils'                 // 获取页面参数方法
@@ -62,6 +73,7 @@
                     battleList: [], // 对局列表
                     matchInfo: {}   // 显示比赛
                 },
+                n: getUrlParam('n'),
                 timer: null,        // 定义的轮询
 			}
         },
@@ -156,10 +168,8 @@
                     getBattleT(params).then(res => {
                         if(res.code === 200) {
                             _this.showType.gameId = res.data.game_id
-                            if(res.data.battle_list.length === 0) {
-                                _this.showType.matchInfo = res.data.match_info
-                            }
-                            else {
+                            _this.showType.matchInfo = res.data.match_info
+                            if(res.data.battle_list.length > 0) {
                                 _this.showType.battleList = res.data.battle_list.reverse()
                                 if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
                                     clearInterval(_this.timer)
@@ -177,10 +187,8 @@
                     getBattle(params).then(res => {
                         if(res.code === 200) {
                             _this.showType.gameId = res.data.game_id
-                            if(res.data.battle_list.length === 0) {
-                                _this.showType.matchInfo = res.data.match_info
-                            }
-                            else {
+                            _this.showType.matchInfo = res.data.match_info
+                            if(res.data.battle_list.length > 0) {
                                 _this.showType.battleList = res.data.battle_list.reverse()
                                 if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
                                     clearInterval(_this.timer)
@@ -202,7 +210,8 @@
             lolMatchLive,
             dotaMatchLive,
             csMatchBefore,
-            csMatchLive
+            csMatchLive,
+            dbMatchLive
         }
 	}
 </script>
