@@ -73,7 +73,7 @@
                     battleList: [], // 对局列表
                     matchInfo: {}   // 显示比赛
                 },
-                n: getUrlParam('n'),
+                n: getUrlParam('n'),// 1为迪拜新样式，2为通用样式
                 timer: null,        // 定义的轮询
 			}
         },
@@ -164,45 +164,24 @@
                     keys: keys
                 }
                 let t = getUrlParam('t')
-                if(parseInt(t) === 1) {
-                    getBattleT(params).then(res => {
-                        if(res.code === 200) {
-                            _this.showType.gameId = res.data.game_id
-                            _this.showType.matchInfo = res.data.match_info
-                            if(res.data.battle_list.length > 0) {
-                                _this.showType.battleList = res.data.battle_list.reverse()
-                                if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
-                                    clearInterval(_this.timer)
-                                    localStorage.clear()
-                                } else {
-                                    localStorage.setItem('ongoing',true)
-                                }
+                getBattle(params).then(res => {
+                    if(res.code === 200) {
+                        _this.showType.gameId = res.data.game_id
+                        _this.showType.matchInfo = res.data.match_info
+                        if(res.data.battle_list.length > 0) {
+                            _this.showType.battleList = res.data.battle_list.reverse()
+                            if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
+                                clearInterval(_this.timer)
+                                localStorage.clear()
+                            } else {
+                                localStorage.setItem('ongoing',true)
                             }
                         }
-                        else {
-                            clearInterval(_this.timer)
-                        }
-                    })
-                } else {
-                    getBattle(params).then(res => {
-                        if(res.code === 200) {
-                            _this.showType.gameId = res.data.game_id
-                            _this.showType.matchInfo = res.data.match_info
-                            if(res.data.battle_list.length > 0) {
-                                _this.showType.battleList = res.data.battle_list.reverse()
-                                if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
-                                    clearInterval(_this.timer)
-                                    localStorage.clear()
-                                } else {
-                                    localStorage.setItem('ongoing',true)
-                                }
-                            }
-                        }
-                        else {
-                            clearInterval(_this.timer)
-                        }
-                    })
-                }
+                    }
+                    else {
+                        clearInterval(_this.timer)
+                    }
+                })
             }
         },
         components: {

@@ -114,14 +114,6 @@ function getBattle(params) {
 }
 
 /**
- * 单个对局详情 t = 1 时使用
- * @param {*} params
- */
-function getBattleT(params) {
-    return getRequest('/iframevip/list', params)
-}
-
-/**
  * 新的 match接口
  * @param {*} params
  */
@@ -138,11 +130,7 @@ function newBattle(params) {
 }
 
 export {
-    getRequest,
-    postRequest,
-    putRequest,
     getBattle,
-    getBattleT,
     newMatch,
     newBattle
 }
