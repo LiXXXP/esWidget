@@ -8,8 +8,12 @@
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[0].totalMoney}px`}"
             >
-                <p>{{teamsData[0].team_snapshot.name}}</p>
-                <p>${{teamsData[0].totalMoney}}</p>
+                <p v-if="teamsData[0].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
+                    {{teamsData[0].team_snapshot.name}}
+                </p>
+                <p v-if="teamsData[0].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
+                    ${{teamsData[0].totalMoney}}
+                </p>
             </div>
             <div 
                 :class="['list flex flex_between flex_row_reverse',{
@@ -18,34 +22,34 @@
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[1].totalMoney}px`}"
             >
-                <p>{{teamsData[1].team_snapshot.name}}</p>
-                <p>${{teamsData[1].totalMoney}}</p>
+                <p v-if="teamsData[1].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
+                    {{teamsData[1].team_snapshot.name}}
+                </p>
+                <p v-if="teamsData[1].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
+                    ${{teamsData[1].totalMoney}}
+                </p>
             </div>
         </div>
         <div class="bar flex flex_between flex_only_center" v-for="item in playerList" :key="">
-            <div 
-                v-if="item.money1/(item.money1 + item.money2)>.2"
-                :class="['list flex flex_between',{
+            <div :class="['list flex flex_between',{
                     blue: teamsData[0].starting_side === 'ct',
                     yellow: teamsData[0].starting_side === 'terrorist'
                 }]"
-                :style="{'width': item.money2/(item.money1 + item.money2)<.2?'344px':`${344/(item.money1 + item.money2)*item.money1}px`}"
+                :style="{'width': `${344/(item.money1 + item.money2)*item.money1}px`}"
             >
-                <p>{{item.name1}}</p>
-                <p>${{item.money1}}</p>
+                <p v-if="item.money1/(item.money1 + item.money2)>.2">{{item.name1}}</p>
+                <p v-if="item.money1/(item.money1 + item.money2)>.2">${{item.money1}}</p>
                 <i class="x l" v-if="item.isDied1"></i>
                 <i class="h" v-if="item.isMulti1 && !item.isDied1 && battleStatus !== 'completed'"></i>
             </div>
-            <div 
-                v-if="item.money2/(item.money1 + item.money2)>.2"
-                :class="['list flex flex_between flex_row_reverse',{
+            <div :class="['list flex flex_between flex_row_reverse',{
                     blue: teamsData[1].starting_side === 'ct',
                     yellow: teamsData[1].starting_side === 'terrorist'
                 }]"
-                :style="{'width': item.money1/(item.money1 + item.money2)<.2?'344px':`${344/(item.money1 + item.money2)*item.money2}px`}"
+                :style="{'width': `${344/(item.money1 + item.money2)*item.money2}px`}"
             >
-                <p>{{item.name2}}</p>
-                <p>${{item.money2}}</p>
+                <p v-if="item.money2/(item.money1 + item.money2)>.2">{{item.name2}}</p>
+                <p v-if="item.money2/(item.money1 + item.money2)>.2">${{item.money2}}</p>
                 <i class="x r" v-if="item.isDied2"></i>
                 <i class="h" v-if="item.isMulti1 && !item.isDied2 && battleStatus !== 'completed'"></i>
             </div>
@@ -103,7 +107,6 @@
                 this.playerList.map(e => {
                     let roundLength = this.roundData.length
                     for(let s of this.roundData[roundLength-1].side) {
-                        let arr = s.players
                         s.players.filter(item => {
                             if(e.player1id === item.player.player_id) {
                                 e.isDied1 = item.is_died
@@ -136,11 +139,11 @@
         margin-bottom: 4px;
         .bar {
             width: 100%;
-            height: 18px;
-            line-height: 18px;
             margin-bottom: 2px;
             .list {
+                height: 18px;
                 padding: 0 3px;
+                line-height: 18px;
                 box-sizing: border-box;
                 transition: width .3s linear;
                 position: relative;
