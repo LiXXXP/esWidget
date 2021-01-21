@@ -89,7 +89,7 @@
                 <i 
                     class="h" 
                     v-if="(item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && 
-                            item.isMulti1 && !item.isDied2 && battleStatus !== 'completed'"
+                            item.isMulti2 && !item.isDied2 && battleStatus !== 'completed'"
                 ></i>
             </div>
         </div>
@@ -152,8 +152,8 @@
                                 e.isMulti1 = item.headshot_kills || item.is_multi_kill
                             }
                             if(e.player2id === item.player.player_id) {
-                                e.isDied1 = item.is_died
-                                e.isMulti1 = item.headshot_kills || item.is_multi_kill
+                                e.isDied2 = item.is_died
+                                e.isMulti2 = item.headshot_kills || item.is_multi_kill
                             }
                         })
                     }
