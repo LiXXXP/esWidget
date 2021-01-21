@@ -42,8 +42,8 @@
             >
                 <p v-if="item.money1/(item.money1 + item.money2)>.2">{{item.name1}}</p>
                 <p v-if="item.money1/(item.money1 + item.money2)>.2">${{item.money1}}</p>
-                <i class="x l" v-if="item.isDied1"></i>
-                <i class="h" v-if="item.isMulti1 && !item.isDied1 && battleStatus !== 'completed'"></i>
+                <i class="x l" v-if="item.money1/(item.money1 + item.money2)>.2 && item.isDied1"></i>
+                <i class="h" v-if="item.money1/(item.money1 + item.money2)>.2 && item.isMulti1 && !item.isDied1 && battleStatus !== 'completed'"></i>
             </div>
             <div :class="['list flex flex_between flex_row_reverse',{
                     blue: teamsData[1].starting_side === 'ct',
@@ -54,8 +54,8 @@
             >
                 <p v-if="item.money2/(item.money1 + item.money2)>.2">{{item.name2}}</p>
                 <p v-if="item.money2/(item.money1 + item.money2)>.2">${{item.money2}}</p>
-                <i class="x r" v-if="item.isDied2"></i>
-                <i class="h" v-if="item.isMulti1 && !item.isDied2 && battleStatus !== 'completed'"></i>
+                <i class="x r" v-if="item.money2/(item.money1 + item.money2)>.2 && item.isDied2"></i>
+                <i class="h" v-if="item.money2/(item.money1 + item.money2)>.2 && item.isMulti1 && !item.isDied2 && battleStatus !== 'completed'"></i>
             </div>
         </div>
     </div>

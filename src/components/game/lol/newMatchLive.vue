@@ -47,6 +47,10 @@
                         :headData="battleItem.score"
                         :factionsData="battleItem.battle_detail.factions"
                         :bureauPage="pageNum"
+                        :gamesNum="parseInt(matchData.number_of_games)"
+                        :currentLast="currentLast"
+                        :currentNext="currentNext"
+                        :battleLength="battleData.length"
                         @blockedOut="blockedOut"
                     ></head-tab>
                     <battle
@@ -142,7 +146,9 @@
                 },
                 currentIndex: 0,  // 当前显示页index
                 pageNum: 1,       // 当前第几局
-                battleItem: null
+                battleItem: null,
+                currentLast: 0,
+                currentNext: 1
 			}
         },
         created() {
@@ -162,26 +168,36 @@
                 if(type === 'next') {
                     this.pageNum += 1
                     this.currentIndex += 1
+                    this.currentLast = 0
+                    this.currentNext = 1
                     if(this.currentIndex > (this.battleData.length - 1)) {
                         this.currentIndex = this.battleData.length -1
                         this.pageNum = this.battleData.length
-                        return false
                     }
                     else {
                         this.getBattle(this.battleData[this.currentIndex].battle_id)
+                    }
+                    if( parseInt(this.matchData.number_of_games) === this.pageNum) {
+                        this.currentLast = 1
+                        this.currentNext = 0
                     }
                 }
                 // 上一局
                 if(type === 'last') {
                     this.pageNum -= 1
                     this.currentIndex -= 1
+                    this.currentLast = 1
+                    this.currentNext = 0
                     if(this.currentIndex < 0) {
                         this.currentIndex = 0
                         this.pageNum = 1
-                        return false
                     }
                     else {
                         this.getBattle(this.battleData[this.currentIndex].battle_id)
+                    }
+                    if( this.pageNum === 1) {
+                        this.currentLast = 0
+                        this.currentNext = 1
                     }
                 }
             },

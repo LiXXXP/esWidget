@@ -48,6 +48,7 @@
                         :gamesNum="parseInt(matchData.number_of_games)"
                         :currentLast="currentLast"
                         :currentNext="currentNext"
+                        :battleLength="battleData.length"
                         @blockedOut="blockedOut"
                     ></head-tab>
                     <div class="cont">
