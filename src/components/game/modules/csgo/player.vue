@@ -30,7 +30,7 @@
                 </p>
             </div>
         </div>
-        <div class="bar flex flex_between flex_only_center" v-for="item in playerList" :key="">
+        <div class="bar flex flex_between flex_only_center" v-for="item in playerList" :key="item.name1">
             <div :class="['list flex flex_between',{
                     blue: teamsData[0].starting_side === 'ct',
                     yellow: teamsData[0].starting_side === 'terrorist'

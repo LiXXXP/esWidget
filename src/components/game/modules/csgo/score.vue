@@ -31,7 +31,7 @@
             </span>
         </div>
         <div class="time flex flex_end flex_only_center">
-            <p>{{durationTime(durationData)}}</p>
+            <p>{{durationTime(time)}}</p>
             <img src="../../../../assets/imgs/csgo/bomb.png">
         </div>
     </div>
@@ -46,14 +46,26 @@
                 type: Array,
                 default: () => []
             },
-            durationData: {
-                type: Number,
-                default: 0
+            roundTime: {
+                type: Object,
+                default: () => {}
             }
         },
         data() {
             return {
-                
+                time: 0,
+            }
+        },
+        created() {
+            this.getTime()
+        },
+        methods: {
+            getTime() {
+                if(this.roundTime.is_bomb_planted) {
+                    this.time = this.roundTime.time_since_plant
+                } else {
+                    this.time = this.roundTime.round_time
+                }
             }
         },
         computed: {
@@ -62,6 +74,11 @@
                     return formatSecond(sec)
                 }
             },
+        },
+        watch: {
+            roundTime() {
+                this.getTime()
+            }
         }
     }
 </script>

@@ -367,6 +367,9 @@ function formatSecond(sec) {
         }
     }
     let result = parseInt(theTime)
+    if( theTime < 10) {
+        result = `00:0${parseInt(theTime)}`
+    }
     if( middle > 0 ) {
         result = `${parseInt(middle)}:${result}`
     }

@@ -53,7 +53,7 @@
                     <div class="cont">
                         <score-view
                             :teamsData="item.battle_detail.teams"
-                            :durationData="item.battle_detail.duration"
+                            :roundTime="item.battle_detail"
                         ></score-view>
                         <player-view
                             :teamsData="item.battle_detail.teams"
