@@ -46,13 +46,7 @@
         },
         data() {
             return {
-                events: {
-                    'cts_win': 0,
-                    'target_saved': 0,
-                    'bomb_defused': 0,
-                    'terrorists_win': 0,
-                    'target_bombed': 0
-                }
+                events: {}
             }
         },
         created() {
@@ -60,6 +54,13 @@
         },
         methods: {
             getReduce(arr) {
+                this.events = {
+                    'cts_win': 0,
+                    'target_saved': 0,
+                    'bomb_defused': 0,
+                    'terrorists_win': 0,
+                    'target_bombed': 0
+                }
                 for(let i = 0; i < arr.length; i++ ) {
                     for(let key in this.events) {
                         if(arr[i].win_type === key) {
