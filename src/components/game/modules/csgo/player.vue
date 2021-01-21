@@ -4,7 +4,8 @@
             <div 
                 :class="['list flex flex_between',{
                     blue: teamsData[0].starting_side === 'ct',
-                    yellow: teamsData[0].starting_side === 'terrorist'
+                    yellow: teamsData[0].starting_side === 'terrorist',
+                    reverse: teamsData[0].starting_side === 'terrorist'
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[0].totalMoney}px`}"
             >
@@ -18,7 +19,8 @@
             <div 
                 :class="['list flex flex_between flex_row_reverse',{
                     blue: teamsData[1].starting_side === 'ct',
-                    yellow: teamsData[1].starting_side === 'terrorist'
+                    yellow: teamsData[1].starting_side === 'terrorist',
+                    reverse: teamsData[1].starting_side === 'ct'
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[1].totalMoney}px`}"
             >
@@ -33,7 +35,8 @@
         <div class="bar flex flex_between flex_only_center" v-for="item in playerList" :key="item.name1">
             <div :class="['list flex flex_between',{
                     blue: teamsData[0].starting_side === 'ct',
-                    yellow: teamsData[0].starting_side === 'terrorist'
+                    yellow: teamsData[0].starting_side === 'terrorist',
+                    reverse: teamsData[0].starting_side === 'terrorist'
                 }]"
                 :style="{'width': `${344/(item.money1 + item.money2)*item.money1}px`}"
             >
@@ -44,7 +47,8 @@
             </div>
             <div :class="['list flex flex_between flex_row_reverse',{
                     blue: teamsData[1].starting_side === 'ct',
-                    yellow: teamsData[1].starting_side === 'terrorist'
+                    yellow: teamsData[1].starting_side === 'terrorist',
+                    reverse: teamsData[1].starting_side === 'ct'
                 }]"
                 :style="{'width': `${344/(item.money1 + item.money2)*item.money2}px`}"
             >
@@ -173,12 +177,17 @@
                         left: 40%;
                     }
                 }
-                
                 &.blue {
                     background: linear-gradient(90deg, #01448A, #005D97, #1F9CEA);
+                    &.reverse {
+                        background: linear-gradient(-90deg, #01448A, #005D97, #1F9CEA);
+                    }
                 }
                 &.yellow {
-                    background: linear-gradient(90deg, #B47F00, #C6A800, #D0B226);
+                    background: linear-gradient(90deg, #D0B226, #C6A800, #B47F00);
+                    &.reverse {
+                        background: linear-gradient(-90deg, #D0B226, #C6A800, #B47F00);
+                    }
                 }
             }
         }
