@@ -106,7 +106,7 @@
             this.sortTeam()
             if ( localStorage.getItem('ongoing') ) {
                 this.pageNum = this.battleData.length
-                this.currentIndex = this.battleData.length -1
+                this.currentIndex = this.battleData.length - 1
             }
         },
         methods: {
@@ -157,10 +157,8 @@
         },
         watch: {
             battleData(old,val) {
-                if(val.length > old.length) {
-                    this.pageNum = this.battleData.length
-                    this.currentIndex = this.battleData.length -1
-                }
+                this.pageNum = this.battleData.length
+                this.currentIndex = this.battleData.length -1
                 this.sortTeam()
             }
         },

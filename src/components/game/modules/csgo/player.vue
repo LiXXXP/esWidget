@@ -1,6 +1,7 @@
 <template>
     <div class="player">
         <div class="bar flex flex_between flex_only_center">
+
             <div 
                 :class="['list flex flex_between',{
                     blue: teamsData[0].starting_side === 'ct',
@@ -9,13 +10,15 @@
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[0].totalMoney}px`}"
             >
-                <p v-if="teamsData[0].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
-                    {{teamsData[0].team_snapshot.name}}
-                </p>
-                <p v-if="teamsData[0].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
-                    ${{teamsData[0].totalMoney}}
-                </p>
+                <p 
+                    v-if="teamsData[0].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2"
+                >{{teamsData[0].team_snapshot.name}}</p>
+
+                <p 
+                    v-if="teamsData[0].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2"
+                >${{teamsData[0].totalMoney}}</p>
             </div>
+
             <div 
                 :class="['list flex flex_between flex_row_reverse',{
                     blue: teamsData[1].starting_side === 'ct',
@@ -24,38 +27,70 @@
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[1].totalMoney}px`}"
             >
-                <p v-if="teamsData[1].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
-                    {{teamsData[1].team_snapshot.name}}
-                </p>
-                <p v-if="teamsData[1].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2">
-                    ${{teamsData[1].totalMoney}}
-                </p>
+                <p 
+                    v-if="teamsData[1].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2"
+                >{{teamsData[1].team_snapshot.name}}</p>
+
+                <p 
+                    v-if="teamsData[1].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2"
+                >${{teamsData[1].totalMoney}}</p>
             </div>
         </div>
-        <div class="bar flex flex_between flex_only_center" v-for="item in playerList" :key="item.name1">
+        <div class="bar flex flex_between flex_only_center" 
+            v-for="item in playerList" :key="item.name1"
+        >
             <div :class="['list flex flex_between',{
                     blue: teamsData[0].starting_side === 'ct',
                     yellow: teamsData[0].starting_side === 'terrorist',
                     reverse: teamsData[0].starting_side === 'terrorist'
                 }]"
-                :style="{'width': `${344/(item.money1 + item.money2)*item.money1}px`}"
+                :style="{'width':item.money1 + item.money2 === 0 ?'172px': `${344/(item.money1 + item.money2)*item.money1}px`}"
             >
-                <p v-if="item.money1/(item.money1 + item.money2)>.2">{{item.name1}}</p>
-                <p v-if="item.money1/(item.money1 + item.money2)>.2">${{item.money1}}</p>
-                <i class="x l" v-if="item.money1/(item.money1 + item.money2)>.2 && item.isDied1"></i>
-                <i class="h" v-if="item.money1/(item.money1 + item.money2)>.2 && item.isMulti1 && !item.isDied1 && battleStatus !== 'completed'"></i>
+                <p 
+                    v-if="item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
+                >{{item.name1}}</p>
+
+                <p 
+                    v-if="item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
+                >${{item.money1}}</p>
+
+                <i 
+                    class="x l" 
+                    v-if="(item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && item.isDied1"
+                ></i>
+
+                <i 
+                    class="h" 
+                    v-if="(item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) &&
+                            item.isMulti1 && !item.isDied1 && battleStatus !== 'completed'"
+                ></i>
             </div>
+
             <div :class="['list flex flex_between flex_row_reverse',{
                     blue: teamsData[1].starting_side === 'ct',
                     yellow: teamsData[1].starting_side === 'terrorist',
                     reverse: teamsData[1].starting_side === 'ct'
                 }]"
-                :style="{'width': `${344/(item.money1 + item.money2)*item.money2}px`}"
+                :style="{'width': item.money1 + item.money2 === 0 ?'172px': `${344/(item.money1 + item.money2)*item.money2}px`}"
             >
-                <p v-if="item.money2/(item.money1 + item.money2)>.2">{{item.name2}}</p>
-                <p v-if="item.money2/(item.money1 + item.money2)>.2">${{item.money2}}</p>
-                <i class="x r" v-if="item.money2/(item.money1 + item.money2)>.2 && item.isDied2"></i>
-                <i class="h" v-if="item.money2/(item.money1 + item.money2)>.2 && item.isMulti1 && !item.isDied2 && battleStatus !== 'completed'"></i>
+                <p 
+                    v-if="item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
+                >{{item.name2}}</p>
+
+                <p 
+                    v-if="item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
+                >${{item.money2}}</p>
+
+                <i 
+                    class="x r" 
+                    v-if="(item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && item.isDied2"
+                ></i>
+
+                <i 
+                    class="h" 
+                    v-if="(item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && 
+                            item.isMulti1 && !item.isDied2 && battleStatus !== 'completed'"
+                ></i>
             </div>
         </div>
     </div>
