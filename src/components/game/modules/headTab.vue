@@ -25,7 +25,7 @@
                 <p>{{headData[1].score || 0}} : {{headData[0].score || 0}}</p>
                 <img :src="headData[0].team_snapshot?headData[0].team_snapshot.image:''">
             </div>
-            <div :class="['arrow next flex flex_center',{active: currentNext && battleLength !== 1}]" 
+            <div :class="['arrow next flex flex_center',{active: currentNext}]" 
                 @click="nextStep('next')">
                 <p class="right"></p>
             </div>
@@ -64,10 +64,6 @@
             factionsData: {
                 type: Array,
                 default: () => []
-            },
-            battleLength: {
-                type: Number,
-                default: 0
             }
         },
 		data() {
