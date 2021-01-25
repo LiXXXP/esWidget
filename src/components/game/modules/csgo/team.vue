@@ -62,48 +62,36 @@
             }
         },
         created() {
-            this.getReduce(this.roundData)
+            this.getReduce()
         },
         methods: {
-            getReduce(arr) {
-                if(teamsData[0].team_id === sideData[0].team_id || teamsData[1].team_id === sideData[0].team_id) {
-                    this.events = {
-                        'cts_win': 0,
-                        'target_saved': 0,
-                        'bomb_defused': 0,
-                        'terrorists_win': 0,
-                        'target_bombed': 0
-                    }
-                    for(let i = 0; i < arr.length; i++ ) {
-                        for(let key in this.events) {
-                            if(arr[i].win_type === key) {
-                                this.events[key]++
-                            }
+            getReduce() {
+                if(this.teamsData[0].team_id === this.sideData[0].team_id) {
+                    this.count(this.roundData)
+                } else {
+                    this.count(this.roundData)
+                }
+            },
+            count(arr) {
+                this.events = {
+                    'cts_win': 0,
+                    'target_saved': 0,
+                    'bomb_defused': 0,
+                    'terrorists_win': 0,
+                    'target_bombed': 0
+                }
+                for(let i = 0; i < arr.length; i++ ) {
+                    for(let key in this.events) {
+                        if(arr[i].win_type === key) {
+                            this.events[key]++
                         }
                     }
                 }
-                if(teamsData[0].team_id !== sideData[0].team_id || teamsData[1].team_id !== sideData[0].team_id) {
-                    this.events = {
-                        'cts_win': 0,
-                        'target_saved': 0,
-                        'bomb_defused': 0,
-                        'terrorists_win': 0,
-                        'target_bombed': 0
-                    }
-                    for(let i = 0; i < arr.length; i++ ) {
-                        for(let key in this.events) {
-                            if(arr[i].win_type === key) {
-                                this.events[key]++
-                            }
-                        }
-                    }
-                }
-                
             }
         },
         watch: {
             roundData() {
-                this.getReduce(this.roundData)
+                this.getReduce()
             }
         }
     }
