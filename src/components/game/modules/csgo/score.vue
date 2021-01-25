@@ -2,30 +2,30 @@
     <div class="score flex flex_between flex_only_center">
         <div class="vs flex flex_only_center">
             <p :class="[{
-                blue: teamsData[0].starting_side === 'ct',
-                yellow: teamsData[0].starting_side === 'terrorist'
+                blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
             }]">
                 {{teamsData[0].team_snapshot.name}}
             </p>
             <p>vs</p>
             <p :class="[{
-                blue: teamsData[1].starting_side === 'ct',
-                yellow: teamsData[1].starting_side === 'terrorist'
+                blue: sideData[0].team_id === teamsData[1].team_id && sideData[0].side === 'ct',
+                yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
             }]">
                 {{teamsData[1].team_snapshot.name}}
             </p>
         </div>
         <div class="num">
             <span :class="[{
-                blue: teamsData[0].starting_side === 'ct',
-                yellow: teamsData[0].starting_side === 'terrorist'
+                blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                yellow: sideData[1].team_id === teamsData[0].team_id && sideData[1].side === 'terrorist'
             }]">
                 {{teamsData[0].score}}
             </span>
             <span>:</span>
             <span :class="[{
-                blue: teamsData[1].starting_side === 'ct',
-                yellow: teamsData[1].starting_side === 'terrorist'
+                blue: sideData[0].team_id === teamsData[1].team_id && sideData[0].side === 'ct',
+                yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
             }]">
                 {{teamsData[1].score}}
             </span>
@@ -49,6 +49,10 @@
             roundTime: {
                 type: Object,
                 default: () => {}
+            },
+            sideData: {
+                type: Array,
+                default: () => []
             }
         },
         data() {

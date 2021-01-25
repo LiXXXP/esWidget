@@ -4,9 +4,9 @@
 
             <div 
                 :class="['list flex flex_between',{
-                    blue: teamsData[0].starting_side === 'ct',
-                    yellow: teamsData[0].starting_side === 'terrorist',
-                    reverse: teamsData[0].starting_side === 'terrorist'
+                    blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                    yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist',
+                    reverse: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[0].totalMoney}px`}"
             >
@@ -21,9 +21,9 @@
 
             <div 
                 :class="['list flex flex_between flex_row_reverse',{
-                    blue: teamsData[1].starting_side === 'ct',
-                    yellow: teamsData[1].starting_side === 'terrorist',
-                    reverse: teamsData[1].starting_side === 'ct'
+                    yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist',
+                    blue: sideData[1].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                    reverse: sideData[1].team_id === teamsData[0].team_id && sideData[0].side === 'ct'
                 }]"
                 :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[1].totalMoney}px`}"
             >
@@ -40,9 +40,9 @@
             v-for="item in playerList" :key="item.name1"
         >
             <div :class="['list flex flex_between',{
-                    blue: teamsData[0].starting_side === 'ct',
-                    yellow: teamsData[0].starting_side === 'terrorist',
-                    reverse: teamsData[0].starting_side === 'terrorist'
+                    blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                    yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist',
+                    reverse: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
                 }]"
                 :style="{'width':item.money1 + item.money2 === 0 ?'172px': `${344/(item.money1 + item.money2)*item.money1}px`}"
             >
@@ -67,9 +67,9 @@
             </div>
 
             <div :class="['list flex flex_between flex_row_reverse',{
-                    blue: teamsData[1].starting_side === 'ct',
-                    yellow: teamsData[1].starting_side === 'terrorist',
-                    reverse: teamsData[1].starting_side === 'ct'
+                    blue: sideData[1].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                    yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist',
+                    reverse: sideData[1].team_id === teamsData[0].team_id && sideData[0].side === 'ct'
                 }]"
                 :style="{'width': item.money1 + item.money2 === 0 ?'172px': `${344/(item.money1 + item.money2)*item.money2}px`}"
             >
@@ -101,7 +101,7 @@
         props: {
             teamsData: {
                 type: Array,
-                default: []
+                default: () => []
             },
             roundData: {
                 type: Array,
@@ -110,6 +110,10 @@
             battleStatus: {
                 type: String,
                 default: ''
+            },
+            sideData: {
+                type: Array,
+                default: () => []
             }
         },
         data() {

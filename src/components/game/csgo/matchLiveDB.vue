@@ -54,15 +54,18 @@
                         <score-view
                             :teamsData="item.battle_detail.teams"
                             :roundTime="item.battle_detail"
+                            :sideData="item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side"
                         ></score-view>
                         <player-view
                             :teamsData="item.battle_detail.teams"
                             :battleStatus="item.battle_status"
                             :roundData="item.battle_detail.rounds_detail"
+                            :sideData="item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side"
                         ></player-view>
                         <team-view
                             :roundData="item.battle_detail.rounds_detail"
                             :teamsData="item.battle_detail.teams"
+                            :sideData="item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side"
                         ></team-view>
                     </div>
                 </div>
