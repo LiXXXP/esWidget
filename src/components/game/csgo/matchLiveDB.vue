@@ -66,6 +66,7 @@
                             :roundData="item.battle_detail?item.battle_detail.rounds_detail:[]"
                             :teamsData="item.battle_detail?item.battle_detail.teams:[]"
                             :sideData="item.battle_detail?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
+                            :overTime="item.battle_detail?item.battle_detail.rounds_detail.length>30:false"
                         ></team-view>
                     </div>
                 </div>
@@ -162,6 +163,9 @@
                             }
                         })
                     })
+                    if(item.battle_detail.teams[0].starting_side !== 'ct') {
+                        item.battle_detail.teams.reverse()
+                    }
                 }
             }
         },

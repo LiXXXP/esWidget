@@ -54,11 +54,16 @@
             sideData: {
                 type: Array,
                 default: () => []
+            },
+            overTime: { // 加时赛
+                type: Boolean,
+                default: false
             }
         },
         data() {
             return {
-                events: {}
+                events: {},
+                length: 30
             }
         },
         created() {
@@ -70,6 +75,14 @@
                     this.count(this.roundData.slice(0,15))
                 } else {
                     this.count(this.roundData.slice(15,30))
+                }
+                if(this.overTime) {
+                    if(this.teamsData[0].team_id === this.sideData[0].team_id) {
+                        this.count(this.roundData.slice(this.length,this.roundData.length))
+                    } else {
+                        this.count(this.roundData.slice(this.roundData.length))
+                        this.length = this.roundData.length
+                    }
                 }
             },
             count(arr) {
