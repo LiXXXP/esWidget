@@ -382,11 +382,4 @@
             }
         }
     }
-    // mobile
-    @media only screen and (orientation: portrait) {
-        .match-before,
-        .cs-live {
-            zoom: .8;
-        }
-    }
 </style>
