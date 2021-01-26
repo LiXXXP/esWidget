@@ -67,9 +67,9 @@
         methods: {
             getReduce() {
                 if(this.teamsData[0].team_id === this.sideData[0].team_id) {
-                    this.count(this.roundData)
+                    this.count(this.roundData.slice(0,15))
                 } else {
-                    this.count(this.roundData)
+                    this.count(this.roundData.slice(15,30))
                 }
             },
             count(arr) {

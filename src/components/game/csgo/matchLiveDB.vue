@@ -52,20 +52,20 @@
                     ></head-tab>
                     <div class="cont">
                         <score-view
-                            :teamsData="item.battle_detail.teams"
+                            :teamsData="item.battle_detail?item.battle_detail.teams:[]"
                             :roundTime="item.battle_detail"
-                            :sideData="item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side"
+                            :sideData="item.battle_detail?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
                         ></score-view>
                         <player-view
-                            :teamsData="item.battle_detail.teams"
+                            :teamsData="item.battle_detail?item.battle_detail.teams:[]"
                             :battleStatus="item.battle_status"
-                            :roundData="item.battle_detail.rounds_detail"
-                            :sideData="item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side"
+                            :roundData="item.battle_detail?item.battle_detail.rounds_detail:[]"
+                            :sideData="item.battle_detail?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
                         ></player-view>
                         <team-view
-                            :roundData="item.battle_detail.rounds_detail"
-                            :teamsData="item.battle_detail.teams"
-                            :sideData="item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side"
+                            :roundData="item.battle_detail?item.battle_detail.rounds_detail:[]"
+                            :teamsData="item.battle_detail?item.battle_detail.teams:[]"
+                            :sideData="item.battle_detail?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
                         ></team-view>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                 currentIndex: 0,  // 当前显示页index
                 pageNum: 1,       // 当前第几局
                 currentLast: 0,
-                currentNext: 1
+                currentNext: 0
 			}
         },
         created() {
@@ -110,7 +110,14 @@
             if ( localStorage.getItem('ongoing') ) {
                 this.pageNum = this.battleData.length
                 this.currentIndex = this.battleData.length - 1
+                if( this.pageNum > 1 && this.pageNum <= parseInt(this.matchData.number_of_games) ) {
+                    this.currentLast = 1
+                    this.currentNext = 0
+                }
+            } else {
+                this.currentNext = 1
             }
+
         },
         methods: {
             // 展示页切换（子传父）
@@ -125,7 +132,7 @@
                         this.currentIndex = this.battleData.length -1
                         this.pageNum = this.battleData.length
                     }
-                    if( parseInt(this.matchData.number_of_games) === this.pageNum) {
+                    if( parseInt(this.matchData.number_of_games) >= this.pageNum) {
                         this.currentLast = 1
                         this.currentNext = 0
                     }
@@ -160,9 +167,15 @@
         },
         watch: {
             battleData(old,val) {
+                this.sortTeam()
                 this.pageNum = this.battleData.length
                 this.currentIndex = this.battleData.length -1
-                this.sortTeam()
+                if ( localStorage.getItem('ongoing') ) {
+                    if( this.pageNum > 1 && this.pageNum <= parseInt(this.matchData.number_of_games) ) {
+                        this.currentLast = 1
+                        this.currentNext = 0
+                    }
+                }
             }
         },
         computed: {

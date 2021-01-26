@@ -358,10 +358,10 @@ function formatSecond(sec) {
     let theTime = parseInt(sec) // 秒
     let middle = 0  // 分
     let hour = 0    // 小时
-    if(theTime > 60) {
+    if(theTime >= 60) {
         middle = parseInt( theTime / 60 )
         theTime = parseInt( theTime % 60 )
-        if( middle > 60 ) {
+        if( middle >= 60 ) {
             hour = parseInt( middle / 60 )
             middle = parseInt( middle % 60 )
         }
@@ -370,10 +370,15 @@ function formatSecond(sec) {
     if( theTime < 10) {
         result = `00:0${parseInt(theTime)}`
     }
+    if(theTime >= 10 && middle < 1) {
+        result = `00:${parseInt(theTime)}`
+    }
     if( middle > 0 ) {
+        result = parseInt(theTime)
         result = `${parseInt(middle)}:${result}`
     }
     if( hour > 0 ) {
+        result = parseInt(theTime)
         result = `${parseInt(hour)}:${result}`
     }
     return result

@@ -2,33 +2,29 @@
     <div class="score flex flex_between flex_only_center">
         <div class="vs flex flex_only_center">
             <p :class="[{
-                blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
-                yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
-            }]">
-                {{teamsData[0].team_snapshot.name}}
-            </p>
+                    blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                    yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
+                }]"
+            >{{teamsData[0].team_snapshot.name}}</p>
             <p>vs</p>
             <p :class="[{
-                blue: sideData[0].team_id === teamsData[1].team_id && sideData[0].side === 'ct',
-                yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
-            }]">
-                {{teamsData[1].team_snapshot.name}}
-            </p>
+                    blue: sideData[0].team_id === teamsData[1].team_id && sideData[0].side === 'ct',
+                    yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
+                }]"
+            >{{teamsData[1].team_snapshot.name}}</p>
         </div>
         <div class="num">
             <span :class="[{
-                blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
-                yellow: sideData[1].team_id === teamsData[0].team_id && sideData[1].side === 'terrorist'
-            }]">
-                {{teamsData[0].score}}
-            </span>
+                    blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
+                    yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
+                }]"
+            >{{teamsData[0].score}}</span>
             <span>:</span>
             <span :class="[{
-                blue: sideData[0].team_id === teamsData[1].team_id && sideData[0].side === 'ct',
-                yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
-            }]">
-                {{teamsData[1].score}}
-            </span>
+                    blue: sideData[0].team_id === teamsData[1].team_id && sideData[0].side === 'ct',
+                    yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
+                }]"
+            >{{teamsData[1].score}}</span>
         </div>
         <div class="time flex flex_end flex_only_center">
             <p>{{durationTime(time)}}</p>
