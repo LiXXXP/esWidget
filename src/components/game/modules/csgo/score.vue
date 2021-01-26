@@ -1,6 +1,6 @@
 <template>
     <div class="score flex flex_between flex_only_center">
-        <div class="vs flex flex_only_center">
+        <div class="vs flex flex_only_center" v-if="sideData.length!==0&&teamsData.length!==0">
             <p :class="[{
                     blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
                     yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
@@ -13,7 +13,7 @@
                 }]"
             >{{teamsData[1].team_snapshot.name}}</p>
         </div>
-        <div class="num">
+        <div class="num" v-if="sideData.length!==0&&teamsData.length!==0">
             <span :class="[{
                     blue: sideData[0].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
                     yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'

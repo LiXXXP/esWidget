@@ -54,19 +54,19 @@
                         <score-view
                             :teamsData="item.battle_detail?item.battle_detail.teams:[]"
                             :roundTime="item.battle_detail"
-                            :sideData="item.battle_detail?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
+                            :sideData="item.battle_detail&&item.battle_detail.rounds_detail.length!==0?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
                         ></score-view>
                         <player-view
                             :teamsData="item.battle_detail?item.battle_detail.teams:[]"
                             :battleStatus="item.battle_status"
                             :roundData="item.battle_detail?item.battle_detail.rounds_detail:[]"
-                            :sideData="item.battle_detail?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
+                            :sideData="item.battle_detail&&item.battle_detail.rounds_detail.length!==0?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
                         ></player-view>
                         <team-view
                             :roundData="item.battle_detail?item.battle_detail.rounds_detail:[]"
                             :teamsData="item.battle_detail?item.battle_detail.teams:[]"
-                            :sideData="item.battle_detail?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
-                            :overTime="item.battle_detail?item.battle_detail.rounds_detail.length>30:false"
+                            :sideData="item.battle_detail&&item.battle_detail.rounds_detail.length!==0?item.battle_detail.rounds_detail[item.battle_detail.rounds_detail.length-1].side:[]"
+                            :overTime="item.battle_detail&&item.battle_detail.rounds_detail.length!==0?item.battle_detail.rounds_detail.length>30:false"
                         ></team-view>
                     </div>
                 </div>
@@ -172,8 +172,10 @@
         watch: {
             battleData(old,val) {
                 this.sortTeam()
-                this.pageNum = this.battleData.length
-                this.currentIndex = this.battleData.length -1
+                if(val.length > old.length) {
+                    this.pageNum = this.battleData.length
+                    this.currentIndex = this.battleData.length -1
+                }
                 if ( localStorage.getItem('ongoing') ) {
                     if( this.pageNum > 1 && this.pageNum <= parseInt(this.matchData.number_of_games) ) {
                         this.currentLast = 1
