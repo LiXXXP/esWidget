@@ -8,7 +8,7 @@
                     yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist',
                     reverse: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
                 }]"
-                :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[0].totalMoney}px`}"
+                :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[0].totalMoney}%`}"
             >
                 <p 
                     v-if="teamsData[0].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2"
@@ -25,7 +25,7 @@
                     blue: sideData[1].team_id === teamsData[0].team_id && sideData[0].side === 'ct',
                     reverse: sideData[1].team_id === teamsData[0].team_id && sideData[0].side === 'ct'
                 }]"
-                :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[1].totalMoney}px`}"
+                :style="{'width': `${344/(teamsData[0].totalMoney + teamsData[1].totalMoney)*teamsData[1].totalMoney}%`}"
             >
                 <p 
                     v-if="teamsData[1].totalMoney/(teamsData[0].totalMoney + teamsData[1].totalMoney)>.2"
@@ -44,7 +44,7 @@
                     yellow: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist',
                     reverse: sideData[0].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist'
                 }]"
-                :style="{'width':item.money1 + item.money2 === 0 ?'172px': `${344/(item.money1 + item.money2)*item.money1}px`}"
+                :style="{'width':item.money1 + item.money2 === 0 ?'50%': `${344/(item.money1 + item.money2)*item.money1}%`}"
             >
                 <p 
                     v-if="item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
@@ -71,7 +71,7 @@
                     yellow: sideData[1].team_id === teamsData[1].team_id && sideData[1].side === 'terrorist',
                     reverse: sideData[1].team_id === teamsData[0].team_id && sideData[0].side === 'ct'
                 }]"
-                :style="{'width': item.money1 + item.money2 === 0 ?'172px': `${344/(item.money1 + item.money2)*item.money2}px`}"
+                :style="{'width': item.money1 + item.money2 === 0 ?'50%': `${344/(item.money1 + item.money2)*item.money2}%`}"
             >
                 <p 
                     v-if="item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
@@ -181,7 +181,7 @@
         overflow: hidden;
         margin-bottom: 4px;
         .bar {
-            width: 100%;
+            width: 344px;
             margin-bottom: 2px;
             .list {
                 height: 18px;

@@ -1,13 +1,6 @@
 <template>
-	<section :class="[
-                'match-before',
-                {'night-mode':definedStyle.type}
-            ]"
-            :style="{
-                'width':definedStyle.widthData,
-                'height': definedStyle.heightData,
-                'background-color':definedStyle.colorData
-            }"
+	<section :class="['match-before',{'night-mode':definedStyle.type}]"
+            :style="{'background-color':definedStyle.colorData}"
     >
         <p class="point">
             (数据为最近3个月)
@@ -67,6 +60,8 @@
 
 <style lang="less" scoped>
     .match-before {
+        width: 826px;
+        height: 262px;
         padding: 15px 75px;
         box-sizing: border-box;
         position: relative;

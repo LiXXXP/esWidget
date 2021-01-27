@@ -2,11 +2,8 @@
 	<section>
         <div v-if="battleData.length === 0" 
             class="match-before"
-            :style="{
-                'width': definedStyle.widthData,
-                'height': definedStyle.heightData,
-                'background-color': definedStyle.colorData
-        }">
+            :style="{'background-color': definedStyle.colorData}"
+        >
             <p class="name">{{matchData.tournament_name}}</p>
             <p class="time">{{durationDate(matchData.begin_at)}}</p>
             <p class="bo">BO{{matchData.number_of_games}}</p>
@@ -32,13 +29,8 @@
             <div v-for="(item,index) in battleData" 
                 :key="item.battle_id">
                 <div v-if="index === currentIndex"
-                    :class="[
-                        'cs-live',
-                        {'night-mode':definedStyle.type}]"
-                    :style="{
-                        'width':definedStyle.widthData,
-                        'height': definedStyle.heightData,
-                        'background-color':definedStyle.colorData}"
+                    :class="['cs-live',{'night-mode':definedStyle.type}]"
+                    :style="{'background-color':definedStyle.colorData}"
                 >
                     <head-tab 
                         :colorData="definedStyle.type"
@@ -202,6 +194,8 @@
 
 <style lang="less" scoped>
     .match-before {
+        width: 360px;
+        height: 260px;
         padding: 20px 10px;
         box-sizing: border-box;
         .name {
@@ -258,6 +252,8 @@
         }
     }
     .cs-live {
+        width: 360px;
+        height: 260px;
         .cont {
             padding: 0 8px;
         }

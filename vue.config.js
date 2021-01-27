@@ -45,8 +45,5 @@ module.exports = {
 			preProcessor: 'less',
 			patterns: [path.resolve(__dirname, './src/less/variables.less')]
 		}
-    },
-    // configureWebpack: {
-    //     performance: false
-    // }
+    }
 }

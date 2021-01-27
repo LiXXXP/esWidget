@@ -55,7 +55,6 @@
 
 <script>
     const progressData = ()=> import("@/components/common/progress")  // 进度条
-    import bus from '@/scripts/bus'
     export default {
         props: {
             isColor: {

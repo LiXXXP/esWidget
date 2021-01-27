@@ -4,11 +4,7 @@
             :key="item.battle_id">
             <div v-if="index === currentIndex"
                 class="cs-before"
-                :style="{
-                    'width':definedStyle.widthData,
-                    'height': definedStyle.heightData,
-                    'background-color':definedStyle.colorData
-                }"
+                :style="{'background-color':definedStyle.colorData}"
             >
                 <head-tab 
                     :colorData="definedStyle.type"
@@ -81,6 +77,8 @@
 
 <style lang="less" scoped>
     .cs-before {
+        width: 826px;
+        height: 262px;
         .content {
             width: 360px;
             height: 230px;

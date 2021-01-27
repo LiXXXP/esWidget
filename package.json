@@ -24,6 +24,9 @@
     "eslint-plugin-vue": "^6.2.2",
     "less": "^3.11.2",
     "less-loader": "^6.1.0",
+    "lib-flexible": "^0.3.2",
+    "postcss-pxtorem": "^5.1.1",
+    "px2rem-loader": "^0.1.9",
     "qs": "^6.9.4",
     "vue-hot-reload-api": "^2.3.4",
     "vue-router": "^3.3.2",
@@ -43,6 +46,14 @@
       "parser": "babel-eslint"
     },
     "rules": {}
+  },
+  "postcss": {
+    "plugins": {
+      "postcss-pxtorem": {
+        "rootValue": 37.5,
+        "propList": ["*"]
+      }
+    }
   },
   "browserslist": [
     "> 1%",

@@ -97,32 +97,22 @@
                         beforeData: {
                             type: 1,           // 开启背景模式，0为浅色，1为深色
                             colorData: '#181818', // 深色背景：1E1E27
-                            widthData: '826px',
-                            heightData: '262px',
                         },
                         lolLiveData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#181818',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         },
                         dotaLiveData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#181818',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         },
                         csBeforeData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#181818',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         },
                         csLiveData: {
                             type: 1,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#181818',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         }
                     }
                 } else {
@@ -130,32 +120,22 @@
                         beforeData: {
                             type: 0,           // 开启背景模式，0为浅色，1为深色
                             colorData: '#fff', // 深色背景：1E1E27
-                            widthData: '826px',
-                            heightData: '262px',
                         },
                         lolLiveData: {
                             type: 0,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         },
                         dotaLiveData: {
                             type: 0,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         },
                         csBeforeData: {
                             type: 0,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         },
                         csLiveData: {
                             type: 0,          // 开启背景模式，0为浅色，1为深色
                             colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
                         }
                     }
                 }
@@ -196,5 +176,5 @@
 </script>
 
 <style lang="less" scoped>
-    
+
 </style>

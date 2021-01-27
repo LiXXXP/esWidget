@@ -97,7 +97,7 @@
             color: @yellow;
         }
         .vs {
-            width: 110px;
+            width: 150px;
             p {
                 padding: 0 2px;
                 padding-left: 0;
@@ -111,7 +111,7 @@
             }
         }
         .time {
-            width: 110px;
+            width: 150px;
             img {
                 width: 14px;
                 height: 15px;
