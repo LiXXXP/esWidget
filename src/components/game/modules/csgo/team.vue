@@ -114,6 +114,7 @@
     .team {
         color: #CFCFCF;
         p {
+            font-size: 12px;
             padding-left: 2px;
             padding-right: 4px;
         }

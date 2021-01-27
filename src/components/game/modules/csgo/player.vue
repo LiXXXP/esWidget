@@ -190,6 +190,9 @@
                 box-sizing: border-box;
                 transition: width .3s linear;
                 position: relative;
+                p {
+                    font-size: 12px;
+                }
                 i {
                     position: absolute;
                     &.x {

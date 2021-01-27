@@ -46,7 +46,7 @@
                         :winerId="item.battle_detail.winner?item.battle_detail.winner.team_id : 0"
                     >
                         <div slot="left-info" class="left-info flex flex_start">
-                            <div class="flex flex_column flex_center">
+                            <div class="flex flex_column flex_center num">
                                 <p>{{item.battle_detail.teams[0].first_half_score || 0}}</p>
                                 <p>{{item.battle_detail.teams[0].second_half_score || 0}}</p>
                             </div>
@@ -64,7 +64,7 @@
                                 <p class="t">T</p>
                                 <p class="ct">CT</p>
                             </div>
-                            <div class="flex flex_column flex_center">
+                            <div class="flex flex_column flex_center num">
                                 <p>{{item.battle_detail.teams[1].first_half_score || 0}}</p>
                                 <p>{{item.battle_detail.teams[1].second_half_score || 0}}</p>
                             </div>
@@ -323,6 +323,9 @@
                 margin-bottom: 2px;
                 text-align: center;
                 border-radius: 100%;
+            }
+            .num {
+                font-size: 12px;
             }
         }
         .left-info {
