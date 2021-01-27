@@ -128,8 +128,6 @@
                     right: '#D43F2F',
                 },
                 roleData: {       // 角色头像宽高
-                    width: '36px',
-                    height: '36px',
                     type: 'lol'
                 },
                 currentIndex: 0,  // 当前显示页index
@@ -196,7 +194,6 @@
                 }
                 newBattle(params).then(res => {
                     if(res.code === 200) {
-                        // console.log(res.data)
                         _this.battleItem = res.data
                         _this.sortTeam()
                         _this.getTypeList()

@@ -76,10 +76,10 @@
                 color: #fff;
                 width: 22px;
                 height: 60px;
-                padding-top: 5px;
+                padding-left: 2px;
                 text-align: center;
-                word-break:break-all;
-                box-sizing: border-box;
+                letter-spacing: 2px;
+                writing-mode: vertical-lr;
                 background-color: #B5B5B5;
             }
         }

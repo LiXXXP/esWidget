@@ -1,8 +1,6 @@
 <template>
 	<div :class="['role-list flex flex_column',roleData.type]">
         <div class="role"
-            :style="{'width':roleData.width,
-                     'height':roleData.height}"
             v-for="item in heroList"
             :key="item.player.player_id"
         >
@@ -76,6 +74,8 @@
     .lol {
         margin-top: -15px;
         .role {
+            width: 36px;
+            height: 36px;
             margin: 2px;
             margin-top: 0;
         }
@@ -85,6 +85,8 @@
         .role {
             margin: 6px 2px;
             margin-top: 0;
+            width: 40px;
+            height: 28px;
         }
     }
 </style>

@@ -64,7 +64,7 @@
         to {left: 140%;}
     }
     .type-list {
-        margin: 10px 0;
+        margin: 8px 0;
         position: relative;
         .block {
             color: #fff;
@@ -105,10 +105,10 @@
         }
     }
     .flex_end {
-        margin-right: 8px;
+        margin-right: 5px;
     }
     .flex_start {
-        margin-left: 8px;
+        margin-left: 5px;
     }
     .night-mode {
         .block {

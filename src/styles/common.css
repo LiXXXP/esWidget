@@ -39,10 +39,6 @@ table {
     border-collapse: collapse;
 }
 
-html {
-    overflow-y: scroll;
-}
-
 /* css common */
 .f-left {
     float: left;

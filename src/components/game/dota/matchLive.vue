@@ -105,8 +105,6 @@
                     right: '#D43F2F',
                 },
                 roleData: {       // 角色头像宽高
-                    width: '40px',
-                    height: '28px',
                     type: 'dota'
                 }
 			}
