@@ -181,7 +181,7 @@
         overflow: hidden;
         margin-bottom: 4px;
         .bar {
-            width: 344px;
+            width: 100%;
             margin-bottom: 2px;
             .list {
                 height: 18px;

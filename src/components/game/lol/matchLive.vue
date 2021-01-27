@@ -330,7 +330,7 @@
 
 <style lang="less" scoped>
     .match-before {
-        width: 360px;
+        width: 100%;
         height: 260px;
         padding: 20px 10px;
         box-sizing: border-box;
@@ -388,7 +388,7 @@
         }
     }
     .match-live {
-        width: 360px;
+        width: 100%;
         height: 260px;
         box-sizing: border-box;
         .live {
