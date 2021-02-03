@@ -129,9 +129,28 @@ function newBattle(params) {
     return getRequest('/iframe/battle_detail', params)
 }
 
+/**
+ * 
+ * @param {*} params
+ */
+function getMatchInfo(params) {
+    return getRequest('/iframevip/list_new', params)
+}
+
+/**
+ * 迪拜 csgo 样式 接口
+ * @param {*} params battle_id
+ */
+function getBattleByDubai(params) {
+    return getRequest('/iframevip/csgo_battle_detail', params)
+}
+
+
 export {
     getBattle,
     newMatch,
-    newBattle
+    newBattle,
+    getMatchInfo,
+    getBattleByDubai
 }
 

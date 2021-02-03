@@ -63,21 +63,19 @@
                         <div>
                             <div class="flex flex_between">
                                 <type-list 
-                                    :placeData="place.right" 
+                                    v-for="(item,index) in battleItem.battle_detail.factions"
+                                    :key="item.team_id"
+                                    :placeData="place[index].right"
                                     :colorData="definedStyle.type"
+                                    :battleStatus="battleItem.battle_status"
                                     :typeList="battleItem.battle_detail.first_events.typeList"
-                                    :sideData="battleItem.battle_detail.factions[0].team_id"
-                                ></type-list>
-                                <type-list 
-                                    :placeData="place.left"
-                                    :colorData="definedStyle.type"
-                                    :typeList="battleItem.battle_detail.first_events.typeList"
-                                    :sideData="battleItem.battle_detail.factions[1].team_id"
+                                    :sideData="item.team_id"
                                 ></type-list>
                             </div>
                             <output-list
                                 :barColor="barColorData"
                                 :colorData="definedStyle.type"
+                                :battleStatus="battleItem.battle_status"
                                 :outputList="battleItem.battle_detail.outputList"
                             ></output-list>
                         </div>
@@ -119,10 +117,14 @@
         },
 		data() {
 			return {
-                place: {
-                    right: true, // 位置是否右对齐
-                    left: false  // 位置是否左对齐
-                },
+                place: [   // 位置是否右对齐
+                    {
+                        right: true,
+                    },
+                    {
+                        right: false
+                    }
+                ],
                 barColorData: {   // 进度条颜色
                     left: '#1167E8',
                     right: '#D43F2F',

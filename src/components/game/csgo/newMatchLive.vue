@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div v-else-if="battleItem != null">
+        <div v-else-if="battleItem">
             <div v-for="(item,index) in battleData" 
                 :key="item.battle_id">
                 <div v-if="index === currentIndex"
@@ -72,16 +72,13 @@
                     </battle>
                     <div class="type flex flex_between">
                         <type-list 
-                            :placeData="place.right" 
+                            v-for="(item,index) in battleItem.battle_detail.teams"
+                            :key="item.team_id"
+                            :placeData="place[index].right"
                             :colorData="definedStyle.type"
+                            :battleStatus="battleItem.battle_status"
                             :typeList="battleItem.battle_detail.special_events.typeList"
-                            :sideData="battleItem.battle_detail.teams[0].team_id"
-                        ></type-list>
-                        <type-list 
-                            :placeData="place.left"
-                            :colorData="definedStyle.type"
-                            :typeList="battleItem.battle_detail.special_events.typeList"
-                            :sideData="battleItem.battle_detail.teams[1].team_id"
+                            :sideData="item.team_id"
                         ></type-list>
                     </div>
                     <level-block
@@ -100,7 +97,7 @@
     const typeList = ()=> import("@/components/game/modules/typeList")          // 标签列表
     const levelBlock = ()=> import("@/components/game/modules/csgo/levelBlock") // 场次
 
-    import { newBattle } from "@/scripts/request.js"  // 请求方法
+    import { newBattle } from "@/scripts/request.js"
     import { UTCDateToLocalDate } from '@/scripts/utils'
 
 	export default {
@@ -120,12 +117,16 @@
         },
 		data() {
 			return {
-                place: {
-                    right: true, // 位置是否右对齐
-                    left: false  // 位置是否左对齐
-                },
+                place: [   // 位置是否右对齐
+                    {
+                        right: true,
+                    },
+                    {
+                        right: false
+                    }
+                ],
                 currentIndex: 0,  // 当前显示页index
-                pageNum: 1,        // 当前第几局
+                pageNum: 1,       // 当前第几局
                 battleItem: null,
                 currentLast: 0,
                 currentNext: 1

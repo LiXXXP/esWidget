@@ -12,10 +12,7 @@
         </div>
         <div class="flex flex_only_center">
             <div class="flex flex_only_center" 
-                v-if="
-                    (factionsData[0].faction==='blue' || 
-                    factionsData[0].starting_side==='ct') &&
-                    factionsData[0].team_id===headData[0].team_id">
+                v-if="factionsData[0].team_id===headData[0].team_id">
                 <img :src="headData[0].team_snapshot.image">
                 <p>{{headData[0].score || 0}} : {{headData[1].score || 0}}</p>
                 <img :src="headData[1].team_snapshot?headData[1].team_snapshot.image:''">

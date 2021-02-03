@@ -137,11 +137,11 @@
                 }
                 for(let i in this.teamsData[0].players) {
                     this.playerList[i] = {
-                        name1: this.teamsData[0].players[i].player.nick_name,
-                        player1id: this.teamsData[0].players[i].player.player_id,
+                        name1: this.teamsData[0].players[i].nick_name,
+                        player1id: this.teamsData[0].players[i].player_id,
                         money1: this.teamsData[0].players[i].money,
-                        name2: this.teamsData[1].players[i].player.nick_name,
-                        player2id: this.teamsData[1].players[i].player.player_id,
+                        name2: this.teamsData[1].players[i].nick_name,
+                        player2id: this.teamsData[1].players[i].player_id,
                         money2: this.teamsData[1].players[i].money,
                     }
                 }
@@ -151,11 +151,11 @@
                     let roundLength = this.roundData.length
                     for(let s of this.roundData[roundLength-1].side) {
                         s.players.filter(item => {
-                            if(e.player1id === item.player.player_id) {
+                            if(e.player1id === item.player_id) {
                                 e.isDied1 = item.is_died
                                 e.isMulti1 = item.headshot_kills || item.is_multi_kill
                             }
-                            if(e.player2id === item.player.player_id) {
+                            if(e.player2id === item.player_id) {
                                 e.isDied2 = item.is_died
                                 e.isMulti2 = item.headshot_kills || item.is_multi_kill
                             }

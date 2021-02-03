@@ -27,7 +27,7 @@
             >{{teamsData[1].score}}</span>
         </div>
         <div class="time flex flex_end flex_only_center">
-            <p>{{durationTime(time)}}</p>
+            <p>{{durationTime(roundTime)}}</p>
             <img src="../../../../assets/imgs/csgo/bomb.png">
         </div>
     </div>
@@ -43,8 +43,8 @@
                 default: () => []
             },
             roundTime: {
-                type: Object,
-                default: () => {}
+                type: Number,
+                default: 0
             },
             sideData: {
                 type: Array,
@@ -53,19 +53,7 @@
         },
         data() {
             return {
-                time: 0,
-            }
-        },
-        created() {
-            this.getTime()
-        },
-        methods: {
-            getTime() {
-                if(this.roundTime.is_bomb_planted) {
-                    this.time = this.roundTime.time_since_plant
-                } else {
-                    this.time = this.roundTime.round_time
-                }
+                
             }
         },
         computed: {
@@ -75,11 +63,6 @@
                 }
             },
         },
-        watch: {
-            roundTime() {
-                this.getTime()
-            }
-        }
     }
 </script>
 
