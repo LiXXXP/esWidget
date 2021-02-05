@@ -108,7 +108,9 @@
                     this.currentNext = 0
                 }
             } else {
-                this.currentNext = 1
+                if(this.battleData.length>1) {
+                    this.currentNext = 1
+                }
             }
 
         },
@@ -261,7 +263,7 @@
     }
     .cs-live {
         width: 100%;
-        height: 260px;
+        height: 270px;
         .cont {
             padding: 0 8px;
         }

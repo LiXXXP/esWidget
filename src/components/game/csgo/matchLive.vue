@@ -142,7 +142,9 @@
                     this.currentNext = 0
                 }
             } else {
-                this.currentNext = 1
+                if(this.battleData.length>1) {
+                    this.currentNext = 1
+                }
             }
         },
         methods: {
@@ -181,6 +183,9 @@
                     }
                     if( this.pageNum === 1) {
                         this.currentLast = 0
+                        if(localStorage.getItem('ongoing')) {
+                            this.currentNext = 0
+                        }
                     }
                 }
             },
@@ -311,7 +316,7 @@
     }
     .cs-live {
         width: 100%;
-        height: 260px;
+        height: 270px;
         .live {
             padding: 0 5px;
             p {
@@ -327,6 +332,7 @@
         }
         .left-info,
         .right-info {
+            margin-bottom: 5px;
             p {
                 width: 17px;
                 height: 17px;

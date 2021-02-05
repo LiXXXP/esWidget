@@ -6,7 +6,7 @@
         <div :class="[
                 'block',
                 {'come': sideData === item.teamId,
-                 'stuts': battleStatus !== 'completed'
+                 'stuts':battleStatus !== 'completed'
                 }
             ]"
             v-for="item in typeList"
@@ -87,11 +87,12 @@
                     background-color: @blue;
                 }
                 &.stuts {
+                    position: relative;
                     &::after {
                         content: '';
                         width: 15px;
                         height: 18px;
-                        z-index: 999;
+                        z-index: 9999;
                         animation: 2s loadingframe infinite;
                         -webkit-animation: 2s loadingframe infinite;
                         transform: translateX(-50%) skew(160deg);

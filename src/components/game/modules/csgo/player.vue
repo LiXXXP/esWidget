@@ -46,10 +46,17 @@
                 }]"
                 :style="{'width':item.money1 + item.money2 === 0 ?'50%': `${344/(item.money1 + item.money2)*item.money1}%`}"
             >
-                <p 
-                    v-if="item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
-                >{{item.name1}}</p>
-
+                <div class="flex flex_only_center">
+                    <p 
+                        v-if="item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
+                    >{{item.name1}}</p>
+                    <i 
+                        class="h l" 
+                        v-if="(item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) &&
+                                item.isMulti1 && !item.isDied1 && battleStatus !== 'completed'"
+                    ></i>
+                </div>
+                
                 <p 
                     v-if="item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
                 >${{item.money1}}</p>
@@ -59,11 +66,7 @@
                     v-if="(item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && item.isDied1"
                 ></i>
 
-                <i 
-                    class="h" 
-                    v-if="(item.money1/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) &&
-                            item.isMulti1 && !item.isDied1 && battleStatus !== 'completed'"
-                ></i>
+                
             </div>
 
             <div :class="['list flex flex_between flex_row_reverse',{
@@ -73,10 +76,17 @@
                 }]"
                 :style="{'width': item.money1 + item.money2 === 0 ?'50%': `${344/(item.money1 + item.money2)*item.money2}%`}"
             >
-                <p 
-                    v-if="item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
-                >{{item.name2}}</p>
-
+                <div class="flex flex_only_center">
+                    <i 
+                        class="h r" 
+                        v-if="(item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && 
+                            item.isMulti2 && !item.isDied2 && battleStatus !== 'completed'"
+                    ></i>
+                    <p 
+                        v-if="item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
+                    >{{item.name2}}</p>
+                </div>
+                
                 <p 
                     v-if="item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0"
                 >${{item.money2}}</p>
@@ -86,11 +96,6 @@
                     v-if="(item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && item.isDied2"
                 ></i>
 
-                <i 
-                    class="h" 
-                    v-if="(item.money2/(item.money1 + item.money2)>.2 || item.money1 + item.money2 === 0) && 
-                            item.isMulti2 && !item.isDied2 && battleStatus !== 'completed'"
-                ></i>
             </div>
         </div>
     </div>
@@ -180,7 +185,7 @@
     .player {
         color: #fff;
         overflow: hidden;
-        margin-bottom: 4px;
+        margin-bottom: 8px;
         .bar {
             width: 100%;
             margin-bottom: 2px;
@@ -216,8 +221,13 @@
                         display: block;
                         background: url('../../../../assets/imgs/csgo/hot.gif') no-repeat 0 0;
                         background-size: 100%;
-                        top: 1px;
-                        left: 40%;
+                        position: static;
+                        &.l {
+                            margin-left: 10px;
+                        }
+                        &.r {
+                            margin-right: 10px;
+                        }
                     }
                 }
                 &.blue {
