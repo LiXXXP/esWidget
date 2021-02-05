@@ -66,7 +66,7 @@
                 animation: animate 2s linear infinite;
                 background-color: #1167E8;
                 background-image: repeating-linear-gradient(
-                    -45deg,
+                    -60deg,
                     rgba(255, 255, 255, .2) 25%,
                     transparent 25%, transparent 50%,
                     rgba(255, 255, 255, .2) 50%,
@@ -74,7 +74,7 @@
                     transparent 75%,
                     transparent
                 );
-                background-size: 20px 20px;
+                background-size: 10px 10px;
             }
         }
     }
@@ -92,7 +92,7 @@
                 animation: animate 2s linear infinite;
                 background-color: #D43F2F;
                 background-image: repeating-linear-gradient(
-                    -45deg,
+                    -60deg,
                     rgba(255, 255, 255, .2) 25%,
                     transparent 25%,
                     transparent 50%,
@@ -101,7 +101,7 @@
                     transparent 75%,
                     transparent
                 );
-                background-size: 20px 20px;
+                background-size: 10px 10px;
             }
         }
     }
