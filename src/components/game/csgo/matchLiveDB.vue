@@ -103,7 +103,7 @@
             if ( localStorage.getItem('ongoing') ) {
                 this.pageNum = this.battleData.length
                 this.currentIndex = this.battleData.length - 1
-                if( this.pageNum > 1 && this.pageNum <= parseInt(this.matchData.number_of_games) ) {
+                if( this.pageNum > 1 && this.pageNum <= parseInt(this.battleData.length) ) {
                     this.currentLast = 1
                     this.currentNext = 0
                 }
@@ -130,8 +130,8 @@
                         this.currentLast = 1
                     }
                     if(
-                        parseInt(this.matchData.number_of_games) === this.pageNum || 
-                        (localStorage.getItem('ongoing') && this.pageNum <= parseInt(this.matchData.number_of_games))
+                        this.pageNum === this.battleData.length || 
+                        (localStorage.getItem('ongoing') && this.pageNum <= parseInt(this.battleData.length))
                     ) {
                         this.currentNext = 0
                     }
@@ -145,7 +145,7 @@
                         this.pageNum = 1
                     }
                     this.currentLast = 1
-                    if(parseInt(this.matchData.number_of_games) > this.pageNum) {
+                    if(parseInt(this.battleData.length) > this.pageNum) {
                         this.currentNext = 1
                     }
                     if( this.pageNum === 1) {
@@ -177,11 +177,11 @@
                 if(val.length > old.length) {
                     this.pageNum = this.battleData.length
                     this.currentIndex = this.battleData.length -1
-                }
-                if ( localStorage.getItem('ongoing') ) {
-                    if( this.pageNum > 1 && this.pageNum <= parseInt(this.matchData.number_of_games) ) {
-                        this.currentLast = 1
-                        this.currentNext = 0
+                    if ( localStorage.getItem('ongoing') ) {
+                        if( this.pageNum > 1 && this.pageNum <= parseInt(this.battleData.length) ) {
+                            this.currentLast = 1
+                            this.currentNext = 0
+                        }
                     }
                 }
             }
