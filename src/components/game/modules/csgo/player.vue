@@ -118,7 +118,8 @@
         },
         data() {
             return {
-                playerList: []
+                playerList: [],
+                side:[]
             }
         },
         created() {

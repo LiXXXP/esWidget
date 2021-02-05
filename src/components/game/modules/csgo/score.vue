@@ -57,6 +57,7 @@
             }
         },
         created() {
+            this.sortTeam()
             this.getTime()
         },
         methods: {
@@ -66,6 +67,12 @@
                 } else {
                     this.time = this.roundTime.round_time
                 }
+            },
+            sortTeam() {
+                if(this.sideData[0].side !== 'ct') {
+                    this.sideData.reverse()
+                }
+                
             }
         },
         computed: {
@@ -78,6 +85,9 @@
         watch: {
             roundTime() {
                 this.getTime()
+            },
+            sideData() {
+                this.sortTeam()
             }
         }
     }
