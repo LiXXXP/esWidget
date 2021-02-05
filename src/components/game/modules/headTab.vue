@@ -9,8 +9,12 @@
             <p v-else>
                 第<span class="current">{{bureauPage}}</span>/<span class="total">{{gamesNum}}</span>局
             </p>
+            <div :class="['arrow next flex flex_center',{active: currentNext}]" 
+                @click="nextStep('next')">
+                <p class="right"></p>
+            </div>
         </div>
-        <div class="flex flex_only_center">
+        <div class="flex flex_only_center score">
             <div class="flex flex_only_center" 
                 v-if="
                     (factionsData[0].faction==='blue' || 
@@ -24,10 +28,6 @@
                 <img :src="headData[1].team_snapshot.image">
                 <p>{{headData[1].score || 0}} : {{headData[0].score || 0}}</p>
                 <img :src="headData[0].team_snapshot?headData[0].team_snapshot.image:''">
-            </div>
-            <div :class="['arrow next flex flex_center',{active: currentNext}]" 
-                @click="nextStep('next')">
-                <p class="right"></p>
             </div>
         </div>
 	</div>
@@ -103,6 +103,9 @@
         }
         .total {
             font-weight: 600;
+        }
+        .score {
+            margin-right: 35px;
         }
         .arrow {
             width: 20px;
