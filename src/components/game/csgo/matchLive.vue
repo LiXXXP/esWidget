@@ -148,8 +148,6 @@
         methods: {
             // 展示页切换（子传父）
             blockedOut(type) {
-                this.currentLast = 1
-                this.currentNext = 1
                 // 下一局
                 if(type === 'next') {
                     this.pageNum += 1
@@ -158,7 +156,14 @@
                         this.currentIndex = this.battleData.length -1
                         this.pageNum = this.battleData.length
                     }
-                    if( parseInt(this.matchData.number_of_games) === this.pageNum) {
+                    this.currentNext = 1
+                    if(this.pageNum > 1 ) {
+                        this.currentLast = 1
+                    }
+                    if(
+                        parseInt(this.matchData.number_of_games) === this.pageNum || 
+                        (localStorage.getItem('ongoing') && this.pageNum <= parseInt(this.matchData.number_of_games))
+                    ) {
                         this.currentNext = 0
                     }
                 }
@@ -166,11 +171,13 @@
                 if(type === 'last') {
                     this.pageNum -= 1
                     this.currentIndex -= 1
-                    this.currentLast = 1
-                    this.currentNext = 0
                     if(this.currentIndex < 0) {
                         this.currentIndex = 0
                         this.pageNum = 1
+                    }
+                    this.currentLast = 1
+                    if(parseInt(this.matchData.number_of_games) > this.pageNum) {
+                        this.currentNext = 1
                     }
                     if( this.pageNum === 1) {
                         this.currentLast = 0
