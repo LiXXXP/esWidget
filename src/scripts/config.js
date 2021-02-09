@@ -15,7 +15,7 @@ if(environmentVar === '开发') {
     sparkUrlVar = ''
     basePathVar = '/'
 } else if(environmentVar === '正式') {
-    sparkUrlVar = 'http://18.163.194.171/api'
+    sparkUrlVar = 'http://api.esport.beer/api'
     basePathVar = '/'
 }
 
