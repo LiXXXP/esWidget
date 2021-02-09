@@ -4,18 +4,18 @@ let environmentVar = '';
 let sparkUrlVar = '';// 接口地址
 let basePathVar = '';// history模式下的路径后缀
 
-environmentVar = '开发';
+environmentVar = '正式';
 // environmentVar = '测试';
 // environmentVar = '线上';
 
 if(environmentVar === '开发') {
-    sparkUrlVar = 'http://18.163.194.171/api'
+    sparkUrlVar = 'http://47.75.63.34/api'
     basePathVar = '/'
 } else if(environmentVar === '测试') {
     sparkUrlVar = ''
     basePathVar = '/'
 } else if(environmentVar === '正式') {
-    sparkUrlVar = ''
+    sparkUrlVar = 'http://18.163.194.171/api'
     basePathVar = '/'
 }
 
