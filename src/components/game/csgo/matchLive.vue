@@ -183,9 +183,6 @@
                     }
                     if( this.pageNum === 1) {
                         this.currentLast = 0
-                        if(localStorage.getItem('ongoing')) {
-                            this.currentNext = 0
-                        }
                     }
                 }
             },
