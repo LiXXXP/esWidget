@@ -4,7 +4,7 @@
         <cs-matchBefore
             v-if="parseInt(showType.gameId) === 1
             && parseInt(showType.matchStatu) === 2"
-            :definedStyle="defined.csBeforeData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
         ></cs-matchBefore>
 
@@ -13,7 +13,7 @@
             v-if="parseInt(showType.gameId) === 1
             && parseInt(showType.matchStatu) === 1
             && parseInt(n) === 2"
-            :definedStyle="defined.csLiveData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></cs-match-live>
@@ -23,7 +23,7 @@
             v-if="parseInt(showType.gameId) === 1
             && parseInt(showType.matchStatu) === 1
             && parseInt(n) === 1"
-            :definedStyle="defined.csLiveData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></db-match-live>
@@ -33,7 +33,7 @@
             v-if="(parseInt(showType.gameId) === 2
             || parseInt(showType.gameId) === 3)
             && parseInt(showType.matchStatu) === 2"
-            :definedStyle="defined.beforeData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
         ></match-before>
 
@@ -41,7 +41,7 @@
         <lol-match-live
             v-if="parseInt(showType.gameId) === 2
             && parseInt(showType.matchStatu) === 1"
-            :definedStyle="defined.lolLiveData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></lol-match-live>
@@ -50,7 +50,7 @@
         <dota-match-live
             v-if="parseInt(showType.gameId) === 3
             && parseInt(showType.matchStatu) === 1"
-            :definedStyle="defined.dotaLiveData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></dota-match-live>
@@ -99,49 +99,17 @@
                 let c = getUrlParam('c')
                 if ( parseInt(c) === 2) {
                     _this.defined = {
-                        beforeData: {
-                            type: 1,           // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27', // 深色背景：1E1E27
+                        backGround: {
+                            type: 1,           // 深色
+                            colorData: '#181818', 
                         },
-                        lolLiveData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                        },
-                        dotaLiveData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                        },
-                        csBeforeData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                        },
-                        csLiveData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                        }
                     }
                 } else {
                     _this.defined = {
-                        beforeData: {
-                            type: 0,           // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff', // 深色背景：1E1E27
+                        backGround: {
+                            type: 0,           // 浅色
+                            colorData: '#fff', 
                         },
-                        lolLiveData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                        },
-                        dotaLiveData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                        },
-                        csBeforeData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                        },
-                        csLiveData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                        }
                     }
                 }
                 let keys = getUrlParam('keys')
