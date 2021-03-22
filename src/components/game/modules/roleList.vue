@@ -6,7 +6,7 @@
         >
             <img :src="item.champion?item.champion.image.image:(item.hero&&item.hero.image.image)">
             <span>{{item.level}}</span>
-            <i v-if="roleData.type==='dota'" :class="{'sign':item.is_alive}"></i>
+            <!-- <i v-if="roleData.type==='dota'" :class="{'sign':item.is_alive}"></i> -->
         </div>
 	</div>
 </template>
