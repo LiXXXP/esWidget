@@ -129,9 +129,18 @@ function newBattle(params) {
     return getRequest('/iframe/battle_detail', params)
 }
 
+ /**
+ * 战队产品信息
+ * @param {*} params
+ */
+function teamProduct(params) {
+    return getRequest('/iframe/team_product', params)
+}
+
 export {
     getBattle,
     newMatch,
-    newBattle
+    newBattle,
+    teamProduct
 }
 

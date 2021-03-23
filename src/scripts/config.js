@@ -5,8 +5,6 @@ let sparkUrlVar = '';// 接口地址
 let basePathVar = '';// history模式下的路径后缀
 
 environmentVar = '正式';
-// environmentVar = '测试';
-// environmentVar = '线上';
 
 if(environmentVar === '开发') {
     sparkUrlVar = 'http://47.75.63.34/api'

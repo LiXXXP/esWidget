@@ -10,6 +10,7 @@ import { BASE_PATH } from '@/scripts/config'
 const Index =() => import('@/components/index')
 const IndexNew =() => import('@/components/indexNew')
 const Stream =() => import('@/components/streams/stream.vue')
+const Team =() => import('@/components/team/teamInfo.vue')
 
 const routes = [
     {
@@ -35,6 +36,14 @@ const routes = [
             title: 'stream',
         },
         component: Stream
+    },
+    {
+        path: '/teaminfo',
+        name: 'teamInfo',
+        meta: {
+            title: 'team',
+        },
+        component: Team
     }
 ]
 

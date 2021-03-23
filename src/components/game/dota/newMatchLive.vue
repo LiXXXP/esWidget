@@ -395,7 +395,7 @@
     }
     .match-live {
         width: 100%;
-        height: 260px;
+        height: 270px;
         box-sizing: border-box;
         .live {
             span {
