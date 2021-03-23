@@ -60,6 +60,7 @@
         width: 100%;
         height: 270px;
         padding: 6px 0;
+        overflow: hidden;
         box-sizing: border-box;
         background-color: #1E1E27;
         .info {
@@ -97,7 +98,9 @@
             }
         }
         .list {
+            height: 150px;
             padding: 15px;
+            overflow: hidden;
             .player {
                 width: 60px;
                 height: 75px;
