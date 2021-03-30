@@ -4,13 +4,10 @@ let environmentVar = '';
 let sparkUrlVar = '';// 接口地址
 let basePathVar = '';// history模式下的路径后缀
 
-environmentVar = '正式';
+environmentVar = '新加坡';
 
-if(environmentVar === '开发') {
-    sparkUrlVar = 'http://47.75.63.34/api'
-    basePathVar = '/'
-} else if(environmentVar === '测试') {
-    sparkUrlVar = ''
+if(environmentVar === '新加坡') {
+    sparkUrlVar = 'https://elapi.elements-data.com'
     basePathVar = '/'
 } else if(environmentVar === '正式') {
     sparkUrlVar = 'https://api.esport.beer/api'
