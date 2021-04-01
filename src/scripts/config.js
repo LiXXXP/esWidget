@@ -4,7 +4,7 @@ let environmentVar = '';
 let sparkUrlVar = '';// 接口地址
 let basePathVar = '';// history模式下的路径后缀
 
-environmentVar = '新加坡';
+environmentVar = '正式';
 
 if(environmentVar === '新加坡') {
     sparkUrlVar = 'https://elapi.elements-data.com/api'

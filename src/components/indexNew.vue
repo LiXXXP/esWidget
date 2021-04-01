@@ -155,10 +155,8 @@
                 newMatch(params).then(res => {
                     if(res.code === 200) {
                         _this.showType.gameId = res.data.game_id
-                        if(res.data.battle_list.length === 0) {
-                            _this.showType.matchInfo = res.data.match_info
-                        }
-                        else {
+                        _this.showType.matchInfo = res.data.match_info
+                        if(res.data.battle_list.length > 0) {
                             _this.showType.battleList = res.data.battle_list.reverse()
                             if( res.data.match_status === 'completed' && res.data.battle_list[0].battle_status === 'completed') {
                                 clearInterval(_this.timer)
