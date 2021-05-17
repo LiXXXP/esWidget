@@ -44,8 +44,8 @@
 
 <script>
     const matchBefore = ()=> import("@/components/game/lol/matchBefore")        // 赛事前
-    const lolMatchLive = ()=> import("@/components/game/lol/newMatchLive")         // lol赛事
-    const dotaMatchLive = ()=> import("@/components/game/dota/matchLive")       // dota2赛事
+    const lolMatchLive = ()=> import("@/components/game/lol/newMatchLive")      // lol赛事
+    const dotaMatchLive = ()=> import("@/components/game/dota/newMatchLive")    // dota2赛事
     const csMatchBefore = ()=> import("@/components/game/csgo/matchBefore")     // csgo赛前
     const csMatchLive = ()=> import("@/components/game/csgo/newMatchLive")      // csgo赛事
 
