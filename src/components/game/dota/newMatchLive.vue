@@ -125,7 +125,7 @@
                     left: false  // 位置是否左对齐
                 },
                 barColorData: {   // 进度条颜色
-                    left: '#1167E8',
+                    left: '#3CAB3C',
                     right: '#D43F2F',
                 },
                 roleData: {       // 角色头像宽高
