@@ -12,6 +12,9 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 /* 用于低版本浏览器兼容问题 es6语法兼容 */
 import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
