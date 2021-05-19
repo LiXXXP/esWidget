@@ -5,14 +5,14 @@
             v-if="(parseInt(showType.gameId) === 2
             || parseInt(showType.gameId) === 3)
             && parseInt(showType.matchStatu) === 2"
-            :definedStyle="defined.beforeData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
         ></match-before>
         <!-- lol赛事 -->
         <lol-match-live
             v-if="parseInt(showType.gameId) === 2
             && parseInt(showType.matchStatu) === 1"
-            :definedStyle="defined.lolLiveData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></lol-match-live>
@@ -20,7 +20,7 @@
         <dota-match-live
             v-if="parseInt(showType.gameId) === 3
             && parseInt(showType.matchStatu) === 1"
-            :definedStyle="defined.dotaLiveData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></dota-match-live>
@@ -28,14 +28,14 @@
         <cs-matchBefore
             v-if="parseInt(showType.gameId) === 1
             && parseInt(showType.matchStatu) === 2"
-            :definedStyle="defined.csBeforeData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
         ></cs-matchBefore>
         <!-- csgo赛事 -->
         <cs-match-live
             v-if="parseInt(showType.gameId) === 1
             && parseInt(showType.matchStatu) === 1"
-            :definedStyle="defined.csLiveData"
+            :definedStyle="defined.backGround"
             :battleData="showType.battleList"
             :matchData="showType.matchInfo"
         ></cs-match-live>
@@ -50,7 +50,7 @@
     const csMatchLive = ()=> import("@/components/game/csgo/newMatchLive")      // csgo赛事
 
     import { newMatch } from "@/scripts/request.js"  // 请求方法
-    import { getUrlParam } from '@/scripts/utils'                 // 获取页面参数方法
+    import { getUrlParam } from '@/scripts/utils'    // 获取页面参数方法
 	export default {
         name: 'indexnew',
 		data() {
@@ -82,68 +82,16 @@
                 let c = getUrlParam('c')
                 if ( parseInt(c) === 2) {
                     _this.defined = {
-                        beforeData: {
-                            type: 1,           // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27', // 深色背景：1E1E27
-                            widthData: '826px',
-                            heightData: '262px',
-                        },
-                        lolLiveData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
-                        },
-                        dotaLiveData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
-                        },
-                        csBeforeData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
-                        },
-                        csLiveData: {
-                            type: 1,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#1E1E27',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
+                        backGround: {
+                            type: 1,           // 深色
+                            colorData: '#181818',
                         }
                     }
                 } else {
                     _this.defined = {
-                        beforeData: {
-                            type: 0,           // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff', // 深色背景：1E1E27
-                            widthData: '826px',
-                            heightData: '262px',
-                        },
-                        lolLiveData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
-                        },
-                        dotaLiveData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
-                        },
-                        csBeforeData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
-                        },
-                        csLiveData: {
-                            type: 0,          // 开启背景模式，0为浅色，1为深色
-                            colorData: '#fff',// 深色背景：1E1E27
-                            widthData: '360px',
-                            heightData: '260px',
+                        backGround: {
+                            type: 0,           // 浅色
+                            colorData: '#fff',
                         }
                     }
                 }

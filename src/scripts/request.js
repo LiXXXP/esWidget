@@ -137,10 +137,37 @@ function teamProduct(params) {
     return getRequest('/iframe/team_product', params)
 }
 
+ /**
+ * LOL经济差/经验差
+ * @param {*} params
+ */
+  function lolDiff(params) {
+    return getRequest('/iframe/lol_gold_and_experience_diff', params)
+}
+
+ /**
+ * LOL选手对局详情
+ * @param {*} params
+ */
+  function lolPlayer(params) {
+    return getRequest('/iframe/lol_player_battle_detail', params)
+}
+
+ /**
+ * LOL选手对局详情
+ * @param {*} params
+ */
+  function lolDataRank(params) {
+    return getRequest('/iframe/lol_data_ranking', params)
+}
+
 export {
     getBattle,
     newMatch,
     newBattle,
-    teamProduct
+    teamProduct,
+    lolDiff,
+    lolPlayer,
+    lolDataRank
 }
 

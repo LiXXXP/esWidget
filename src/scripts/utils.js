@@ -385,6 +385,32 @@ function formatSecond(sec) {
 }
 
 /**
+ * 秒数转换时间
+ * @param {*} sec 秒
+ */
+ function formatLine(sec) {
+    let theTime = parseInt(sec) // 秒
+    let middle = 0  // 分
+    let hour = 0    // 小时
+    if(theTime >= 60) {
+        middle = parseInt( theTime / 60 )
+        theTime = parseInt( theTime % 60 )
+        if( middle >= 60 ) {
+            hour = parseInt( middle / 60 )
+            middle = parseInt( middle % 60 )
+        }
+    }
+    let result = `${parseInt(theTime)}`
+    if( middle > 0 ) {
+        result = `${parseInt(middle)}:${result}`
+    }
+    if( hour > 0 ) {
+        result = `${parseInt(hour)}:${result}`
+    }
+    return result
+}
+
+/**
  * 将数值四舍五入后格式化.
  *
  * @param num 数值(Number或者String)
@@ -441,5 +467,6 @@ export {
     formatSecond,
     formatNumber,
     rTime,
-    UTCDateToLocalDate
+    UTCDateToLocalDate,
+    formatLine
 }

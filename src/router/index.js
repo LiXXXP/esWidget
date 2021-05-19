@@ -7,10 +7,6 @@ import { BASE_PATH } from '@/scripts/config'
 
 
 /* 异步引入路由 */
-const Index =() => import('@/components/index')
-const IndexNew =() => import('@/components/indexNew')
-const Stream =() => import('@/components/streams/stream.vue')
-const Team =() => import('@/components/team/teamInfo.vue')
 
 const routes = [
     {
@@ -19,7 +15,7 @@ const routes = [
         meta: {
             title: 'screen',
         },
-        component: Index
+        component: () => import('@/components/index')
     },
     {
         path: '/new',
@@ -27,7 +23,7 @@ const routes = [
         meta: {
             title: 'screen',
         },
-        component: IndexNew
+        component: () => import('@/components/indexNew')
     },
     {
         path: '/stream',
@@ -35,7 +31,7 @@ const routes = [
         meta: {
             title: 'stream',
         },
-        component: Stream
+        component: () => import('@/components/streams/stream.vue')
     },
     {
         path: '/teaminfo',
@@ -43,8 +39,32 @@ const routes = [
         meta: {
             title: 'team',
         },
-        component: Team
-    }
+        component: () => import('@/components/team/teamInfo.vue')
+    },
+    {
+        path: '/new/diff',
+        name: 'diff',
+        meta: {
+            title: '经济差',
+        },
+        component: () => import('@/components/news/playDiff.vue')
+    },
+    {
+        path: '/new/player',
+        name: 'player',
+        meta: {
+            title: '选手',
+        },
+        component: () => import('@/components/news/playerData.vue')
+    },
+    {
+        path: '/new/rank',
+        name: 'rank',
+        meta: {
+            title: '数据排行',
+        },
+        component: () => import('@/components/news/playRank.vue')
+    },
 ]
 
 const router = new Router({
