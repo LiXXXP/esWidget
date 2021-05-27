@@ -65,6 +65,14 @@ const routes = [
         },
         component: () => import('@/components/news/playRank.vue')
     },
+    {
+        path: '/new/process',
+        name: 'process',
+        meta: {
+            title: '赛事进程',
+        },
+        component: () => import('@/components/news/process.vue')
+    },
 ]
 
 const router = new Router({

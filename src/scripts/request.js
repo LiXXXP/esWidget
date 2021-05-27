@@ -161,6 +161,22 @@ function teamProduct(params) {
     return getRequest('/iframe/lol_data_ranking', params)
 }
 
+ /**
+ * 赛事同屏基本信息
+ * @param {*} params
+ */
+  function tournamentProduct(params) {
+    return getRequest('/iframe/tournament_product', params)
+}
+
+ /**
+ * 赛事进程
+ * @param {*} params
+ */
+  function tournamentProcess(params) {
+    return postRequest('/iframe/tournament_process', params)
+}
+
 export {
     getBattle,
     newMatch,
@@ -168,6 +184,8 @@ export {
     teamProduct,
     lolDiff,
     lolPlayer,
-    lolDataRank
+    lolDataRank,
+    tournamentProduct,
+    tournamentProcess
 }
 
